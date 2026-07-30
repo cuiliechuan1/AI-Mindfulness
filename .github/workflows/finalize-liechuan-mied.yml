@@ -5,26 +5,30 @@ on:
     branches:
       - main
     paths:
-      - 'Liechuan/.upload/MIED-AI_Liechuan_7.31.html.bz2.b64'
+      - 'Liechuan/.upload/READY'
 
 permissions:
   contents: write
 
 jobs:
   finalize:
+    if: contains(github.event.head_commit.message, 'Finalize Liechuan MIED prototype upload')
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Decode HTML file
+      - name: Rebuild and verify HTML file
         shell: bash
         run: |
+          set -euo pipefail
           mkdir -p Liechuan
-          base64 --decode Liechuan/.upload/MIED-AI_Liechuan_7.31.html.bz2.b64 | bunzip2 > Liechuan/MIED-AI_Liechuan_7.31.html
-          rm -f Liechuan/.upload/MIED-AI_Liechuan_7.31.html.bz2.b64
-          rmdir Liechuan/.upload 2>/dev/null || true
-          rm -f .github/workflows/finalize-liechuan-mied.yml
+          cat Liechuan/.upload/parts/part-*.b64 > /tmp/mied-upload.b64
+          test "$(wc -c < /tmp/mied-upload.b64)" -eq 112692
+          base64 --decode /tmp/mied-upload.b64 | bunzip2 > Liechuan/MIED-AI_Liechuan_7.31.html
+          test "$(wc -c < Liechuan/MIED-AI_Liechuan_7.31.html)" -eq 406544
+          echo '2197dc5c6e6da0c246cf47f160f708e1f6bb628ca379111b35caea6290fe58d8  Liechuan/MIED-AI_Liechuan_7.31.html' | sha256sum -c -
+          rm -rf Liechuan/.upload
 
       - name: Commit finalized upload
         shell: bash
