@@ -29,7 +29,7 @@ jobs:
           test "$(wc -c < /tmp/mied-upload.b64)" -eq 112692
           base64 --decode /tmp/mied-upload.b64 | bunzip2 > Liechuan/MIED-AI_Liechuan_7.31.html
           test "$(wc -c < Liechuan/MIED-AI_Liechuan_7.31.html)" -eq 406544
-          echo '2197dc5c6e6da0c246cf47f160f708e1f6bb628ca379111b35caea6290fe58d8  Liechuan/MIED-AI_Liechuan_7.31.html' | sha256sum -c -
+          echo '1dae9c994b4335374146de606a4a48f4c2095d5fe0b267c2264df616f299ba7b  Liechuan/MIED-AI_Liechuan_7.31.html' | sha256sum -c -
           rm -rf Liechuan/.upload
           rm -f .github/workflows/finalize-liechuan-mied.yml
 
