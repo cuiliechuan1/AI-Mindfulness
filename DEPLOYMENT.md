@@ -7,7 +7,9 @@
 - 平台：腾讯云中国站 EdgeOne Makers。
 - 项目名称：`mied-ai-internal-test`（名称冲突时仅首次改用带简短日期的名称，之后始终复用同一项目）。
 - 项目 ID：`makers-gglp5qqcqc6i`。
-- 部署环境：`preview`，使用 EdgeOne 默认临时访问网址。
+- 目标部署环境：`preview`，使用 EdgeOne 默认临时访问网址。
+- 平台引导：直传项目首次创建 `preview` 前必须已有一次 `production` 部署；
+  经明确批准后仅执行一次受访问控制保护的生产引导部署，日常更新仍只部署 `preview`。
 - 部署分支：`develop`。
 - 不在此阶段绑定域名、修改 DNS、办理 ICP 备案或配置 GitHub Actions。
 
@@ -46,13 +48,14 @@ npm run auth:init
 在另一台机器上首次运行会生成新的密钥对并更新仓库公钥。除非同时更新 Makers 中的 `INTERNAL_TEST_SIGNING_PRIVATE_KEY`，不得提交该公钥变化。需要轮换时使用 `npm run auth:init -- --rotate`，并把私钥环境变量和公钥作为同一次受控更新完成。
 
 在腾讯云中国站 EdgeOne Makers 控制台进入
-`mied-ai-internal-test > 项目设置 > 环境变量`，把两项变量仅配置到“预览”环境。
+`mied-ai-internal-test > 项目设置 > 环境变量`，把两项变量配置到“生产”和“预览”
+环境，以确保平台要求的首次生产引导部署同样受到访问控制。
 变量值分别从被忽略的 `password.txt` 和 `signing-private-key.pkcs8.b64`
 复制，不在聊天或终端中显示。
 
 截至 EdgeOne CLI `1.6.19`，本项目验证到 `edgeone makers env set` 在
 Windows 非交互环境中可能返回成功码但不实际写入变量。确认官方修复前，以控制台
-中可见的变量名和“预览”生效范围作为配置依据；不要用未经验证的 API 脚本绕过。
+中可见的变量名和“生产、预览”生效范围作为配置依据；不要用未经验证的 API 脚本绕过。
 
 ## 本地测试
 
@@ -77,6 +80,17 @@ Remove-Item Env:INTERNAL_TEST_PASSWORD, Env:INTERNAL_TEST_SIGNING_PRIVATE_KEY
 
 本地关联信息保存在可提交的 `.edgeone/project.json` 中；认证信息
 `.edgeone/auth.json` 必须保持忽略。
+
+全新直传项目仅在第一次部署时先执行受保护的生产引导，再立即创建预览部署：
+
+```powershell
+$env:PAGES_SOURCE = 'skills'
+edgeone makers deploy -n mied-ai-internal-test -e production --json
+edgeone makers deploy -n mied-ai-internal-test -e preview --json
+```
+
+生产引导会留下一个 EdgeOne 默认生产网址，但不绑定自定义域名、不修改 DNS，
+也不作为正式研究或临床服务入口。对测试人员只分发预览网址。
 
 以后每次都在 `develop` 分支、同一项目名称上重新部署预览环境：
 
