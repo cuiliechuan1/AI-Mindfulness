@@ -165,17 +165,46 @@ nav button[data-page="session"],
   .metrics{grid-template-columns:repeat(3,1fr)}
 }
 
-.internal-test-banner{position:sticky;top:0;z-index:120;padding:9px 16px;border-bottom:1px solid #e4c898;background:#fff5dc;color:#6f5429;text-align:center;font-size:14px;font-weight:850;line-height:1.45;box-shadow:0 4px 16px rgba(85,62,25,.08)}
-.internal-test-banner small{display:block;margin-top:1px;color:#7c6a4b;font-size:12px;font-weight:650}
-@media(max-width:760px){.internal-test-banner{padding:8px 12px;font-size:13px}.internal-test-banner small{font-size:11px}}
+.internal-test-banner{position:sticky;top:0;z-index:120;padding:9px 16px;border-bottom:1px solid #e4c898;background:#fff5dc;color:#6f5429;font-size:14px;font-weight:850;line-height:1.45;box-shadow:0 4px 16px rgba(85,62,25,.08);display:flex;align-items:center;justify-content:center;gap:14px}
+.internal-test-banner span{text-align:center}.internal-test-banner small{display:block;margin-top:1px;color:#7c6a4b;font-size:12px;font-weight:650}
+.internal-test-logout{flex:0 0 auto;padding:6px 10px;border:1px solid #d3ae6d;border-radius:10px;background:#fffaf0;color:#73572c;font-size:12px;font-weight:900}
+@media(max-width:760px){.internal-test-banner{padding:8px 12px;font-size:13px;gap:8px}.internal-test-banner small{font-size:11px}.internal-test-logout{padding:5px 8px;font-size:11px}}
 
 </style>
 </head>
 <body>
 <div class="internal-test-banner" role="note" aria-label="内部测试声明">
-  内部测试版本，仅供功能与体验测试，不用于正式研究或临床服务。
-  <small>请仅使用虚拟账号与虚拟数据；不要输入真实参与者信息。</small>
+  <span>
+    内部测试版本，仅供功能与体验测试，不用于正式研究或临床服务。
+    <small>请仅使用虚拟账号与虚拟数据；不要输入真实参与者信息。</small>
+  </span>
+  <button class="internal-test-logout" id="internalTestLogout" type="button">退出内测</button>
 </div>
+<script>
+(() => {
+  const button = document.getElementById('internalTestLogout');
+  button.addEventListener('click', async () => {
+    button.disabled = true;
+    const params = new URLSearchParams(window.location.search);
+    const preview = new URLSearchParams();
+    for (const key of ['eo_token', 'eo_time']) {
+      const value = params.get(key);
+      if (value) preview.set(key, value);
+    }
+    const suffix = preview.size ? `?${preview.toString()}` : '';
+    try {
+      await fetch(`/api/internal-auth${suffix}`, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({action: 'logout'}),
+      });
+    } finally {
+      window.location.replace(`/${suffix}`);
+    }
+  });
+})();
+</script>
 <section class="launcher" id="launcher">
   <div class="launch-shell">
     <div class="launch-head"><div class="launch-brand"><div class="mark">M</div><div><h1>MIED-与哀伤同行</h1><p>正念测评 · 正念课程 · 哀伤心理教育</p></div></div><button class="team-entry" id="openAdmin"><span>研</span>研究团队后台</button></div>

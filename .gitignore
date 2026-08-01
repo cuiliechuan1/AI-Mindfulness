@@ -7,6 +7,8 @@
 .edgeone/.token
 .edgeone/auth.json
 .edgeone/*.token
+.edgeone/assets/
+.edgeone/edge-functions/
 .internal-test-secrets/
 
 # Dependencies and build output
@@ -17,6 +19,7 @@ dist/
 .next/
 .nuxt/
 .output/
+.tef_dist/
 coverage/
 
 # Local logs and editor/system files

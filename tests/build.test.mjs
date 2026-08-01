@@ -20,5 +20,8 @@ test('built pages carry internal-test and crawler controls', async () => {
     assert.ok(html.includes(notice));
     assert.match(html, /name="robots"[^>]*noindex[^>]*nofollow/i);
   }
+  const index = await readFile(resolve(outputDirectory, 'index.html'), 'utf8');
+  assert.match(index, /id="internalTestLogout"/);
+  assert.match(index, /JSON\.stringify\(\{action: 'logout'\}\)/);
   assert.equal(await readFile(resolve(outputDirectory, 'robots.txt'), 'utf8'), 'User-agent: *\nDisallow: /\n');
 });

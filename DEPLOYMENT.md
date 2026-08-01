@@ -6,6 +6,7 @@
 - 数据边界：仅使用虚拟账号和虚拟数据；不得输入真实研究参与者信息。
 - 平台：腾讯云中国站 EdgeOne Makers。
 - 项目名称：`mied-ai-internal-test`（名称冲突时仅首次改用带简短日期的名称，之后始终复用同一项目）。
+- 项目 ID：`makers-gglp5qqcqc6i`。
 - 部署环境：`preview`，使用 EdgeOne 默认临时访问网址。
 - 部署分支：`develop`。
 - 不在此阶段绑定域名、修改 DNS、办理 ICP 备案或配置 GitHub Actions。
@@ -44,15 +45,14 @@ npm run auth:init
 
 在另一台机器上首次运行会生成新的密钥对并更新仓库公钥。除非同时更新 Makers 中的 `INTERNAL_TEST_SIGNING_PRIVATE_KEY`，不得提交该公钥变化。需要轮换时使用 `npm run auth:init -- --rotate`，并把私钥环境变量和公钥作为同一次受控更新完成。
 
-登录并关联同一个 Makers 项目后，可在 PowerShell 中从本机文件读取值并直接传给官方 CLI，避免把真实值写进命令历史：
+在腾讯云中国站 EdgeOne Makers 控制台进入
+`mied-ai-internal-test > 项目设置 > 环境变量`，把两项变量仅配置到“预览”环境。
+变量值分别从被忽略的 `password.txt` 和 `signing-private-key.pkcs8.b64`
+复制，不在聊天或终端中显示。
 
-```powershell
-$internalTestPassword = (Get-Content .internal-test-secrets/password.txt -Raw).Trim()
-$internalSigningKey = (Get-Content .internal-test-secrets/signing-private-key.pkcs8.b64 -Raw).Trim()
-edgeone makers env set INTERNAL_TEST_PASSWORD $internalTestPassword
-edgeone makers env set INTERNAL_TEST_SIGNING_PRIVATE_KEY $internalSigningKey
-Remove-Variable internalTestPassword, internalSigningKey
-```
+截至 EdgeOne CLI `1.6.19`，本项目验证到 `edgeone makers env set` 在
+Windows 非交互环境中可能返回成功码但不实际写入变量。确认官方修复前，以控制台
+中可见的变量名和“预览”生效范围作为配置依据；不要用未经验证的 API 脚本绕过。
 
 ## 本地测试
 
@@ -75,12 +75,8 @@ Remove-Item Env:INTERNAL_TEST_PASSWORD, Env:INTERNAL_TEST_SIGNING_PRIVATE_KEY
 
 ## 首次部署与手动更新
 
-首次部署服务端函数项目前执行：
-
-```powershell
-$env:PAGES_SOURCE = 'skills'
-edgeone makers init
-```
+本地关联信息保存在可提交的 `.edgeone/project.json` 中；认证信息
+`.edgeone/auth.json` 必须保持忽略。
 
 以后每次都在 `develop` 分支、同一项目名称上重新部署预览环境：
 
