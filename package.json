@@ -1,0 +1,17 @@
+{
+  "name": "mied-ai-internal-test",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "MIED AI demo internal preview for Tencent Cloud EdgeOne Makers",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "auth:init": "node scripts/generate-internal-auth-secrets.mjs",
+    "build": "node scripts/build.mjs",
+    "lint": "node scripts/validate.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm run build && npm run lint && npm test"
+  }
+}

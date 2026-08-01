@@ -1,0 +1,31 @@
+# Environment variables and credentials
+.env
+.env.local
+.env.production
+.env.*
+!.env.example
+.edgeone/.token
+.edgeone/auth.json
+.edgeone/*.token
+.internal-test-secrets/
+
+# Dependencies and build output
+node_modules/
+dist/
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.output/
+coverage/
+
+# Local logs and editor/system files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

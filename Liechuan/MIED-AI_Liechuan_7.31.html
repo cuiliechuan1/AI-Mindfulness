@@ -462,7 +462,7 @@ DEMO:{
     {key:'demo_marital',text:'你的婚姻状况',type:'select',group:'你的基本信息',options:['未婚','已婚','分居','离异','丧偶'].map(x=>choice(x,x))},
     {key:'demo_support',text:'过去三个月中，你因丧亲经历或相关情绪困扰接受过哪些支持或服务（可多选）',type:'multicheck',group:'你的基本信息',options:['未接受相关支持或服务','亲友支持','心理咨询 / 心理治疗','医疗服务或药物治疗','社工、社区或宗教/灵性支持','线上支持资源或互助小组','其他'].map(x=>choice(x,x))},
     {key:'demo_support_other',text:'如支持或服务选择“其他”，请注明',type:'text',group:'你的基本信息',required:false},
-    {key:'demo_phone6',text:'你的手机号后六位（作为匹配追踪问卷的编号）',type:'text',group:'你的基本信息',pattern:'\\d{6}',placeholder:'请输入6位数字'}
+    {key:'demo_test_code6',text:'虚拟测试编号（请自行随机生成6位数字，仅用于本次内测匹配）',type:'text',group:'你的基本信息',pattern:'\\d{6}',placeholder:'请输入随机6位数字，不要使用手机号'}
   ]
 },
 PG13:{
@@ -1021,7 +1021,7 @@ const demoParticipants=[
 const simulatedRisks=[
 {id:'R-DEMO-01',participant:'MIED-007',time:new Date(Date.now()-18*60000).toISOString(),source:'MIED 会谈',level:'high',label:'R3 紧急',excerpt:'提到无法保证自己当前安全，需要立即人工复核。',status:'open',handler:'未分配',notes:[]},
 {id:'R-DEMO-02',participant:'MIED-003',time:new Date(Date.now()-95*60000).toISOString(),source:'每日反馈',level:'medium',label:'R2 升级',excerpt:'表达强烈绝望与无法独处，需要现实支持。',status:'following',handler:'值班员 A',notes:['已发送联系提醒']},
-{id:'R-DEMO-03',participant:'MIED-010',time:new Date(Date.now()-28*3600000).toISOString(),source:'情绪日志',level:'low',label:'R1 关注',excerpt:'连续睡眠困难、频繁哭泣，已建议稳定化。',status:'resolved',handler:'值班员 B',notes:['已电话确认安全']}
+{id:'R-DEMO-03',participant:'MIED-010',time:new Date(Date.now()-28*3600000).toISOString(),source:'情绪日志',level:'low',label:'R1 关注',excerpt:'连续睡眠困难、频繁哭泣，已建议稳定化。',status:'resolved',handler:'值班员 B',notes:['已完成虚拟安全确认']}
 ];
 const auditSamples=[
 {id:'A-1001',participant:'MIED-002',route:'settle',version:'0.10',status:'pending',risk:'low',user:'今晚胸口很堵，脑子也很乱。',ai:'我们先不急着解释。可以先感受脚底和椅子给身体的支撑。'},

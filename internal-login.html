@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="theme-color" content="#273f4a" />
+  <title>MIED 内测访问验证</title>
+  <style>
+    :root{color-scheme:light;--ink:#1d3037;--muted:#64767c;--line:#dce5df;--teal:#2e746b;--paper:#f8f5ef;--focus:0 0 0 4px rgba(47,116,107,.20)}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;color:var(--ink);background:radial-gradient(circle at 8% 0%,rgba(126,177,166,.24),transparent 34%),radial-gradient(circle at 87% 2%,rgba(235,194,141,.25),transparent 34%),linear-gradient(135deg,#f3f8f5,#f8f6f0 47%,#f9efe6);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+    main{width:min(480px,100%);padding:30px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.94);box-shadow:0 22px 62px rgba(31,47,55,.13)}
+    .mark{width:48px;height:48px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(145deg,#263f4a,#6d908a);color:#fff;font-weight:900}
+    h1{margin:18px 0 6px;font-size:27px;line-height:1.2}p{margin:0;color:var(--muted);line-height:1.65}.notice{margin:20px 0;padding:14px;border:1px solid #e4c898;border-radius:15px;background:#fff5dc;color:#6f5429;font-size:14px;line-height:1.55}.notice b{display:block;margin-bottom:3px}
+    label{display:grid;gap:7px;font-weight:850}input{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:13px;background:#fff;color:var(--ink);font:inherit}input:focus{outline:none;border-color:#8eb8ad;box-shadow:var(--focus)}button{width:100%;margin-top:14px;padding:12px 14px;border:0;border-radius:13px;background:var(--teal);color:#fff;font:inherit;font-weight:900;cursor:pointer}button:disabled{opacity:.58;cursor:not-allowed}.message{min-height:24px;margin-top:12px;color:#9b3737;font-size:14px}.message.ok{color:#39735b}.fine{margin-top:18px;font-size:12px;color:#7b898e}
+    @media(max-width:560px){body{padding:14px}main{padding:23px;border-radius:20px}h1{font-size:23px}}
+  </style>
+</head>
+<body>
+  <main>
+    <div class="mark" aria-hidden="true">M</div>
+    <h1>MIED 内测访问验证</h1>
+    <p>请输入内测访问密码。密码仅发送到同源的服务端验证接口，不会写入浏览器存储。</p>
+    <div class="notice" role="note">
+      <b>内部测试版本，仅供功能与体验测试，不用于正式研究或临床服务。</b>
+      请仅使用虚拟账号与虚拟数据，不要输入真实姓名、电话、邮箱或研究参与者信息。
+    </div>
+    <form id="loginForm">
+      <label for="password">内测访问密码
+        <input id="password" name="password" type="password" autocomplete="current-password" required maxlength="256" />
+      </label>
+      <button id="submitButton" type="submit">进入内部测试</button>
+      <div class="message" id="message" role="status" aria-live="polite"></div>
+    </form>
+    <p class="fine">验证成功后会创建最长 8 小时的安全会话。请勿共享访问密码或含临时访问参数的网址。</p>
+  </main>
+  <script>
+    (() => {
+      'use strict';
+      const form = document.getElementById('loginForm');
+      const password = document.getElementById('password');
+      const button = document.getElementById('submitButton');
+      const message = document.getElementById('message');
+      const params = new URLSearchParams(window.location.search);
+      const authParams = new URLSearchParams();
+      for (const key of ['eo_token', 'eo_time']) {
+        const value = params.get(key);
+        if (value) authParams.set(key, value);
+      }
+      const returnValue = params.get('return');
+      let safeReturn = `/${authParams.size ? `?${authParams.toString()}` : ''}`;
+      if (returnValue && returnValue.startsWith('/') && !/^\/[\\/]/.test(returnValue)) {
+        const candidate = new URL(returnValue, window.location.origin);
+        if (candidate.origin === window.location.origin) safeReturn = `${candidate.pathname}${candidate.search}${candidate.hash}`;
+      }
+      const authUrl = `/api/internal-auth${authParams.size ? `?${authParams.toString()}` : ''}`;
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        button.disabled = true;
+        message.className = 'message';
+        message.textContent = '正在验证…';
+        try {
+          const response = await fetch(authUrl, {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({password: password.value}),
+          });
+          const result = await response.json().catch(() => ({}));
+          password.value = '';
+          if (!response.ok) {
+            message.textContent = result.error || '验证失败，请稍后重试。';
+            return;
+          }
+          message.className = 'message ok';
+          message.textContent = '验证成功，正在进入…';
+          window.location.replace(safeReturn);
+        } catch {
+          message.textContent = '暂时无法连接验证服务，请检查网络后重试。';
+        } finally {
+          button.disabled = false;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
