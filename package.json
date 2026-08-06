@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "MIED AI demo internal preview for Tencent Cloud EdgeOne Makers",
+  "description": "MIED AI participant and research-team demo for Tencent Cloud and GitHub Pages",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
     "auth:init": "node scripts/generate-internal-auth-secrets.mjs",
     "build": "node scripts/build.mjs",
+    "build:cloudbase": "node scripts/assemble-cloudbase.mjs",
     "lint": "node scripts/validate.mjs",
     "test": "node --test tests/*.test.mjs",
     "check": "npm run build && npm run lint && npm test"
