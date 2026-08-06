@@ -25,3 +25,23 @@ test('built pages carry internal-test and crawler controls', async () => {
   assert.match(index, /JSON\.stringify\(\{action: 'logout'\}\)/);
   assert.equal(await readFile(resolve(outputDirectory, 'robots.txt'), 'utf8'), 'User-agent: *\nDisallow: /\n');
 });
+
+test('built participant page includes the assessment v18 corrections', async () => {
+  const index = await readFile(resolve(outputDirectory, 'index.html'), 'utf8');
+  assert.doesNotMatch(index, /^(?:<<<<<<<|=======|>>>>>>>)/m);
+  assert.match(index, /document\.documentElement\.dataset\.assessmentVersion='v18'/);
+  assert.match(index, /const TEXT_ONLY_SCALES=new Set\(\['DAAPGQ','ERRI'\]\)/);
+  assert.match(index, /reverseScoredItems:\['scs_1','scs_4','scs_8','scs_9','scs_11','scs_12'\]/);
+  assert.match(index, /const expectedPtgi=\{relationships:6,newPossibilities:3,strength:4,spiritualChange:3,appreciationLife:4\}/);
+  assert.doesNotMatch(index, /const scaleOrder=\[[^\]]*'IPGDS'/);
+  assert.match(index, /key:'demo_phone6'[^\n]+你的手机号后六位[^\n]+pattern:'\\\\d\{6\}'[^\n]+请输入6位数字/);
+});
+
+test('all inline participant scripts are syntactically valid', async () => {
+  const index = await readFile(resolve(outputDirectory, 'index.html'), 'utf8');
+  const scripts = [...index.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/gi)].map(match => match[1]);
+  assert.ok(scripts.length >= 2);
+  for (const [position, source] of scripts.entries()) {
+    assert.doesNotThrow(() => new Function(source), `inline script ${position + 1} must parse`);
+  }
+});

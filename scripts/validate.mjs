@@ -42,16 +42,35 @@ const [indexHtml, referenceHtml, loginHtml, robots, gitignore, envExample, middl
 ]);
 
 const requiredNotice = '内部测试版本，仅供功能与体验测试，不用于正式研究或临床服务。';
+const requiredPhoneNotices = {
+  'index.html': '除内测成员本人手机号后六位外，请勿输入真实研究参与者信息。',
+  'internal-login.html': '除内测成员本人手机号后六位外，请勿输入真实姓名、完整电话、邮箱或研究参与者信息。',
+};
 for (const [file, contents] of [['index.html', indexHtml], ['internal-login.html', loginHtml]]) {
   if (!contents.includes(requiredNotice)) errors.push(`${file} lacks the exact internal-test notice.`);
+  if (!contents.includes(requiredPhoneNotices[file])) errors.push(`${file} lacks the phone-data boundary notice.`);
   if (!/name="robots"[^>]*noindex[^>]*nofollow/i.test(contents)) errors.push(`${file} lacks noindex,nofollow metadata.`);
   if (/[A-Za-z]:\\(?:Users|Documents|Desktop|桌面)\\/i.test(contents)) errors.push(`${file} contains a local Windows absolute path.`);
   if (/(?:src|href)=["'](?:file:|[A-Za-z]:\\)/i.test(contents)) errors.push(`${file} contains a non-deployable asset URL.`);
+  if (/^(?:<<<<<<<|=======|>>>>>>>)/m.test(contents)) errors.push(`${file} contains unresolved merge markers.`);
 }
-for (const [file, contents] of [['index.html', indexHtml], ['Liechuan/MIED-AI_Liechuan_7.31.html', referenceHtml]]) {
-  if (contents.includes('demo_phone6') || contents.includes('手机号后六位')) {
-    errors.push(`${file} still asks internal testers for part of a real phone number.`);
-  }
+if (!indexHtml.includes("document.documentElement.dataset.assessmentVersion='v18'")) {
+  errors.push('index.html is not the integrated participant assessment v18 build.');
+}
+for (const marker of [
+  "const TEXT_ONLY_SCALES=new Set(['DAAPGQ','ERRI'])",
+  "reverseScoredItems:['scs_1','scs_4','scs_8','scs_9','scs_11','scs_12']",
+  "const expectedPtgi={relationships:6,newPossibilities:3,strength:4,spiritualChange:3,appreciationLife:4}",
+]) {
+  if (!indexHtml.includes(marker)) errors.push(`index.html lacks assessment v18 marker: ${marker}`);
+}
+for (const marker of [
+  "key:'demo_phone6'",
+  '你的手机号后六位（作为匹配追踪问卷的编号）',
+  "pattern:'\\\\d{6}'",
+  "placeholder:'请输入6位数字'",
+]) {
+  if (!indexHtml.includes(marker)) errors.push(`index.html lacks the Yaheng v18 phone matching rule: ${marker}`);
 }
 
 if (!/^User-agent: \*\r?\nDisallow: \/\s*$/m.test(robots)) errors.push('robots.txt does not disallow all crawlers.');
