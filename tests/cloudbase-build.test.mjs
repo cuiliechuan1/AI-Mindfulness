@@ -18,7 +18,7 @@ test('CloudBase page combines the account entry with participant assessment v18'
   assert.match(html, /data-mied-entry="participant"/);
   assert.match(html, /data-mied-entry="research"/);
   assert.match(html, /id="ruiAdminHost"/);
-  assert.match(html, /src="rui-admin\.html\?v=rui-0806-4"/);
+  assert.match(html, /src="rui-admin\.html\?v=rui-0806-community-2"/);
   assert.equal((html.match(/id="ruiAdminHost"/g) || []).length, 1);
   assert.equal((html.match(/id="ruiAdminFrame"/g) || []).length, 1);
   assert.doesNotMatch(html, /\/api\/notify|clerk/i);
@@ -42,7 +42,36 @@ test('research administrators can switch to the participant side without logging
   assert.match(html, /ruiAdminHost'\)\?\.classList\.remove\('hidden'\)/);
   assert.match(html, /ruiAdminHost'\)\?\.classList\.add\('hidden'\)/);
   assert.match(html, /adminBackHome'\)\.onclick=enterParticipantPreview/);
+  assert.match(html, /kind==='participant'&&currentUser\.role==='admin'/);
+  assert.match(html, /window\.MIEDAuthDemo=\{openEntry:kind=>/);
+  assert.equal((html.match(/window\.MIEDAuthDemo=\{openEntry:kind=>/g) || []).length, 1);
+  assert.match(html, /window\.MIEDAuthDemo\?\.openEntry\('participant'\)/);
   assert.doesNotMatch(html, /adminBackHome'\)\.textContent='退出后台'/);
+});
+
+test('Liechuan tree-hole module is mounted on participant v18 without replacing assessment fixes', async () => {
+  const html = await readFile(cloudbasePage, 'utf8');
+
+  assert.equal((html.match(/id="miedCommunityStyles"/g) || []).length, 1);
+  assert.equal((html.match(/id="miedCommunityScript"/g) || []).length, 1);
+  assert.equal((html.match(/id="community"/g) || []).length, 1);
+  assert.match(html, /pageMeta\.community='同行交流'/);
+  assert.match(html, /data-page="community"/);
+  assert.match(html, /name="checkinVisibility" value="admin" checked/);
+  assert.match(html, /name="checkinVisibility" value="public"/);
+  assert.match(html, /data-community-like/);
+  assert.match(html, /data-community-comment/);
+  assert.match(html, /window\.MIEDCommunityBridge=\{/);
+  assert.match(html, /toggleTeamLike:postId/);
+  assert.match(html, /addTeamComment:\(postId,text\)/);
+  assert.match(html, /responsiveVersion='v18-community'/);
+  assert.match(html, /assessmentVersion='v18'/);
+  assert.ok(
+    html.lastIndexOf('#mobileNav{grid-template-columns:repeat(5,1fr)!important}') >
+      html.lastIndexOf('#mobileNav{grid-template-columns:repeat(4,1fr)!important}'),
+    'the community five-column mobile navigation rule should win the cascade',
+  );
+  assert.doesNotMatch(html, /\bfetch\s*\(|XMLHttpRequest|WebSocket|sendBeacon/);
 });
 
 test('Rui 0806 research operations page is integrated without fake synchronization claims', async () => {
@@ -60,6 +89,11 @@ test('Rui 0806 research operations page is integrated without fake synchronizati
   assert.doesNotMatch(html, /数据同步完成/);
   assert.match(html, /mied:return-participant/);
   assert.match(html, /mied:logout/);
+  assert.match(html, /树洞管理与团队回应/);
+  assert.match(html, /window\.parent\.MIEDCommunityBridge/);
+  assert.match(html, /data-community-team-like/);
+  assert.match(html, /data-community-team-comment/);
+  assert.match(html, /version:'0806-community-integrated'/);
   assert.doesNotMatch(html, /\bfetch\s*\(|XMLHttpRequest|WebSocket|sendBeacon/);
 });
 

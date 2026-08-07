@@ -297,7 +297,7 @@ body.auth-locked{overflow:hidden}
 </section>
 
 <section class="rui-admin-host hidden" id="ruiAdminHost" aria-label="MIED 研究团队运营台">
-  <iframe class="rui-admin-frame" id="ruiAdminFrame" src="rui-admin.html?v=rui-0806-4" title="MIED 研究团队运营台"></iframe>
+  <iframe class="rui-admin-frame" id="ruiAdminFrame" src="rui-admin.html?v=rui-0806-community-2" title="MIED 研究团队运营台"></iframe>
 </section>
 
 <section class="launcher" id="launcher">
@@ -3071,6 +3071,302 @@ function setup(){migrateLegacyAssessment();renderAll();renderEduLesson(activeLes
   persist();renderWaveTabs();renderScales();drawRadar(false);
 })();
 </script>
+<style id="miedCommunityStyles">
+/* v17: daily check-in community with participant-controlled visibility */
+#mobileNav{grid-template-columns:repeat(5,1fr)!important}
+.community-hero{position:relative;overflow:hidden;padding:24px;border-radius:24px;background:radial-gradient(circle at 92% 12%,rgba(239,199,127,.34),transparent 28%),linear-gradient(135deg,#eaf6f1,#fffaf1);border:1px solid #dce7e1;box-shadow:var(--soft-shadow);display:flex;justify-content:space-between;gap:22px;align-items:center}
+.community-hero:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-70px;bottom:-110px;background:rgba(255,255,255,.5)}
+.community-hero>div,.community-hero>button{position:relative;z-index:1}
+.community-kicker{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.78);border:1px solid #d9e6df;color:var(--teal);font-size:12px;font-weight:900}
+.community-hero h3{margin:9px 0 6px;font-size:27px;letter-spacing:-.025em}
+.community-hero p{margin:0;max-width:760px;color:#5c6e72;font-size:15px}
+.community-hero .btn{min-width:150px;box-shadow:0 10px 24px rgba(46,116,107,.16)}
+.community-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;margin-top:17px;align-items:start}
+.community-main{min-width:0}
+.community-toolbar{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px;border-radius:17px;background:rgba(255,255,255,.86);border:1px solid var(--line);box-shadow:0 7px 18px rgba(31,47,55,.04);margin-bottom:12px}
+.community-filters{display:flex;gap:7px;flex-wrap:wrap}
+.community-filter{padding:8px 11px;border-radius:11px;background:transparent;color:var(--muted);font-weight:850;font-size:13px}
+.community-filter.active{background:#e5f2ed;color:var(--teal)}
+.community-sort{padding:8px 10px;border-radius:11px;border:1px solid #dce6e1;background:#fff;color:#53666a;font-size:13px;font-weight:800}
+.community-feed{display:grid;gap:12px}
+.community-post{padding:18px;border-radius:20px;background:#fff;border:1px solid var(--line);box-shadow:0 8px 22px rgba(31,47,55,.05)}
+.community-post.mine{border-color:#bcd9cf;box-shadow:0 9px 24px rgba(46,116,107,.08)}
+.community-post-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.community-author{display:flex;gap:10px;align-items:center;min-width:0}
+.community-avatar{width:39px;height:39px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#dcece6,#fff3db);color:var(--teal);font-weight:950;flex:0 0 auto}
+.community-author b{display:block;font-size:14px}.community-author span{display:block;color:var(--muted);font-size:11px;margin-top:1px}
+.visibility-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:900;white-space:nowrap}
+.visibility-badge.public{background:#e8f4ee;color:#427761}.visibility-badge.admin{background:#fff2df;color:#93652d}
+.community-body{margin-top:13px;display:grid;gap:9px}
+.community-line{padding:11px 12px;border-radius:14px;background:#f8fbf9;border:1px solid #e4ece8}
+.community-line small{display:block;color:var(--teal);font-weight:900;font-size:11px;margin-bottom:2px}
+.community-line p{margin:0;color:#4f6267;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}
+.community-actions{display:flex;align-items:center;gap:8px;margin-top:12px;padding-top:11px;border-top:1px solid #edf1ef}
+.community-action{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:10px;background:#f4f7f5;color:#5e7075;font-size:12px;font-weight:850}
+.community-action.liked{background:#fff1df;color:#9a6729}
+.community-action:hover{background:#edf5f2;color:var(--teal)}
+.community-comments{display:grid;gap:7px;margin-top:10px}
+.community-comment{padding:9px 11px;border-radius:12px;background:#f7faf8;color:#53666a;font-size:12px;line-height:1.55}
+.community-comment b{color:#315f58;margin-right:5px}.community-comment.admin-comment{background:#fff7eb;border:1px solid #f0dfc4}
+.community-comment-time{display:block;color:#8a9799;font-size:10px;margin-top:2px}
+.community-comment-compose{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;margin-top:9px}
+.community-comment-compose input{width:100%;padding:9px 11px;border-radius:11px;border:1px solid #dce6e1;background:#fff;color:var(--ink);font-size:12px}
+.community-comment-compose button{padding:9px 11px;border-radius:10px;background:#e7f2ee;color:var(--teal);font-size:12px;font-weight:900}
+.community-empty{padding:38px 20px;border-radius:20px;background:#fff;border:1px dashed #cfded7;text-align:center;color:var(--muted)}
+.community-empty b{display:block;color:var(--ink);font-size:16px;margin-bottom:4px}
+.community-side{display:grid;gap:12px;position:sticky;top:90px}
+.community-side-card{padding:17px;border-radius:19px;background:#fff;border:1px solid var(--line);box-shadow:0 8px 20px rgba(31,47,55,.04)}
+.community-side-card h4{margin:0 0 7px;font-size:16px}.community-side-card p{margin:0;color:var(--muted);font-size:13px}
+.my-checkin-status{margin-top:11px;padding:12px;border-radius:14px;background:linear-gradient(145deg,#f3faf7,#fff9ef);border:1px solid #dfe8e0}
+.my-checkin-status b{display:block;font-size:13px}.my-checkin-status span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.my-checkin-status .actions{margin-top:10px}
+.community-admin-reply{margin-top:9px;padding:9px 10px;border-radius:11px;background:#fff7e9;border:1px solid #eedfc8;font-size:12px;color:#6d604e}
+.community-guidelines{display:grid;gap:8px;margin-top:10px}
+.community-guideline{display:grid;grid-template-columns:25px minmax(0,1fr);gap:8px;align-items:start;color:#5f7074;font-size:12px}
+.community-guideline i{width:25px;height:25px;border-radius:9px;display:grid;place-items:center;background:#edf5f2;color:var(--teal);font-style:normal;font-size:11px;font-weight:900}
+.checkin-privacy{margin-top:14px;padding:14px;border-radius:17px;background:#f8fbf9;border:1px solid #dfeae5}
+.checkin-privacy-head{display:flex;gap:9px;align-items:flex-start;margin-bottom:10px}
+.checkin-privacy-icon{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;background:#e6f2ed;color:var(--teal);flex:0 0 auto}
+.checkin-privacy-head b{display:block;font-size:14px}.checkin-privacy-head span{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.checkin-visibility-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.checkin-visibility-option{position:relative;cursor:pointer}
+.checkin-visibility-option input{position:absolute;opacity:0;pointer-events:none}
+.checkin-visibility-option span{display:block;min-height:68px;padding:10px;border-radius:12px;background:#fff;border:1px solid #dce7e1;color:#5f7176;font-size:11px;line-height:1.45}
+.checkin-visibility-option b{display:block;color:#40585d;font-size:13px;margin-bottom:2px}
+.checkin-visibility-option input:checked+span{background:#e8f4ef;border-color:#81b2a5;color:#396e65;box-shadow:0 6px 15px rgba(46,116,107,.09)}
+.visibility-preview{display:grid;gap:9px;margin-top:12px}
+.visibility-preview-line{padding:11px;border-radius:12px;background:#f8fbf9;border:1px solid #e1ebe6}
+.visibility-preview-line small{display:block;color:var(--teal);font-weight:900;font-size:10px}.visibility-preview-line span{display:block;color:#53666a;font-size:12px;margin-top:2px}
+/* Admin community */
+.community-admin-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin-bottom:13px}
+.admin-community-list{display:grid;gap:11px}
+.admin-community-card{padding:16px;border-radius:18px;background:#fff;border:1px solid #e0e7e3;box-shadow:0 7px 20px rgba(34,56,60,.04)}
+.admin-community-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.admin-community-head h4{margin:0;font-size:14px}.admin-community-head p{margin:3px 0 0;color:#738488;font-size:11px}
+.admin-community-content{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:11px}
+.admin-community-content>div{padding:10px;border-radius:12px;background:#f7faf8;border:1px solid #e5ece8}
+.admin-community-content small{display:block;color:#4d7b72;font-size:10px;font-weight:900}.admin-community-content span{display:block;margin-top:2px;color:#53666a;font-size:12px;white-space:pre-wrap}
+.admin-community-actions{display:flex;gap:8px;align-items:center;margin-top:11px;padding-top:10px;border-top:1px solid #edf1ef}
+.admin-community-actions button{padding:7px 9px;border-radius:9px;background:#edf5f2;color:#397268;font-size:11px;font-weight:850}
+.admin-community-actions button.liked{background:#fff1d8;color:#9a6729}
+.admin-community-comment-box{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;margin-top:9px}
+.admin-community-comment-box input{padding:9px 10px;border-radius:10px;border:1px solid #dfe7e2;background:#fff;font-size:12px}
+.admin-community-comment-box button{padding:9px 11px;border-radius:10px;background:#2d6f68;color:#fff;font-size:11px;font-weight:900}
+@media(max-width:1050px){.community-layout{grid-template-columns:1fr}.community-side{position:static;grid-template-columns:repeat(2,minmax(0,1fr))}.admin-community-content{grid-template-columns:1fr}}
+@media(max-width:760px){
+  .community-hero{display:block;padding:19px}.community-hero h3{font-size:23px}.community-hero .btn{width:100%;margin-top:14px}
+  .community-toolbar{align-items:stretch;flex-direction:column}.community-filters{overflow-x:auto;flex-wrap:nowrap}.community-filter{white-space:nowrap}.community-sort{width:100%}
+  .community-side{grid-template-columns:1fr}.community-post{padding:15px}.community-comment-compose{grid-template-columns:1fr}.community-comment-compose button{justify-self:end}
+  .checkin-visibility-options{grid-template-columns:1fr}.community-admin-kpis{grid-template-columns:repeat(2,1fr)}
+  .admin-community-content{grid-template-columns:1fr}.admin-community-comment-box{grid-template-columns:1fr}.admin-community-comment-box button{justify-self:end}
+}
+</style>
+
+<script id="miedCommunityScript">
+(() => {
+  const V17_PARTICIPANT_ID='MIED-001';
+  const V17_ADMIN_ID='RESEARCH-TEAM';
+  let participantCommunityFilter='all';
+  let participantCommunitySort='latest';
+
+  adminState.communityPosts=Array.isArray(adminState.communityPosts)?adminState.communityPosts:[];
+
+  function v17Alias(participantId){
+    if(participantId===V17_PARTICIPANT_ID)return'同行者 001';
+    const digits=String(participantId||'').replace(/\D/g,'').slice(-3).padStart(3,'0');
+    return`同行者 ${digits}`;
+  }
+  function v17Now(){return new Date().toISOString()}
+  function v17CommunityPosts(){return adminState.communityPosts}
+  function v17PostById(id){return v17CommunityPosts().find(post=>post.id===id)||null}
+  function v17TodayPost(){return v17CommunityPosts().find(post=>post.participantId===V17_PARTICIPANT_ID&&post.dateKey===todayKey())||null}
+  function v17PostTime(post){
+    const date=new Date(post.createdAt||Date.now()),sameDay=post.dateKey===todayKey();
+    return sameDay?`今天 ${date.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}`:date.toLocaleDateString('zh-CN',{month:'numeric',day:'numeric'});
+  }
+  function v17CountComments(post){return Array.isArray(post.comments)?post.comments.length:0}
+  function v17Save(){saveAdmin();persist();window.dispatchEvent(new CustomEvent('mied:community-updated'))}
+  function v17SeedCommunity(){
+    if(v17CommunityPosts().length)return;
+    const now=Date.now();
+    adminState.communityPosts=[
+      {id:'POST-DEMO-01',participantId:'MIED-006',alias:'同行者 006',dateKey:new Date(now-42*60000).toLocaleDateString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit'}),createdAt:new Date(now-42*60000).toISOString(),visibility:'public',content:{done:'跟着音频做完了十分钟觉察呼吸。',feeling:'想念仍然会突然涌上来，但呼吸结束后，身体没有刚开始那么紧。',tomorrow:'午饭后在楼下走一小圈。'},likes:['MIED-003','MIED-009','RESEARCH-TEAM'],comments:[{id:'C-DEMO-01',authorType:'participant',authorId:'MIED-009',alias:'同行者 009',text:'看到你说身体松了一点，也替你感到安心。',createdAt:new Date(now-28*60000).toISOString()},{id:'C-DEMO-02',authorType:'admin',authorId:V17_ADMIN_ID,alias:'研究团队',text:'你很清楚地留意到了练习前后的变化，明天的小步也很具体。',createdAt:new Date(now-15*60000).toISOString()}]},
+      {id:'POST-DEMO-02',participantId:'MIED-003',alias:'同行者 003',dateKey:new Date(now-3.2*3600000).toLocaleDateString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit'}),createdAt:new Date(now-3.2*3600000).toISOString(),visibility:'public',content:{done:'今天整理了一张旧照片，停留了大约一分钟。',feeling:'一开始很想马上关掉，后来发现自己可以一边难过，一边把照片放回原处。',tomorrow:'给自己泡一杯喜欢的茶。'},likes:['MIED-004','MIED-006'],comments:[{id:'C-DEMO-03',authorType:'participant',authorId:'MIED-004',alias:'同行者 004',text:'“一边难过，一边放回原处”这句话让我很有共鸣。',createdAt:new Date(now-2.6*3600000).toISOString()}]},
+      {id:'POST-DEMO-03',participantId:'MIED-010',alias:'同行者 010',dateKey:new Date(now-25*3600000).toLocaleDateString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit'}),createdAt:new Date(now-25*3600000).toISOString(),visibility:'public',content:{done:'完成了三步呼吸空间，也按时吃了晚饭。',feeling:'今天比较疲惫，没有明显变轻松，但至少没有一直躺着。',tomorrow:'起床后先拉开窗帘。'},likes:['MIED-006','MIED-011','RESEARCH-TEAM'],comments:[]},
+      {id:'POST-DEMO-PRIVATE',participantId:'MIED-005',alias:'同行者 005',dateKey:new Date(now-75*60000).toLocaleDateString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit'}),createdAt:new Date(now-75*60000).toISOString(),visibility:'admin',content:{done:'完成了自我关怀填写。',feeling:'今天不太想让其他人看到，但想把这段状态留给研究团队。',tomorrow:'尝试早点休息。'},likes:['RESEARCH-TEAM'],comments:[{id:'C-DEMO-PRIVATE',authorType:'admin',authorId:V17_ADMIN_ID,alias:'研究团队',text:'已收到你的记录。你选择不公开完全可以，我们会尊重你的可见性设置。',createdAt:new Date(now-50*60000).toISOString()}]}
+    ];
+    saveAdmin();
+  }
+
+  function v17EnsurePostShape(post){
+    post.likes=Array.isArray(post.likes)?post.likes:[];
+    post.comments=Array.isArray(post.comments)?post.comments:[];
+    post.content=post.content||{};
+    post.alias=post.alias||v17Alias(post.participantId);
+    post.visibility=post.visibility==='public'?'public':'admin';
+    return post;
+  }
+  function v17UpsertTodayPost(visibility,checkin){
+    let post=v17TodayPost();
+    if(!post){
+      post={id:'POST-'+Date.now(),participantId:V17_PARTICIPANT_ID,alias:v17Alias(V17_PARTICIPANT_ID),dateKey:todayKey(),createdAt:checkin.completedAt||v17Now(),visibility,content:{},likes:[],comments:[]};
+      adminState.communityPosts.unshift(post);
+    }
+    post.visibility=visibility;
+    post.updatedAt=v17Now();
+    post.content={done:checkin.done||'',feeling:checkin.feeling||'',tomorrow:checkin.tomorrow||''};
+    v17EnsurePostShape(post);v17Save();return post;
+  }
+  function v17ToggleLike(postId,actorId){
+    const post=v17PostById(postId);if(!post)return;
+    v17EnsurePostShape(post);const index=post.likes.indexOf(actorId);
+    if(index>=0)post.likes.splice(index,1);else post.likes.push(actorId);
+    v17Save();renderCommunity();renderAdminCommunity();
+  }
+  function v17AddComment(postId,text,authorType,authorId,alias){
+    const post=v17PostById(postId),clean=String(text||'').trim();if(!post||!clean)return false;
+    v17EnsurePostShape(post);post.comments.push({id:'COMMENT-'+Date.now()+'-'+Math.random().toString(36).slice(2,6),authorType,authorId,alias,text:clean.slice(0,240),createdAt:v17Now()});
+    v17Save();renderCommunity();renderAdminCommunity();return true;
+  }
+
+  function v17InjectParticipantUi(){
+    if(!$('community')){
+      $('journey').insertAdjacentHTML('afterend',`<section class="page" id="community"><div class="community-hero"><div><span class="community-kicker">🕯 匿名同行交流</span><h3>让今天的一小步，被温柔地看见。</h3><p>这里只展示参与者主动选择“匿名公开”的每日打卡。未公开的记录不会进入交流区，仅研究团队可以查看和回应。</p></div><button class="btn" id="communityShareToday">分享今天的打卡</button></div><div class="community-layout"><div class="community-main"><div class="community-toolbar"><div class="community-filters"><button class="community-filter active" data-community-filter="all">全部公开</button><button class="community-filter" data-community-filter="mine">我的公开</button><button class="community-filter" data-community-filter="team">有团队回应</button></div><select class="community-sort" id="communitySort"><option value="latest">最新发布</option><option value="liked">较多点赞</option><option value="commented">较多评论</option></select></div><div class="community-feed" id="communityFeed"></div></div><aside class="community-side"><article class="community-side-card"><h4>我的今日打卡</h4><p>你可以随时确认今天的记录是否进入公开交流区。</p><div id="myCommunityCheckin"></div></article><article class="community-side-card"><h4>交流约定</h4><p>回应可以很短，重点是尊重彼此的节奏。</p><div class="community-guidelines"><div class="community-guideline"><i>1</i><span>不追问逝者身份、联系方式或其他私人信息。</span></div><div class="community-guideline"><i>2</i><span>多表达理解与陪伴，少评价、比较或直接指导。</span></div><div class="community-guideline"><i>3</i><span>公开内容使用匿名编号，研究团队仍可在后台识别研究编号。</span></div></div></article></aside></div></section>`);
+    }
+    pageMeta.community='同行交流';
+    const sideNav=document.querySelector('.nav-block[data-nav="mied"]');
+    if(sideNav&&!sideNav.querySelector('[data-page="community"]'))sideNav.insertAdjacentHTML('beforeend','<button data-page="community"><span class="ico">伴</span>交流</button>');
+    const mobile=$('mobileNav');
+    if(mobile&&!mobile.querySelector('[data-page="community"]'))mobile.insertAdjacentHTML('beforeend','<button data-page="community">交流</button>');
+    document.querySelectorAll('[data-page="community"]').forEach(button=>button.onclick=()=>showPage('community'));
+    $('communityShareToday').onclick=v17OpenShareFlow;
+    document.querySelectorAll('[data-community-filter]').forEach(button=>button.onclick=()=>{participantCommunityFilter=button.dataset.communityFilter;document.querySelectorAll('[data-community-filter]').forEach(item=>item.classList.toggle('active',item===button));renderCommunity()});
+    $('communitySort').onchange=event=>{participantCommunitySort=event.target.value;renderCommunity()};
+  }
+  function v17InjectCheckinPrivacy(){
+    const card=document.querySelector('#checkinModal .modal-card'),actions=card?.querySelector('.modal-actions');
+    if(card&&actions&&!$('checkinPrivacy'))actions.insertAdjacentHTML('beforebegin',`<div class="checkin-privacy" id="checkinPrivacy"><div class="checkin-privacy-head"><div class="checkin-privacy-icon">◎</div><div><b>谁可以看到这次打卡？</b><span>你可以保持私密，也可以匿名分享给其他参与者。默认不公开。</span></div></div><div class="checkin-visibility-options"><label class="checkin-visibility-option"><input type="radio" name="checkinVisibility" value="admin" checked><span><b>仅研究团队可见</b>不进入同行交流区；研究团队仍可点赞和留言回应。</span></label><label class="checkin-visibility-option"><input type="radio" name="checkinVisibility" value="public"><span><b>匿名公开到同行交流</b>其他参与者只能看到匿名编号和打卡内容，可点赞和评论。</span></label></div></div>`);
+    if(!$('communityVisibilityModal'))document.body.insertAdjacentHTML('beforeend',`<div class="modal" id="communityVisibilityModal"><div class="modal-card"><h3>管理今天的打卡可见性</h3><p>这里仅调整是否进入匿名交流区，不改变你的原始打卡内容。</p><div class="visibility-preview" id="communityVisibilityPreview"></div><div class="checkin-visibility-options" style="margin-top:13px"><label class="checkin-visibility-option"><input type="radio" name="existingCheckinVisibility" value="admin"><span><b>仅研究团队可见</b>从公开交流区隐藏，但研究团队仍可查看和回应。</span></label><label class="checkin-visibility-option"><input type="radio" name="existingCheckinVisibility" value="public"><span><b>匿名公开到同行交流</b>公开后，其他参与者可以点赞和评论。</span></label></div><div class="modal-actions"><button class="close" id="closeCommunityVisibility">取消</button><button class="btn" id="saveCommunityVisibility">保存可见性</button></div></div></div>`);
+    $('closeCommunityVisibility').onclick=()=>hideModal('communityVisibilityModal');
+    $('saveCommunityVisibility').onclick=()=>{
+      const checkin=state.checkins[todayKey()];if(!checkin)return;
+      const visibility=document.querySelector('input[name="existingCheckinVisibility"]:checked')?.value||'admin';
+      v17UpsertTodayPost(visibility,checkin);hideModal('communityVisibilityModal');renderCommunity();toast(visibility==='public'?'今天的打卡已匿名公开。':'今天的打卡已设为仅研究团队可见。');
+    };
+  }
+  function v17OpenShareFlow(){
+    const checkin=state.checkins[todayKey()];
+    if(!checkin){openCheckin();return}
+    const post=v17TodayPost(),visibility=post?.visibility||'admin';
+    $('communityVisibilityPreview').innerHTML=`<div class="visibility-preview-line"><small>今天完成了什么</small><span>${esc(checkin.done||'未填写')}</span></div><div class="visibility-preview-line"><small>此刻状态</small><span>${esc(checkin.feeling||'未填写')}</span></div><div class="visibility-preview-line"><small>明天的一小步</small><span>${esc(checkin.tomorrow||'未填写')}</span></div>`;
+    document.querySelectorAll('input[name="existingCheckinVisibility"]').forEach(input=>input.checked=input.value===visibility);
+    showModal('communityVisibilityModal');
+  }
+
+  function v17ParticipantPostHtml(post){
+    v17EnsurePostShape(post);const mine=post.participantId===V17_PARTICIPANT_ID,liked=post.likes.includes(V17_PARTICIPANT_ID),comments=post.comments;
+    const commentHtml=comments.length?comments.map(comment=>`<div class="community-comment ${comment.authorType==='admin'?'admin-comment':''}"><b>${esc(comment.alias)}</b>${esc(comment.text)}<span class="community-comment-time">${new Date(comment.createdAt).toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}</span></div>`).join(''):'';
+    return`<article class="community-post ${mine?'mine':''}"><div class="community-post-head"><div class="community-author"><div class="community-avatar">${mine?'我':'伴'}</div><div><b>${mine?'我的匿名打卡':esc(post.alias)}</b><span>${v17PostTime(post)}</span></div></div><span class="visibility-badge public">● 匿名公开</span></div><div class="community-body">${post.content.done?`<div class="community-line"><small>今天完成了什么</small><p>${esc(post.content.done)}</p></div>`:''}${post.content.feeling?`<div class="community-line"><small>此刻的状态</small><p>${esc(post.content.feeling)}</p></div>`:''}${post.content.tomorrow?`<div class="community-line"><small>明天愿意尝试的一小步</small><p>${esc(post.content.tomorrow)}</p></div>`:''}</div><div class="community-actions"><button class="community-action ${liked?'liked':''}" data-community-like="${post.id}">${liked?'♥':'♡'} 点赞 <span>${post.likes.length}</span></button><button class="community-action" data-community-focus="${post.id}">💬 评论 <span>${comments.length}</span></button></div>${commentHtml?`<div class="community-comments">${commentHtml}</div>`:''}<div class="community-comment-compose"><input id="participantComment_${post.id}" maxlength="120" placeholder="写一句理解、鼓励或陪伴……"><button data-community-comment="${post.id}">发送</button></div></article>`;
+  }
+  function renderMyCommunityCheckin(){
+    const box=$('myCommunityCheckin');if(!box)return;const checkin=state.checkins[todayKey()],post=v17TodayPost();
+    if(!checkin){box.innerHTML='<div class="my-checkin-status"><b>今天还没有完成打卡</b><span>完成任一推荐练习后，就可以记录今天的状态并选择是否匿名公开。</span><div class="actions"><button class="btn ghost" id="myCheckinStart">查看今日任务</button></div></div>';$('myCheckinStart').onclick=()=>showPage('overview');return}
+    const visibility=post?.visibility||'admin',adminComments=(post?.comments||[]).filter(comment=>comment.authorType==='admin');
+    box.innerHTML=`<div class="my-checkin-status"><b>${visibility==='public'?'已匿名公开':'仅研究团队可见'}</b><span>${visibility==='public'?`收到 ${post.likes.length} 个赞、${post.comments.length} 条评论。`:'不会出现在其他参与者的交流区中。研究团队仍可点赞和留言。'}</span>${adminComments.slice(-1).map(comment=>`<div class="community-admin-reply"><b>研究团队回应：</b>${esc(comment.text)}</div>`).join('')}<div class="actions"><button class="btn ghost" id="manageTodayVisibility">管理可见性</button></div></div>`;
+    $('manageTodayVisibility').onclick=v17OpenShareFlow;
+  }
+  function renderCommunity(){
+    const feed=$('communityFeed');if(!feed)return;
+    let posts=v17CommunityPosts().map(v17EnsurePostShape).filter(post=>post.visibility==='public');
+    if(participantCommunityFilter==='mine')posts=posts.filter(post=>post.participantId===V17_PARTICIPANT_ID);
+    if(participantCommunityFilter==='team')posts=posts.filter(post=>post.comments.some(comment=>comment.authorType==='admin'));
+    posts.sort((a,b)=>participantCommunitySort==='liked'?b.likes.length-a.likes.length:participantCommunitySort==='commented'?b.comments.length-a.comments.length:new Date(b.createdAt)-new Date(a.createdAt));
+    feed.innerHTML=posts.length?posts.map(v17ParticipantPostHtml).join(''):'<div class="community-empty"><b>这里暂时还没有公开打卡</b><span>只有参与者主动选择匿名公开的内容，才会显示在这里。</span></div>';
+    document.querySelectorAll('[data-community-like]').forEach(button=>button.onclick=()=>v17ToggleLike(button.dataset.communityLike,V17_PARTICIPANT_ID));
+    document.querySelectorAll('[data-community-focus]').forEach(button=>button.onclick=()=>document.getElementById(`participantComment_${button.dataset.communityFocus}`)?.focus());
+    document.querySelectorAll('[data-community-comment]').forEach(button=>button.onclick=()=>{const input=document.getElementById(`participantComment_${button.dataset.communityComment}`);if(v17AddComment(button.dataset.communityComment,input?.value,'participant',V17_PARTICIPANT_ID,v17Alias(V17_PARTICIPANT_ID)))toast('评论已发送。');else toast('请先写下一点内容。')});
+    renderMyCommunityCheckin();
+  }
+
+  function v17InjectAdminUi(){
+    const interventionNav=document.querySelector('.admin-nav [data-admin-page="intervention"]');
+    if(interventionNav&&!document.querySelector('.admin-nav [data-admin-page="community"]'))interventionNav.insertAdjacentHTML('afterend','<button data-admin-page="community"><i>互</i>打卡互动</button>');
+    if(!$('admin-community'))$('admin-intervention').insertAdjacentHTML('afterend',`<section class="admin-page" id="admin-community"><div class="admin-page-head"><div><span>每日打卡互动</span><h2>公开交流与私密回应</h2><p>公开打卡会进入参与者端匿名交流区；未公开打卡仅在后台显示。研究团队可以对两类记录点赞和评论。</p></div></div><div class="community-admin-kpis" id="communityAdminKpis"></div><div class="admin-toolbar"><label>⌕<input id="adminCommunitySearch" placeholder="搜索参与者编号或打卡内容"></label><select id="adminCommunityVisibility"><option value="all">全部可见性</option><option value="public">匿名公开</option><option value="admin">仅团队可见</option></select><select id="adminCommunitySort"><option value="latest">最新提交</option><option value="comments">评论较多</option><option value="likes">点赞较多</option></select></div><div class="admin-community-list" id="adminCommunityList"></div></section>`);
+    const more=document.querySelector('#adminMoreSheet .admin-more-grid');
+    if(more&&!more.querySelector('[data-admin-page="community"]'))more.insertAdjacentHTML('afterbegin','<button data-admin-page="community">打卡互动</button>');
+    adminTitles.community='打卡互动';
+    document.querySelectorAll('[data-admin-page="community"]').forEach(button=>button.onclick=()=>showAdminPage('community'));
+    $('adminCommunitySearch').oninput=renderAdminCommunity;$('adminCommunityVisibility').onchange=renderAdminCommunity;$('adminCommunitySort').onchange=renderAdminCommunity;
+  }
+  function v17AdminPostHtml(post){
+    v17EnsurePostShape(post);const adminLiked=post.likes.includes(V17_ADMIN_ID),comments=post.comments;
+    return`<article class="admin-community-card"><div class="admin-community-head"><div><h4>${esc(post.participantId)} · ${esc(post.alias)}</h4><p>${v17PostTime(post)} · ${post.visibility==='public'?'参与者端匿名公开':'不进入参与者交流区'}</p></div><span class="visibility-badge ${post.visibility}">${post.visibility==='public'?'● 匿名公开':'🔒 仅团队可见'}</span></div><div class="admin-community-content"><div><small>今天完成了什么</small><span>${esc(post.content.done||'未填写')}</span></div><div><small>此刻状态</small><span>${esc(post.content.feeling||'未填写')}</span></div><div><small>明天的一小步</small><span>${esc(post.content.tomorrow||'未填写')}</span></div></div>${comments.length?`<div class="community-comments">${comments.map(comment=>`<div class="community-comment ${comment.authorType==='admin'?'admin-comment':''}"><b>${esc(comment.alias)}</b>${esc(comment.text)}<span class="community-comment-time">${new Date(comment.createdAt).toLocaleString('zh-CN')}</span></div>`).join('')}</div>`:''}<div class="admin-community-actions"><button class="${adminLiked?'liked':''}" data-admin-community-like="${post.id}">${adminLiked?'♥ 已点赞':'♡ 点赞'} · ${post.likes.length}</button><span class="panel-tag">${comments.length} 条评论</span></div><div class="admin-community-comment-box"><input id="adminComment_${post.id}" maxlength="240" placeholder="以研究团队身份留言回应……"><button data-admin-community-comment="${post.id}">发送团队评论</button></div></article>`;
+  }
+  function renderAdminCommunity(){
+    const list=$('adminCommunityList');if(!list)return;
+    const posts=v17CommunityPosts().map(v17EnsurePostShape),today=posts.filter(post=>post.dateKey===todayKey()).length,publicCount=posts.filter(post=>post.visibility==='public').length,privateCount=posts.filter(post=>post.visibility==='admin').length,comments=posts.reduce((sum,post)=>sum+post.comments.length,0);
+    $('communityAdminKpis').innerHTML=[[today,'今日打卡','全部可见性'],[publicCount,'匿名公开','参与者可互动'],[privateCount,'仅团队可见','不进入交流区'],[comments,'累计评论','参与者与团队']].map(([value,label,sub])=>`<div class="admin-kpi"><small>${label}</small><b>${value}</b><span>${sub}</span></div>`).join('');
+    const query=($('adminCommunitySearch')?.value||'').trim().toLowerCase(),visibility=$('adminCommunityVisibility')?.value||'all',sort=$('adminCommunitySort')?.value||'latest';
+    let filtered=posts.filter(post=>(visibility==='all'||post.visibility===visibility)&&(!query||`${post.participantId} ${post.content.done||''} ${post.content.feeling||''} ${post.content.tomorrow||''}`.toLowerCase().includes(query)));
+    filtered.sort((a,b)=>sort==='comments'?b.comments.length-a.comments.length:sort==='likes'?b.likes.length-a.likes.length:new Date(b.createdAt)-new Date(a.createdAt));
+    list.innerHTML=filtered.length?filtered.map(v17AdminPostHtml).join(''):'<div class="admin-panel">当前筛选条件下没有打卡记录。</div>';
+    document.querySelectorAll('[data-admin-community-like]').forEach(button=>button.onclick=()=>v17ToggleLike(button.dataset.adminCommunityLike,V17_ADMIN_ID));
+    document.querySelectorAll('[data-admin-community-comment]').forEach(button=>button.onclick=()=>{const input=document.getElementById(`adminComment_${button.dataset.adminCommunityComment}`);if(v17AddComment(button.dataset.adminCommunityComment,input?.value,'admin',V17_ADMIN_ID,'研究团队'))toast('团队评论已发送。');else toast('请先写下评论内容。')});
+  }
+
+  v17SeedCommunity();v17CommunityPosts().forEach(v17EnsurePostShape);
+  v17InjectParticipantUi();v17InjectCheckinPrivacy();v17InjectAdminUi();
+
+  const v17ShowPageBase=showPage;
+  showPage=function(id){v17ShowPageBase(id);if(id==='community')renderCommunity()};
+
+  const v17SaveCheckinBase=saveCheckin;
+  saveCheckin=function(){
+    const wasCompleted=!!todayDaily().v15CheckinCompleted;
+    const visibility=document.querySelector('input[name="checkinVisibility"]:checked')?.value||'admin';
+    v17SaveCheckinBase();
+    const checkin=state.checkins[todayKey()];
+    if(!wasCompleted&&checkin&&todayDaily().v15CheckinCompleted){v17UpsertTodayPost(visibility,checkin);renderCommunity();renderAdminCommunity()}
+  };
+  $('saveCheckin').onclick=saveCheckin;
+
+  const v17OpenCheckinBase=openCheckin;
+  openCheckin=function(){
+    document.querySelectorAll('input[name="checkinVisibility"]').forEach(input=>input.checked=input.value==='admin');
+    v17OpenCheckinBase();
+  };
+
+  const v17RenderAdminPageBase=renderAdminPage;
+  renderAdminPage=function(id){if(id==='community'){renderAdminCommunity();return}v17RenderAdminPageBase(id)};
+  const v17RenderAdminAllBase=renderAdminAll;
+  renderAdminAll=function(){v17RenderAdminAllBase();renderAdminCommunity()};
+
+  const v17RenderAdminDataBase=renderAdminData;
+  renderAdminData=function(){
+    v17RenderAdminDataBase();
+    if($('dataDictionary')&&!Array.from($('dataDictionary').children).some(row=>row.textContent.includes('checkin_visibility')))$('dataDictionary').insertAdjacentHTML('beforeend','<div><b>checkin_visibility</b><span>每日打卡可见性：public 或 admin_only</span></div><div><b>checkin_interactions</b><span>匿名公开点赞、评论及研究团队回应记录</span></div>');
+  };
+
+  const v17ExportResearchJsonBase=exportResearchJson;
+  exportResearchJson=function(){
+    const participantState=JSON.parse(JSON.stringify(state));delete participantState.riskEvents;delete participantState.sessions;delete participantState.sessionSummaries;delete participantState.journeySummary;
+    const adminExport={notes:adminState.notes,contentStatus:adminState.contentStatus,activities:adminState.activities,settings:adminState.settings,waveAccess:adminState.waveAccess,courseAttendance:adminState.courseAttendance,weekPpts:adminState.weekPpts,userAccounts:adminState.userAccounts,communityPosts:adminState.communityPosts};
+    downloadFile('mied_research_demo_v18_community.json',JSON.stringify({generated_at:new Date().toISOString(),participants:allParticipants(),participant_state:participantState,assessment_records:state.assessmentRecords,admin:adminExport},null,2),'application/json');addAdminActivity('导出研究 JSON 包 v18 + 树洞');
+  };
+  if($('exportJson'))$('exportJson').onclick=exportResearchJson;if($('exportAll'))$('exportAll').onclick=exportResearchJson;
+
+  window.MIEDCommunityBridge={
+    version:'liechuan-v17-rui',
+    storage:'browser-local',
+    listPosts:()=>JSON.parse(JSON.stringify(v17CommunityPosts().map(v17EnsurePostShape))),
+    toggleTeamLike:postId=>{if(!v17PostById(postId))return false;v17ToggleLike(postId,V17_ADMIN_ID);return true},
+    addTeamComment:(postId,text)=>v17AddComment(postId,text,'admin',V17_ADMIN_ID,'研究团队')
+  };
+  document.documentElement.dataset.responsiveVersion='v18-community';
+  renderCommunity();renderAdminCommunity();renderAdminData();saveAdmin();persist();
+})();
+</script>
+
 <div class="modal" id="authAccountModal"><div class="modal-card"><div class="auth-modal-note">账户设置仅用于验证本次演示流程。正式系统应由服务器统一完成认证、会话管理和密码重置。</div><h3 style="margin-top:16px">我的账户</h3><div class="auth-account-grid" id="authAccountInfo"></div><div class="auth-required-banner auth-hidden" id="authMustChangeBanner">该账号使用临时密码登录。请先设置新密码。</div><div class="auth-change-panel"><h4 style="margin:0 0 12px">修改密码</h4><form id="authChangePasswordForm"><label class="auth-field"><span>当前密码</span><input id="authCurrentPassword" type="password" autocomplete="current-password"></label><div class="auth-form-row"><label class="auth-field"><span>新密码</span><input id="authNewPassword" type="password" autocomplete="new-password" placeholder="至少8位，包含字母和数字"></label><label class="auth-field"><span>确认新密码</span><input id="authConfirmPassword" type="password" autocomplete="new-password"></label></div><p class="auth-status" id="authChangeStatus"></p><div class="modal-actions"><button class="close" id="authCloseAccount" type="button">关闭</button><button class="auth-submit" style="width:auto" id="authChangeSubmit" type="submit">保存新密码</button></div></form></div></div></div>
 <div class="modal" id="authAdminCreateModal"><div class="modal-card"><h3>由管理员创建参与者账号</h3><p>系统将生成参与者编号和一次性临时密码。参与者首次登录后应修改密码。</p><form class="auth-form" id="authAdminCreateForm"><div class="auth-form-row"><label class="auth-field"><span>称呼或昵称</span><input id="authAdminCreateName" maxlength="20" placeholder="不要录入真实姓名"></label><label class="auth-field"><span>登录用户名</span><input id="authAdminCreateUsername" maxlength="24" placeholder="4–24位字母、数字或下划线"></label></div><p class="auth-status" id="authAdminCreateStatus"></p><div class="modal-actions"><button class="close" id="authAdminCreateClose" type="button">取消</button><button class="admin-primary" type="submit">创建账号</button></div></form></div></div>
 <div class="modal" id="authTempPasswordModal"><div class="modal-card"><h3 id="authTempPasswordTitle">临时密码已生成</h3><div class="auth-temp-password"><span id="authTempPasswordMessage">请仅通过合适渠道发送给对应参与者。</span><code id="authTempPasswordValue"></code><button class="auth-secondary" id="authCopyTempPassword" type="button">复制临时密码</button></div><div class="modal-actions"><button class="admin-primary" id="authCloseTempPassword" type="button">我已记录</button></div></div></div>
@@ -3135,6 +3431,7 @@ function enterForUser(user){
     el('launcher')?.classList.add('hidden');el('appWrap')?.classList.add('hidden');
     el('adminWrap')?.classList.add('hidden');el('adminMobileNav')?.classList.add('hidden');
     el('ruiAdminHost')?.classList.remove('hidden');
+    const ruiFrame=el('ruiAdminFrame');if(ruiFrame?.contentWindow?.MIEDRuiAdmin?.refresh)ruiFrame.contentWindow.MIEDRuiAdmin.refresh();
     renderAdminAuthAccounts();
   }else{
     el('ruiAdminHost')?.classList.add('hidden');
@@ -3198,7 +3495,13 @@ function bindAuthUi(){
 }
 function patchAdminRenderers(){configureAdminAccountPage();const basePage=renderAdminPage;renderAdminPage=function(id){basePage(id);if(id==='accounts')renderAdminAuthAccounts()};const baseAll=renderAdminAll;renderAdminAll=function(){baseAll();renderAdminAuthAccounts()}}
 async function init(){hideProductViews();document.body.classList.add('auth-locked');await ensureDb();ensureIdentityControls();configureAdminAccountPage();patchAdminRenderers();bindAuthUi();renderAdminAuthAccounts();const restored=sessionUser();if(restored){currentUser=restored;enterForUser(restored)}else showAuth('','login')}
-window.MIEDAuthDemo={getCurrentUser:()=>currentUser?safeUser(currentUser):null,getUsers:()=>authDb.users.map(safeUser),getAudit:()=>authDb.audit.slice(),logout,showLogin:message=>showAuth(message||'','login'),openAccount:openAccountModal,version:'18.0-demo'};
+window.MIEDAuthDemo={openEntry:kind=>{
+  const message=kind==='research'?'请使用研究团队账户登录。':'请登录或注册参与者账户。';
+  if(!currentUser){showAuth(message,'login');return}
+  if(kind==='research'&&currentUser.role!=='admin'){showAuth('当前账户不是研究团队账户。','login');return}
+  if(kind==='participant'&&currentUser.role==='admin'){enterParticipantPreview();return}
+  enterForUser(currentUser)
+},getCurrentUser:()=>currentUser?safeUser(currentUser):null,getUsers:()=>authDb.users.map(safeUser),getAudit:()=>authDb.audit.slice(),logout,showLogin:message=>showAuth(message||'','login'),openAccount:openAccountModal,version:'18.0-demo'};
 init().catch(error=>{console.error('MIED account demo failed to initialize.',error);showAuth('账户模块初始化失败，请刷新页面重试。','login')});
 })();
 </script>
@@ -3209,9 +3512,17 @@ function openMiedEntry(kind){
   if(initial)initial.hidden=true;
   document.body.classList.remove('mied-entry-open');
   const message=kind==='research'?'请使用研究团队账户登录。':'请登录或注册参与者账户。';
+  if(window.MIEDAuthDemo?.openEntry){
+    window.MIEDAuthDemo.openEntry(kind);
+    return;
+  }
   if(typeof currentUser!=='undefined'&&currentUser){
     if(kind==='research'&&currentUser.role!=='admin'){
       if(typeof showAuth==='function')showAuth('当前账户不是研究团队账户。','login');
+      return;
+    }
+    if(kind==='participant'&&currentUser.role==='admin'&&typeof enterParticipantPreview==='function'){
+      enterParticipantPreview();
       return;
     }
     if(typeof enterForUser==='function')enterForUser(currentUser);
@@ -3223,8 +3534,8 @@ document.querySelectorAll('[data-mied-entry]').forEach(button=>button.addEventLi
 window.addEventListener('message',event=>{
   const frame=document.getElementById('ruiAdminFrame');
   if(event.origin!==location.origin||!frame)return;
-  if(event.data?.type==='mied:return-participant'&&typeof enterParticipantPreview==='function')enterParticipantPreview();
-  if(event.data?.type==='mied:logout'&&typeof logout==='function')logout('已退出研究后台。');
+  if(event.data?.type==='mied:return-participant')window.MIEDAuthDemo?.openEntry('participant');
+  if(event.data?.type==='mied:logout')window.MIEDAuthDemo?.logout('已退出研究后台。');
 });
 window.MIEDRuiBridge={openEntry:openMiedEntry,version:'rui-0806'};
 </script>

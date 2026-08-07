@@ -4,9 +4,11 @@ import {fileURLToPath} from 'node:url';
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const latestParticipantPath = resolve(projectRoot, 'index.html');
+const communitySourcePath = resolve(projectRoot, 'Liechuan', 'MIED-AI_Liechuan_7.31.html');
 const cloudbaseTargetPath = resolve(projectRoot, 'cloudbase', 'mied', 'index.html');
 
 const latestParticipant = await readFile(latestParticipantPath, 'utf8');
+const communitySource = await readFile(communitySourcePath, 'utf8');
 const cloudbaseLoginSource = await readFile(cloudbaseTargetPath, 'utf8');
 
 function extractElement(source, startToken, endToken) {
@@ -23,6 +25,53 @@ function extractBefore(source, startToken, nextToken) {
   const end = source.indexOf(nextToken, start);
   if (end < 0) throw new Error(`Missing next token after ${startToken}: ${nextToken}`);
   return source.slice(start, end).trim();
+}
+
+function extractContainingBlock(source, marker, startToken, endToken) {
+  const markerIndex = source.indexOf(marker);
+  if (markerIndex < 0) throw new Error(`Missing block marker: ${marker}`);
+  const start = source.lastIndexOf(startToken, markerIndex);
+  if (start < 0) throw new Error(`Missing ${startToken} before ${marker}`);
+  const end = source.indexOf(endToken, markerIndex);
+  if (end < 0) throw new Error(`Missing ${endToken} after ${marker}`);
+  return source.slice(start, end + endToken.length);
+}
+
+const communityStyles = extractContainingBlock(
+  communitySource,
+  '/* v17: daily check-in community with participant-controlled visibility */',
+  '<style>',
+  '</style>',
+).replace('<style>', '<style id="miedCommunityStyles">');
+
+let communityScript = extractContainingBlock(
+  communitySource,
+  "const V17_PARTICIPANT_ID='MIED-001';",
+  '<script>',
+  '</script>',
+).replace('<script>', '<script id="miedCommunityScript">');
+
+communityScript = communityScript
+  .replace(
+    'function v17Save(){saveAdmin();persist()}',
+    "function v17Save(){saveAdmin();persist();window.dispatchEvent(new CustomEvent('mied:community-updated'))}",
+  )
+  .replace(
+    "  document.documentElement.dataset.responsiveVersion='v17';",
+    `  window.MIEDCommunityBridge={
+    version:'liechuan-v17-rui',
+    storage:'browser-local',
+    listPosts:()=>JSON.parse(JSON.stringify(v17CommunityPosts().map(v17EnsurePostShape))),
+    toggleTeamLike:postId=>{if(!v17PostById(postId))return false;v17ToggleLike(postId,V17_ADMIN_ID);return true},
+    addTeamComment:(postId,text)=>v17AddComment(postId,text,'admin',V17_ADMIN_ID,'研究团队')
+  };
+  document.documentElement.dataset.responsiveVersion='v18-community';`,
+  )
+  .replaceAll('mied_research_demo_v17.json', 'mied_research_demo_v18_community.json')
+  .replaceAll('导出研究 JSON 包 v0.17', '导出研究 JSON 包 v18 + 树洞');
+
+if (!communityScript.includes('window.MIEDCommunityBridge=')) {
+  throw new Error('Could not add the Rui community bridge to the Liechuan module.');
 }
 
 const authStyles = extractElement(cloudbaseLoginSource, '<style id="miedAuthStyles">', '</style>');
@@ -111,7 +160,7 @@ const initialShell = `<section class="mied-initial" id="miedInitial" aria-labell
 </section>`;
 
 const ruiAdminHost = `<section class="rui-admin-host hidden" id="ruiAdminHost" aria-label="MIED 研究团队运营台">
-  <iframe class="rui-admin-frame" id="ruiAdminFrame" src="rui-admin.html?v=rui-0806-4" title="MIED 研究团队运营台"></iframe>
+  <iframe class="rui-admin-frame" id="ruiAdminFrame" src="rui-admin.html?v=rui-0806-community-2" title="MIED 研究团队运营台"></iframe>
 </section>`;
 
 const initialScript = `<script id="miedInitialScript">
@@ -120,9 +169,17 @@ function openMiedEntry(kind){
   if(initial)initial.hidden=true;
   document.body.classList.remove('mied-entry-open');
   const message=kind==='research'?'请使用研究团队账户登录。':'请登录或注册参与者账户。';
+  if(window.MIEDAuthDemo?.openEntry){
+    window.MIEDAuthDemo.openEntry(kind);
+    return;
+  }
   if(typeof currentUser!=='undefined'&&currentUser){
     if(kind==='research'&&currentUser.role!=='admin'){
       if(typeof showAuth==='function')showAuth('当前账户不是研究团队账户。','login');
+      return;
+    }
+    if(kind==='participant'&&currentUser.role==='admin'&&typeof enterParticipantPreview==='function'){
+      enterParticipantPreview();
       return;
     }
     if(typeof enterForUser==='function')enterForUser(currentUser);
@@ -134,8 +191,8 @@ document.querySelectorAll('[data-mied-entry]').forEach(button=>button.addEventLi
 window.addEventListener('message',event=>{
   const frame=document.getElementById('ruiAdminFrame');
   if(event.origin!==location.origin||!frame)return;
-  if(event.data?.type==='mied:return-participant'&&typeof enterParticipantPreview==='function')enterParticipantPreview();
-  if(event.data?.type==='mied:logout'&&typeof logout==='function')logout('已退出研究后台。');
+  if(event.data?.type==='mied:return-participant')window.MIEDAuthDemo?.openEntry('participant');
+  if(event.data?.type==='mied:logout')window.MIEDAuthDemo?.logout('已退出研究后台。');
 });
 window.MIEDRuiBridge={openEntry:openMiedEntry,version:'rui-0806'};
 </script>`;
@@ -157,6 +214,7 @@ const enterForUserReplacement = `function enterForUser(user){
     el('launcher')?.classList.add('hidden');el('appWrap')?.classList.add('hidden');
     el('adminWrap')?.classList.add('hidden');el('adminMobileNav')?.classList.add('hidden');
     el('ruiAdminHost')?.classList.remove('hidden');
+    const ruiFrame=el('ruiAdminFrame');if(ruiFrame?.contentWindow?.MIEDRuiAdmin?.refresh)ruiFrame.contentWindow.MIEDRuiAdmin.refresh();
     renderAdminAuthAccounts();
   }else{
     el('ruiAdminHost')?.classList.add('hidden');
@@ -192,6 +250,21 @@ if (authExtras.includes(oldAdminBindings)) {
   throw new Error('Could not locate the account module admin bindings.');
 }
 
+const authApiToken = 'window.MIEDAuthDemo={';
+if (!authExtras.includes(authApiToken)) throw new Error('Could not locate the public account API.');
+const authOpenEntryApi = `openEntry:kind=>{
+  const message=kind==='research'?'请使用研究团队账户登录。':'请登录或注册参与者账户。';
+  if(!currentUser){showAuth(message,'login');return}
+  if(kind==='research'&&currentUser.role!=='admin'){showAuth('当前账户不是研究团队账户。','login');return}
+  if(kind==='participant'&&currentUser.role==='admin'){enterParticipantPreview();return}
+  enterForUser(currentUser)
+},`;
+authExtras = authExtras.replaceAll(authOpenEntryApi, '');
+authExtras = authExtras.replace(
+  authApiToken,
+  `${authApiToken}${authOpenEntryApi}`,
+);
+
 let assembled = latestParticipant
   .replace(/^<meta name="robots"[^\n]*\r?\n/m, '')
   .replace(/^<meta name="googlebot"[^\n]*\r?\n/m, '')
@@ -222,11 +295,27 @@ assembled =
 
 const headEnd = assembled.indexOf('</head>');
 if (headEnd < 0) throw new Error('Could not locate </head>.');
-assembled = assembled.slice(0, headEnd) + authStyles + '\n\n' + initialStyles + '\n\n' + assembled.slice(headEnd);
+assembled =
+  assembled.slice(0, headEnd) +
+  authStyles +
+  '\n\n' +
+  initialStyles +
+  '\n\n' +
+  assembled.slice(headEnd);
 
 const bodyEnd = assembled.lastIndexOf('</body>');
 if (bodyEnd < 0) throw new Error('Could not locate </body>.');
-assembled = assembled.slice(0, bodyEnd) + authExtras + '\n\n' + initialScript + '\n\n' + assembled.slice(bodyEnd);
+assembled =
+  assembled.slice(0, bodyEnd) +
+  communityStyles +
+  '\n\n' +
+  communityScript +
+  '\n\n' +
+  authExtras +
+  '\n\n' +
+  initialScript +
+  '\n\n' +
+  assembled.slice(bodyEnd);
 
 await writeFile(cloudbaseTargetPath, assembled, 'utf8');
 console.log(`Assembled CloudBase participant and account page at ${cloudbaseTargetPath}`);
