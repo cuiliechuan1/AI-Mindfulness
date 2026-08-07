@@ -27,13 +27,14 @@ button{cursor:pointer}.hidden{display:none!important}
 .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{width:100%;border-collapse:collapse;background:#fff;font-size:11px}th,td{padding:12px 13px;border-bottom:1px solid #e8edec;text-align:left;white-space:nowrap}th{background:#f8faf9;color:#788689;font-size:10px}td b{font-size:11px}td span{display:block;margin-top:3px;color:#8b9799;font-size:9px}tr:last-child td{border-bottom:0}
 .module-stat{padding:17px;border:1px solid var(--line);border-radius:13px;background:#fff}.module-stat small{color:#7c898c}.module-stat strong{display:block;margin:10px 0 6px;color:#39736d;font:800 25px/1 Georgia,serif}.module-stat p{margin:0;color:#718084;font-size:10px;line-height:1.5}
 .quote{padding:16px;border-left:3px solid #75a39d;background:#f4f8f7;color:#55696d;font:500 13px/1.8 "Noto Serif SC","Songti SC",Georgia,serif}
+.community-panel{margin-top:14px}.community-panel-copy{max-width:720px;margin:6px 0 0;color:#718084;font-size:11px;line-height:1.7}.community-admin-list{display:grid;gap:11px}.community-admin-card{padding:15px;border:1px solid #e2e9e7;border-radius:13px;background:#fbfcfc}.community-admin-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.community-admin-head b{display:block;font-size:12px}.community-admin-head span{display:block;margin-top:4px;color:#819093;font-size:10px}.visibility{padding:6px 8px;border-radius:999px;background:#e7f2ee;color:#47756f;font-size:9px!important;font-weight:850;white-space:nowrap}.visibility.private{background:#fbf0df;color:#91672f}.community-admin-content{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}.community-admin-content div{padding:10px;border:1px solid #e5ecea;border-radius:10px;background:#fff}.community-admin-content small{display:block;color:#4e7772;font-size:9px;font-weight:850}.community-admin-content p{margin:4px 0 0;color:#526568;font-size:11px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}.community-comments{display:grid;gap:6px;margin-top:10px}.community-comment{padding:9px 10px;border-radius:9px;background:#f1f6f4;color:#536669;font-size:10px;line-height:1.55}.community-comment.team{border:1px solid #eedfc8;background:#fff7eb}.community-comment b{margin-right:5px;color:#315f5a}.community-admin-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:11px;padding-top:10px;border-top:1px solid #e8edec}.community-admin-actions input{min-width:220px;min-height:36px;flex:1;padding:0 10px;border:1px solid var(--line);border-radius:9px;background:#fff;color:#41575a;font-size:10px}.community-admin-actions button{min-height:36px;padding:0 11px;border:1px solid #b9d0cb;border-radius:9px;background:#edf5f2;color:#386f69;font-size:10px;font-weight:850}.community-admin-actions button.liked{border-color:#ead9bb;background:#fff4e2;color:#93672f}.community-empty{padding:28px;border:1px dashed #cbdad6;border-radius:12px;background:#fbfcfc;text-align:center;color:#718084;font-size:11px}.community-empty b{display:block;margin-bottom:5px;color:#40575a;font-size:13px}
 .drawer-backdrop{position:fixed;inset:0;z-index:40;background:rgba(19,39,41,.28)}.drawer{position:fixed;top:0;right:0;z-index:41;width:min(440px,92vw);height:100vh;padding:27px;background:#fff;box-shadow:-18px 0 50px rgba(24,46,47,.18);overflow:auto}.drawer-top{display:flex;justify-content:space-between;gap:20px}.drawer-top h3{margin:7px 0 0;font:750 22px/1.3 "Noto Serif SC","Songti SC",Georgia,serif}.drawer-top button{width:36px;height:36px;border:1px solid var(--line);border-radius:9px;background:#fff}.drawer label{display:block;margin-top:19px;color:#647579;font-size:11px;font-weight:800}.drawer input,.drawer select,.drawer textarea{width:100%;margin-top:7px;padding:10px;border:1px solid var(--line);border-radius:9px;background:#fbfcfc}.drawer textarea{min-height:110px;resize:vertical}.drawer-actions{display:flex;gap:9px;margin-top:20px}.drawer-actions button{flex:1}
 .mobile-overlay{display:none}
-@media(max-width:1050px){.metrics{grid-template-columns:repeat(3,1fr)}.three{grid-template-columns:repeat(2,1fr)}.journey{grid-template-columns:repeat(3,1fr)}.journey-step:nth-child(3){border-right:0}.two{grid-template-columns:1fr}}
+@media(max-width:1050px){.metrics{grid-template-columns:repeat(3,1fr)}.three{grid-template-columns:repeat(2,1fr)}.journey{grid-template-columns:repeat(3,1fr)}.journey-step:nth-child(3){border-right:0}.two{grid-template-columns:1fr}.community-admin-content{grid-template-columns:1fr}}
 @media(max-width:760px){
   .shell{display:block}.sidebar{position:fixed;z-index:50;transform:translateX(-105%);transition:transform .2s ease;width:278px}.sidebar.open{transform:translateX(0)}.mobile-overlay.open{display:block;position:fixed;inset:0;z-index:49;background:rgba(12,28,30,.42)}
   .topbar{padding:11px 14px}.topbar h1{font-size:15px}.mobile-menu{display:inline-grid!important;place-items:center;width:40px;padding:0!important}.topbar .sync{display:none}.top-actions button[data-action="participant"]{font-size:0;width:42px;padding:0}.top-actions button[data-action="participant"]::after{content:"参与端";font-size:10px}
-  .main{padding:22px 14px 38px}.page-head{display:block}.page-head .primary{margin-top:14px}.metrics{grid-template-columns:repeat(2,1fr)}.metric{min-height:112px}.metric strong{font-size:24px}.three{grid-template-columns:1fr}.journey{grid-template-columns:1fr}.journey-step{border-right:0;border-bottom:1px solid var(--line)}.journey-step:last-child{border-bottom:0}.toolbar input{min-width:100%}
+  .main{padding:22px 14px 38px}.page-head{display:block}.page-head .primary{margin-top:14px}.metrics{grid-template-columns:repeat(2,1fr)}.metric{min-height:112px}.metric strong{font-size:24px}.three{grid-template-columns:1fr}.journey{grid-template-columns:1fr}.journey-step{border-right:0;border-bottom:1px solid var(--line)}.journey-step:last-child{border-bottom:0}.toolbar input{min-width:100%}.community-admin-head{display:block}.visibility{display:inline-flex!important;margin-top:8px!important}.community-admin-actions input{min-width:100%}
 }
 @media(prefers-reduced-motion:reduce){.sidebar{transition:none}}
 </style>
@@ -90,6 +91,40 @@ const tasks=[
 let activePage='overview';
 const $=id=>document.getElementById(id);
 const pill=value=>`<span class="pill ${value==='高风险'?'risk':value==='提醒'||value==='关注'?'warn':''}">${value}</span>`;
+const escapeMarkup=value=>String(value??'').replace(/[&<>"']/g,character=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
+function communityBridge(){
+  try{
+    if(window.parent!==window&&window.parent.location.origin===location.origin)return window.parent.MIEDCommunityBridge||null;
+  }catch(error){void error}
+  return null;
+}
+function communityPosts(){
+  const bridge=communityBridge();
+  if(!bridge||typeof bridge.listPosts!=='function')return[];
+  const posts=bridge.listPosts();
+  return Array.isArray(posts)?posts:[];
+}
+function communityPostTime(post){
+  const date=new Date(post.createdAt||Date.now());
+  return Number.isNaN(date.getTime())?'时间未知':date.toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
+}
+function communityAdminCard(post){
+  const content=post.content||{},comments=Array.isArray(post.comments)?post.comments:[],likes=Array.isArray(post.likes)?post.likes:[],teamLiked=likes.includes('RESEARCH-TEAM');
+  const safeId=escapeMarkup(post.id);
+  const commentHtml=comments.map(comment=>`<div class="community-comment ${comment.authorType==='admin'?'team':''}"><b>${escapeMarkup(comment.alias||'匿名参与者')}</b>${escapeMarkup(comment.text||'')}</div>`).join('');
+  return `<article class="community-admin-card"><div class="community-admin-head"><div><b>${escapeMarkup(post.participantId)} · ${escapeMarkup(post.alias)}</b><span>${communityPostTime(post)} · ${comments.length} 条评论 · ${likes.length} 个赞</span></div><span class="visibility ${post.visibility==='public'?'':'private'}">${post.visibility==='public'?'匿名公开':'仅团队可见'}</span></div><div class="community-admin-content"><div><small>今天完成了什么</small><p>${escapeMarkup(content.done||'未填写')}</p></div><div><small>此刻状态</small><p>${escapeMarkup(content.feeling||'未填写')}</p></div><div><small>明天的一小步</small><p>${escapeMarkup(content.tomorrow||'未填写')}</p></div></div>${commentHtml?`<div class="community-comments">${commentHtml}</div>`:''}<div class="community-admin-actions"><button type="button" class="${teamLiked?'liked':''}" data-community-team-like="${safeId}">${teamLiked?'已由团队点赞':'团队点赞'} · ${likes.length}</button><input id="communityReply_${safeId}" maxlength="240" placeholder="以研究团队身份留言回应"><button type="button" data-community-team-comment="${safeId}">发送团队回应</button></div></article>`;
+}
+function renderRuiCommunity(){
+  const list=$('ruiCommunityList');if(!list)return;
+  const bridge=communityBridge();
+  if(!bridge){list.innerHTML='<div class="community-empty"><b>请从整合版后台进入</b><span>直接打开后台子页面时，无法读取参与者端的同源浏览器数据。</span></div>';return}
+  const query=($('communitySearch')?.value||'').trim().toLowerCase(),visibility=$('communityVisibility')?.value||'all',sort=$('communitySort')?.value||'latest';
+  let posts=communityPosts().filter(post=>(visibility==='all'||post.visibility===visibility)&&(!query||`${post.participantId||''} ${post.alias||''} ${post.content?.done||''} ${post.content?.feeling||''} ${post.content?.tomorrow||''}`.toLowerCase().includes(query)));
+  posts.sort((a,b)=>sort==='comments'?(b.comments?.length||0)-(a.comments?.length||0):sort==='likes'?(b.likes?.length||0)-(a.likes?.length||0):new Date(b.createdAt)-new Date(a.createdAt));
+  list.innerHTML=posts.length?posts.map(communityAdminCard).join(''):'<div class="community-empty"><b>当前筛选条件下没有树洞记录</b><span>公开与仅团队可见的打卡都会在这里按权限呈现。</span></div>';
+  list.querySelectorAll('[data-community-team-like]').forEach(button=>button.addEventListener('click',()=>{bridge.toggleTeamLike(button.dataset.communityTeamLike);render()}));
+  list.querySelectorAll('[data-community-team-comment]').forEach(button=>button.addEventListener('click',()=>{const input=document.getElementById(`communityReply_${button.dataset.communityTeamComment}`),text=input?.value.trim()||'';if(!text){toast('请先写下团队回应。');return}bridge.addTeamComment(button.dataset.communityTeamComment,text);toast('团队回应已保存到本浏览器。');render()}));
+}
 function metrics(items){return `<div class="grid metrics">${items.map(x=>`<div class="metric ${x[3]||''}"><small>${x[0]}</small><strong>${x[1]}</strong><span>${x[2]}</span></div>`).join('')}</div>`}
 function pageHead(kicker,title,copy,action=''){return `<div class="page-head"><div><p class="eyebrow">${kicker}</p><h2>${title}</h2><p>${copy}</p></div>${action?`<button class="primary" type="button" data-toast="${action}">${action}</button>`:''}</div>`}
 function overview(){
@@ -115,9 +150,11 @@ function interventionPage(){
   <section class="card" style="margin-top:14px"><div class="card-head"><div><small>依从性分层</small><h3>需要团队介入的参与者</h3></div></div><div class="alert-list">${[['MIED-0034','连续 3 天未练习 · 第 2 周','提醒'],['MIED-0028','课程完成但练习质量偏低','关注'],['MIED-0012','测量窗口将于 24 小时后关闭','今日']].map(x=>`<div class="alert-row"><i class="severity"></i><div><b>${x[0]}</b><span>${x[1]}</span></div>${pill(x[2])}</div>`).join('')}</div></section>`;
 }
 function engagementPage(){
+  const posts=communityPosts(),todayKey=new Date().toLocaleDateString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit'}),today=posts.filter(post=>post.dateKey===todayKey).length,publicCount=posts.filter(post=>post.visibility==='public').length,privateCount=posts.filter(post=>post.visibility!=='public').length,comments=posts.reduce((sum,post)=>sum+(post.comments?.length||0),0);
   return pageHead('每日参与','打卡、心灯与社区','把每日体验、心灯反馈与社区参与汇总为可解释的参与轨迹，不把沉默简单等同于退出。','查看今日队列')+
-  metrics([['今日打卡','29','在组 36 人'],['心灯点亮','24','83% 正向反馈'],['社区互动','17','去标识化发言'],['连续 7 天','13','36% 在组参与者'],['温和提醒','5','等待发送']])+
-  `<div class="grid two"><section class="card"><div class="card-head"><div><small>近 7 日趋势</small><h3>每日参与完成率</h3></div></div>${[['周一',72],['周二',78],['周三',69],['周四',82],['周五',81],['周六',74],['今日',81]].map(x=>progress(x[0],x[1])).join('')}</section><section class="card"><div class="card-head"><div><small>社区安全</small><h3>内容与支持边界</h3></div></div><div class="module-stat"><small>待人工复核</small><strong>2</strong><p>自动标记只用于排序，最终判断由研究团队完成。</p></div><div class="quote" style="margin-top:12px">参与者可跳过打卡或社区互动，不影响其退出研究的权利。</div></section></div>`;
+  metrics([['今日树洞',String(today),'全部可见性'],['匿名公开',String(publicCount),'参与者可互动'],['仅团队可见',String(privateCount),'不进入公开交流区'],['累计评论',String(comments),'参与者与团队'],['记录总数',String(posts.length),'本浏览器数据']])+
+  `<div class="grid two"><section class="card"><div class="card-head"><div><small>近 7 日趋势</small><h3>每日参与完成率</h3></div></div>${[['周一',72],['周二',78],['周三',69],['周四',82],['周五',81],['周六',74],['今日',81]].map(x=>progress(x[0],x[1])).join('')}</section><section class="card"><div class="card-head"><div><small>社区安全</small><h3>内容与支持边界</h3></div></div><div class="module-stat"><small>可见性原则</small><strong>${publicCount}/${posts.length||0}</strong><p>只有参与者主动选择匿名公开的记录才进入公开交流区；其他记录仅研究团队可查看和回应。</p></div><div class="quote" style="margin-top:12px">参与者可跳过打卡或社区互动，也可以随时把当天记录改回仅团队可见。</div></section></div>
+  <section class="card community-panel"><div class="card-head"><div><small>Liechuan 树洞模块 · 同源浏览器数据</small><h3>树洞管理与团队回应</h3><p class="community-panel-copy">查看匿名公开和仅团队可见的每日打卡；团队点赞与回应会同步回参与者端。</p></div></div><div class="toolbar"><input id="communitySearch" placeholder="搜索参与者编号或打卡内容"><select id="communityVisibility"><option value="all">全部可见性</option><option value="public">匿名公开</option><option value="admin">仅团队可见</option></select><select id="communitySort"><option value="latest">最新提交</option><option value="comments">评论较多</option><option value="likes">点赞较多</option></select></div><div class="community-admin-list" id="ruiCommunityList"></div></section>`;
 }
 function measuresPage(){
   return pageHead('测量 · 评价','四阶段测量与质量控制','跟踪 T0、T1、T2、T3 窗口完成情况，并将缺失、极速作答和一致性信号转成质检任务。','导出测量清单')+
@@ -153,6 +190,7 @@ function render(){
   document.querySelectorAll('[data-toast]').forEach(b=>b.addEventListener('click',()=>toast(`${b.dataset.toast}：演示操作已记录在本浏览器。`)));
   document.querySelectorAll('[data-task]').forEach(b=>b.addEventListener('click',()=>openTask(tasks[+(b.dataset.task||0)]?.[0]||'风险处置任务')));
   $('participantSearch')?.addEventListener('input',renderParticipants);$('participantRisk')?.addEventListener('change',renderParticipants);renderParticipants();
+  if(activePage==='engagement'){$('communitySearch')?.addEventListener('input',renderRuiCommunity);$('communityVisibility')?.addEventListener('change',renderRuiCommunity);$('communitySort')?.addEventListener('change',renderRuiCommunity);renderRuiCommunity()}
 }
 function buildNav(){
   $('nav').innerHTML=pages.map(x=>`<button type="button" data-page="${x.id}" class="${x.id===activePage?'active':''}"><span class="nav-index">${x.no}</span><span>${x.label}</span>${x.id==='risk'?'<span class="risk-dot">1</span>':''}</button>`).join('');
@@ -164,29 +202,6 @@ function toast(message){let node=document.querySelector('.rui-toast');if(!node){
 function closeMenu(){$('sidebar').classList.remove('open');$('mobileOverlay').classList.remove('open')}
 function messageParent(type){
   if(window.parent===window)return;
-  try{
-    if(window.parent.location.origin===location.origin){
-      if(type==='mied:return-participant'){
-        const parentDoc=window.parent.document;
-        parentDoc.getElementById('ruiAdminHost')?.classList.add('hidden');
-        parentDoc.getElementById('adminWrap')?.classList.add('hidden');
-        parentDoc.getElementById('adminMobileNav')?.classList.add('hidden');
-        parentDoc.getElementById('appWrap')?.classList.add('hidden');
-        parentDoc.getElementById('mobileNav')?.classList.add('hidden');
-        parentDoc.getElementById('launcher')?.classList.remove('hidden');
-        if(typeof window.parent.updateIdentity==='function'&&window.parent.currentUser)window.parent.updateIdentity(window.parent.currentUser);
-        return;
-      }
-      if(type==='mied:logout'){
-        const parentDoc=window.parent.document;
-        parentDoc.getElementById('ruiAdminHost')?.classList.add('hidden');
-        parentDoc.getElementById('launcher')?.classList.remove('hidden');
-        const logoutButton=parentDoc.getElementById('adminLogout')||parentDoc.getElementById('authLauncherLogout');
-        if(logoutButton){logoutButton.click();return}
-        if(typeof window.parent.logout==='function'){window.parent.logout('已退出研究后台。');return}
-      }
-    }
-  }catch(error){}
   window.parent.postMessage({type},location.origin);
 }
 document.addEventListener('click',event=>{
@@ -199,7 +214,7 @@ document.addEventListener('click',event=>{
 });
 $('drawerBackdrop').addEventListener('click',closeTask);$('mobileOverlay').addEventListener('click',closeMenu);
 buildNav();render();
-window.MIEDRuiAdmin={version:'0806-integrated',storage:'browser-demo',openPage:id=>{if(pages.some(x=>x.id===id)){activePage=id;buildNav();render()}}};
+window.MIEDRuiAdmin={version:'0806-community-integrated',storage:'browser-demo',openPage:id=>{if(pages.some(x=>x.id===id)){activePage=id;buildNav();render()}},refresh:()=>{buildNav();render()}};
 </script>
 </body>
 </html>
