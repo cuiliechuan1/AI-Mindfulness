@@ -189,8 +189,76 @@ body.auth-locked{overflow:hidden}
 @media(max-width:600px){.auth-form-row,.auth-credential-lines,.auth-account-grid{grid-template-columns:1fr}.auth-panel-head h2{font-size:25px}.auth-demo-badge{display:none}.auth-identity-text{display:none}.auth-identity-chip{gap:5px}.auth-account-admin-summary{grid-template-columns:1fr 1fr}}
 </style>
 
+<style id="miedInitialStyles">
+.mied-initial{position:fixed;inset:0;z-index:12000;overflow:auto;overflow-x:hidden;background:
+  radial-gradient(circle at 82% 18%,rgba(32,121,115,.11),transparent 31%),
+  radial-gradient(circle at 15% 84%,rgba(194,143,72,.10),transparent 28%),#f6f8f9;color:#1d282f}
+.mied-initial[hidden]{display:none}
+.mied-initial-bar{display:flex;align-items:center;justify-content:space-between;max-width:1180px;margin:0 auto;padding:25px 32px}
+.mied-initial-brand{display:flex;align-items:center;gap:12px;font:800 15px/1.2 "Noto Sans SC","Microsoft YaHei",sans-serif;letter-spacing:.02em}
+.mied-initial-mark{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:#204447;color:#f7fbfa;font:800 18px/1 Georgia,serif;box-shadow:0 8px 24px rgba(32,68,71,.14)}
+.mied-initial-version{color:#708086;font:600 12px/1.2 "Noto Sans SC","Microsoft YaHei",sans-serif}
+.mied-initial-main{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(340px,.72fr);gap:76px;align-items:center;width:100%;max-width:1060px;min-height:calc(100vh - 150px);margin:0 auto;padding:42px 32px 72px}
+.mied-initial-main,.mied-initial-copy,.mied-entry-card{min-width:0}
+.mied-initial-copy{max-width:610px}
+.mied-initial-kicker{margin:0 0 18px;color:#207973;font:800 12px/1.4 "Noto Sans SC","Microsoft YaHei",sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.mied-initial h1{max-width:590px;margin:0;color:#17282d;font:600 clamp(40px,5vw,68px)/1.16 "Noto Serif SC","Songti SC",Georgia,serif;letter-spacing:-.035em;overflow-wrap:anywhere}
+.mied-initial-lead{max-width:570px;margin:25px 0 0;color:#53666c;font:400 17px/1.9 "Noto Sans SC","Microsoft YaHei",sans-serif}
+.mied-initial-notes{display:flex;flex-wrap:wrap;gap:10px;margin-top:31px}
+.mied-initial-note{padding:9px 12px;border:1px solid #d8e1e3;border-radius:999px;background:rgba(252,253,253,.78);color:#52666b;font:700 12px/1.2 "Noto Sans SC","Microsoft YaHei",sans-serif}
+.mied-entry-card{padding:31px;border:1px solid #d9e0e3;border-radius:8px;background:rgba(252,253,253,.96);box-shadow:0 22px 60px rgba(29,40,47,.10)}
+.mied-entry-card small{display:block;color:#207973;font:800 11px/1.4 "Noto Sans SC","Microsoft YaHei",sans-serif;letter-spacing:.13em}
+.mied-entry-card h2{margin:10px 0 9px;color:#1d282f;font:600 28px/1.25 "Noto Serif SC","Songti SC",Georgia,serif}
+.mied-entry-card p{margin:0 0 24px;color:#66777c;font:400 14px/1.75 "Noto Sans SC","Microsoft YaHei",sans-serif}
+.mied-entry-actions{display:grid;gap:11px}
+.mied-entry-button{width:100%;min-height:50px;border:1px solid #207973;border-radius:3px;background:#207973;color:#fff;font:800 14px/1 "Noto Sans SC","Microsoft YaHei",sans-serif;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+.mied-entry-button:hover{transform:translateY(-1px);background:#196b66;box-shadow:0 10px 24px rgba(32,121,115,.18)}
+.mied-entry-button.secondary{background:transparent;color:#315f5d}
+.mied-entry-button.secondary:hover{background:#edf5f3}
+.mied-entry-privacy{margin-top:18px!important;padding-top:17px;border-top:1px solid #e4e9eb;color:#77858a!important;font-size:11px!important}
+.rui-admin-host{position:fixed;inset:0;z-index:1050;background:#f3f6f5}
+.rui-admin-host.hidden{display:none}
+.rui-admin-frame{display:block;width:100%;height:100%;border:0;background:#f3f6f5}
+@media(max-width:820px){
+  .mied-initial-bar{padding:18px 20px}.mied-initial-version{display:none}
+  .mied-initial-main{grid-template-columns:1fr;gap:38px;min-height:auto;padding:54px 20px 45px}
+  .mied-initial h1{font-size:clamp(36px,11vw,48px)}.mied-initial-lead{font-size:15px;overflow-wrap:anywhere}
+  .mied-entry-card{padding:24px}.mied-initial-notes{margin-top:23px}
+}
+@media(prefers-reduced-motion:reduce){.mied-entry-button{transition:none}}
+</style>
+
 </head>
-<body class="auth-locked">
+<body class="auth-locked mied-entry-open">
+<section class="mied-initial" id="miedInitial" aria-labelledby="miedInitialTitle">
+  <header class="mied-initial-bar">
+    <div class="mied-initial-brand"><span class="mied-initial-mark">M</span><span>MIED · 与哀伤同行</span></div>
+    <span class="mied-initial-version">研究体验版 · v18</span>
+  </header>
+  <main class="mied-initial-main">
+    <div class="mied-initial-copy">
+      <p class="mied-initial-kicker">Meaning-centered grief support</p>
+      <h1 id="miedInitialTitle">在哀伤中，找到可以继续前行的意义。</h1>
+      <p class="mied-initial-lead">MIED 将意义导向的心理教育、日常练习与阶段测评放在同一个温和、清晰的体验中。你可以按自己的节奏参与，也可以随时暂停或退出。</p>
+      <div class="mied-initial-notes" aria-label="体验说明">
+        <span class="mied-initial-note">参与完全自愿</span>
+        <span class="mied-initial-note">可随时退出</span>
+        <span class="mied-initial-note">当前版本仅保存于本浏览器</span>
+      </div>
+    </div>
+    <section class="mied-entry-card" aria-label="进入 MIED">
+      <small>WELCOME TO MIED</small>
+      <h2>准备好后，从这里开始</h2>
+      <p>参与者进入账户登录后可继续测评与练习；研究人员使用团队账户进入 Rui 更新后的研究运营后台。</p>
+      <div class="mied-entry-actions">
+        <button class="mied-entry-button" type="button" data-mied-entry="participant">参与者登录</button>
+        <button class="mied-entry-button secondary" type="button" data-mied-entry="research">研究团队入口</button>
+      </div>
+      <p class="mied-entry-privacy">不连接 MeaningBridge 的通知接口，也不会在此收集邮箱。手机号规则沿用当前版本：仅填写后六位用于匹配追踪。</p>
+    </section>
+  </main>
+</section>
+
 <section class="auth-shell" id="authShell" aria-label="MIED账户入口">
   <div class="auth-layout">
     <section class="auth-story">
@@ -226,6 +294,10 @@ body.auth-locked{overflow:hidden}
       <p class="auth-storage-note">账户、密码摘要和操作记录只存于当前浏览器的本地存储。清理浏览器数据或更换设备后不会同步。 <button id="authResetDemo" type="button">重置账户演示数据</button></p>
     </section>
   </div>
+</section>
+
+<section class="rui-admin-host hidden" id="ruiAdminHost" aria-label="MIED 研究团队运营台">
+  <iframe class="rui-admin-frame" id="ruiAdminFrame" src="rui-admin.html?v=rui-0806-4" title="MIED 研究团队运营台"></iframe>
 </section>
 
 <section class="launcher" id="launcher">
@@ -3043,7 +3115,7 @@ function nextAccountId(){authDb.sequence=(Number(authDb.sequence)||0)+1;return'A
 function setStatus(id,text,type='error'){const node=el(id);if(!node)return;node.textContent=text||'';node.classList.toggle('success',type==='success')}
 function setBusy(button,busy,label){if(!button)return;button.disabled=busy;if(label)button.textContent=busy?'处理中…':label}
 function switchAuthTab(mode){const login=mode==='login';el('authLoginTab').classList.toggle('active',login);el('authRegisterTab').classList.toggle('active',!login);el('authLoginForm').classList.toggle('auth-hidden',!login);el('authRegisterForm').classList.toggle('auth-hidden',login);el('authRegistrationSuccess').classList.add('auth-hidden');el('authPanelTitle').textContent=login?'欢迎回来':'创建参与者账号';el('authPanelSubtitle').textContent=login?'登录后进入对应的参与者端或研究后台。':'完成注册后，再使用新账号登录参与者端。';setStatus('authLoginStatus','');setStatus('authRegisterStatus','')}
-function hideProductViews(){['launcher','appWrap','adminWrap','mobileNav','adminMobileNav'].forEach(id=>el(id)?.classList.add('hidden'))}
+function hideProductViews(){['launcher','appWrap','adminWrap','mobileNav','adminMobileNav','ruiAdminHost'].forEach(id=>el(id)?.classList.add('hidden'))}
 function showAuth(message='',tab='login'){currentUser=null;hideProductViews();el('authShell').classList.remove('auth-hidden');document.body.classList.add('auth-locked');switchAuthTab(tab);if(message)setStatus(tab==='register'?'authRegisterStatus':'authLoginStatus',message,message.includes('成功')?'success':'error');setTimeout(()=>el(tab==='register'?'authRegisterName':'authLoginUsername')?.focus(),30)}
 function hideAuth(){el('authShell').classList.add('auth-hidden');document.body.classList.remove('auth-locked')}
 function writeSession(user){localStorage.setItem(SESSION_KEY,JSON.stringify({userId:user.id,createdAt:Date.now(),expiresAt:Date.now()+SESSION_MS}))}
@@ -3061,10 +3133,11 @@ function enterForUser(user){
   currentUser=user;writeSession(user);hideAuth();updateIdentity(user);compatibilityStatus(user);
   if(user.role==='admin'){
     el('launcher')?.classList.add('hidden');el('appWrap')?.classList.add('hidden');
-    if(typeof enterAdmin==='function')enterAdmin();
-    if(el('adminBackHome')){el('adminBackHome').textContent='进入参与者端';el('adminBackHome').title='以研究人员身份查看参与者端'}
+    el('adminWrap')?.classList.add('hidden');el('adminMobileNav')?.classList.add('hidden');
+    el('ruiAdminHost')?.classList.remove('hidden');
     renderAdminAuthAccounts();
   }else{
+    el('ruiAdminHost')?.classList.add('hidden');
     el('adminWrap')?.classList.add('hidden');el('adminMobileNav')?.classList.add('hidden');
     el('appWrap')?.classList.add('hidden');el('mobileNav')?.classList.add('hidden');
     el('launcher')?.classList.remove('hidden');
@@ -3073,27 +3146,7 @@ function enterForUser(user){
 }
 function enterParticipantPreview(){
   if(!currentUser||currentUser.role!=='admin')return;
-  el('adminWrap')?.classList.add('hidden');el('adminMobileNav')?.classList.add('hidden');
-  el('appWrap')?.classList.add('hidden');el('mobileNav')?.classList.add('hidden');
-  el('launcher')?.classList.remove('hidden');updateIdentity(currentUser);
-  toast('已进入参与者端，可通过“研究团队后台”返回后台。');
-}
-function enterParticipantPreview(){
-  if(!currentUser||currentUser.role!=='admin')return;
-  el('adminWrap')?.classList.add('hidden');el('adminMobileNav')?.classList.add('hidden');
-  el('appWrap')?.classList.add('hidden');el('mobileNav')?.classList.add('hidden');
-  el('launcher')?.classList.remove('hidden');updateIdentity(currentUser);
-  toast('已进入参与者端，可通过“研究团队后台”返回后台。');
-}
-function enterParticipantPreview(){
-  if(!currentUser||currentUser.role!=='admin')return;
-  el('adminWrap')?.classList.add('hidden');el('adminMobileNav')?.classList.add('hidden');
-  el('appWrap')?.classList.add('hidden');el('mobileNav')?.classList.add('hidden');
-  el('launcher')?.classList.remove('hidden');updateIdentity(currentUser);
-  toast('已进入参与者端，可通过“研究团队后台”返回后台。');
-}
-function enterParticipantPreview(){
-  if(!currentUser||currentUser.role!=='admin')return;
+  el('ruiAdminHost')?.classList.add('hidden');
   el('adminWrap')?.classList.add('hidden');el('adminMobileNav')?.classList.add('hidden');
   el('appWrap')?.classList.add('hidden');el('mobileNav')?.classList.add('hidden');
   el('launcher')?.classList.remove('hidden');updateIdentity(currentUser);
@@ -3148,6 +3201,32 @@ async function init(){hideProductViews();document.body.classList.add('auth-locke
 window.MIEDAuthDemo={getCurrentUser:()=>currentUser?safeUser(currentUser):null,getUsers:()=>authDb.users.map(safeUser),getAudit:()=>authDb.audit.slice(),logout,showLogin:message=>showAuth(message||'','login'),openAccount:openAccountModal,version:'18.0-demo'};
 init().catch(error=>{console.error('MIED account demo failed to initialize.',error);showAuth('账户模块初始化失败，请刷新页面重试。','login')});
 })();
+</script>
+
+<script id="miedInitialScript">
+function openMiedEntry(kind){
+  const initial=document.getElementById('miedInitial');
+  if(initial)initial.hidden=true;
+  document.body.classList.remove('mied-entry-open');
+  const message=kind==='research'?'请使用研究团队账户登录。':'请登录或注册参与者账户。';
+  if(typeof currentUser!=='undefined'&&currentUser){
+    if(kind==='research'&&currentUser.role!=='admin'){
+      if(typeof showAuth==='function')showAuth('当前账户不是研究团队账户。','login');
+      return;
+    }
+    if(typeof enterForUser==='function')enterForUser(currentUser);
+  }else if(typeof showAuth==='function'){
+    showAuth(message,'login');
+  }
+}
+document.querySelectorAll('[data-mied-entry]').forEach(button=>button.addEventListener('click',()=>openMiedEntry(button.dataset.miedEntry)));
+window.addEventListener('message',event=>{
+  const frame=document.getElementById('ruiAdminFrame');
+  if(event.origin!==location.origin||!frame)return;
+  if(event.data?.type==='mied:return-participant'&&typeof enterParticipantPreview==='function')enterParticipantPreview();
+  if(event.data?.type==='mied:logout'&&typeof logout==='function')logout('已退出研究后台。');
+});
+window.MIEDRuiBridge={openEntry:openMiedEntry,version:'rui-0806'};
 </script>
 
 </body>

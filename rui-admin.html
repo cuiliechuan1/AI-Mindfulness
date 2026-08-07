@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>MIED｜研究团队运营台</title>
+<style>
+:root{--ink:#193033;--muted:#718084;--line:#dfe6e4;--paper:#fff;--canvas:#f3f6f5;--nav:#203f43;--nav2:#2e5356;--teal:#3f7d77;--teal2:#e6f1ee;--red:#b85d52;--amber:#ae7a32;--shadow:0 12px 32px rgba(28,51,52,.08)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--canvas);color:var(--ink);font-family:"Noto Sans SC","Microsoft YaHei",sans-serif}button,input,select,textarea{font:inherit}
+button{cursor:pointer}.hidden{display:none!important}
+.shell{display:grid;grid-template-columns:264px minmax(0,1fr);min-height:100vh}
+.sidebar{position:sticky;top:0;height:100vh;padding:23px 16px 18px;background:var(--nav);color:#f4f8f7;overflow:auto}
+.brand{display:flex;align-items:center;gap:11px;padding:0 6px 22px}.brand-mark{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:#dcece8;color:#315e5c;font:800 18px/1 Georgia,serif}.brand b{display:block;font-size:14px}.brand span{display:block;margin-top:4px;color:#b9cdca;font-size:11px}
+.study-card{margin-bottom:17px;padding:15px;border:1px solid rgba(255,255,255,.11);border-radius:14px;background:rgba(255,255,255,.055)}.study-card small{color:#a9c2bf}.study-card b{display:block;margin:7px 0 5px;font-size:13px}.study-card span{color:#b9cdca;font-size:11px}
+.nav{display:grid;gap:5px}.nav button{display:flex;align-items:center;gap:10px;width:100%;padding:11px;border:0;border-radius:11px;background:transparent;color:#dbe9e7;text-align:left;font-size:13px;font-weight:750}.nav button:hover,.nav button.active{background:rgba(255,255,255,.12);color:#fff}.nav-index{display:grid;place-items:center;width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.09);font-size:10px}.nav button.active .nav-index{background:#dfeeea;color:#315e5c}.risk-dot{margin-left:auto;display:grid;place-items:center;width:19px;height:19px;border-radius:50%;background:#c76257;color:#fff;font-size:10px}
+.sidebar-foot{margin-top:38px;padding:19px 6px 0;border-top:1px solid rgba(255,255,255,.11);font-size:11px;color:#b9cdca}.sidebar-foot b{display:block;margin-bottom:7px;color:#fff}.sidebar-foot button{margin-top:18px;padding:0;border:0;background:none;color:#cfe0dd;text-decoration:underline}
+.workspace{min-width:0}.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;min-height:74px;padding:14px 34px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.94);backdrop-filter:blur(16px)}.topbar small{color:#7d8d90;font-size:10px}.topbar h1{margin:5px 0 0;font:700 19px/1.2 "Noto Serif SC","Songti SC",Georgia,serif}.top-actions{display:flex;align-items:center;gap:9px}.sync{padding:9px 12px;border-radius:999px;background:#edf5f2;color:#46736d;font-size:11px;font-weight:800}.top-actions button,.primary,.soft{min-height:38px;padding:0 14px;border:1px solid var(--line);border-radius:9px;background:#fff;color:#40575a;font-size:12px;font-weight:800}.top-actions button:hover,.soft:hover{background:#f0f5f3}.primary{border-color:var(--teal);background:var(--teal);color:#fff}.primary:hover{background:#326b66}.mobile-menu{display:none!important}
+.main{padding:31px 29px 52px}.page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:21px}.eyebrow{margin:0 0 8px;color:var(--teal);font-size:11px;font-weight:850;letter-spacing:.08em}.page-head h2{margin:0;font:700 clamp(27px,3vw,37px)/1.2 "Noto Serif SC","Songti SC",Georgia,serif;letter-spacing:-.025em}.page-head p{max-width:720px;margin:11px 0 0;color:#718084;font-size:13px;line-height:1.75}
+.tabs{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 20px}.tabs button{padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;color:#66777a;font-size:11px;font-weight:800}.tabs button.active{border-color:#9ebcb7;background:#edf5f2;color:#315f5a}
+.grid{display:grid;gap:13px}.metrics{grid-template-columns:repeat(5,minmax(0,1fr));margin-bottom:15px}.metric,.card{border:1px solid var(--line);border-radius:15px;background:var(--paper);box-shadow:var(--shadow)}.metric{min-height:126px;padding:19px}.metric small{color:#8a9799;font-size:11px}.metric strong{display:block;margin:11px 0 5px;color:#376f6a;font:800 27px/1 Georgia,serif}.metric span{color:#718084;font-size:10px}.metric.alert strong{color:var(--red)}
+.card{padding:18px}.card-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:15px}.card-head small{color:#7e8d8f}.card-head h3{margin:4px 0 0;font:750 17px/1.3 "Noto Serif SC","Songti SC",Georgia,serif}.text-link{padding:0;border:0;background:none;color:#39736d;font-size:11px;font-weight:850}
+.journey{display:grid;grid-template-columns:repeat(6,1fr);overflow:hidden;border:1px solid var(--line);border-radius:13px}.journey-step{position:relative;min-height:112px;padding:15px;border-right:1px solid var(--line);background:#fff}.journey-step:last-child{border-right:0}.journey-step b{display:block;margin:10px 0 4px;font-size:12px}.journey-step span{color:#7f8d90;font-size:9px;line-height:1.5}.step-dot{display:grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#eef1f0;color:#7a8688;font-size:9px;font-weight:850}.journey-step.done .step-dot{background:#e3f0ec;color:#4f817a}.journey-step.current{background:#f4f9f7}.journey-step.current .step-dot{background:var(--teal);color:#fff}
+.two{grid-template-columns:minmax(0,1.3fr) minmax(300px,.7fr)}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.task-list,.alert-list,.message-list{display:grid;gap:9px}.task,.alert-row,.message{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px;border:1px solid #e7eceb;border-radius:11px;background:#fbfcfc}.task button{border:0;background:none;text-align:left;color:inherit}.severity{width:8px;height:8px;border-radius:50%;background:#d09a4c}.severity.high{background:#c65e53}.task b,.alert-row b,.message b{display:block;font-size:12px}.task span,.alert-row span,.message span{display:block;margin-top:4px;color:#839092;font-size:10px}.pill{padding:6px 8px;border-radius:999px;background:#edf4f2;color:#52756f;font-size:9px;font-weight:800}.pill.warn{background:#fbf2e5;color:#986f34}.pill.risk{background:#f9e9e7;color:#a64f47}
+.progress-row{margin:13px 0}.progress-label{display:flex;justify-content:space-between;color:#647579;font-size:11px}.bar{height:7px;margin-top:7px;border-radius:999px;background:#e9eeed;overflow:hidden}.bar i{display:block;height:100%;border-radius:inherit;background:#4d817b}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:13px}.toolbar input,.toolbar select{min-height:38px;padding:0 11px;border:1px solid var(--line);border-radius:9px;background:#fff;color:#41575a;font-size:11px}.toolbar input{min-width:240px;flex:1}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{width:100%;border-collapse:collapse;background:#fff;font-size:11px}th,td{padding:12px 13px;border-bottom:1px solid #e8edec;text-align:left;white-space:nowrap}th{background:#f8faf9;color:#788689;font-size:10px}td b{font-size:11px}td span{display:block;margin-top:3px;color:#8b9799;font-size:9px}tr:last-child td{border-bottom:0}
+.module-stat{padding:17px;border:1px solid var(--line);border-radius:13px;background:#fff}.module-stat small{color:#7c898c}.module-stat strong{display:block;margin:10px 0 6px;color:#39736d;font:800 25px/1 Georgia,serif}.module-stat p{margin:0;color:#718084;font-size:10px;line-height:1.5}
+.quote{padding:16px;border-left:3px solid #75a39d;background:#f4f8f7;color:#55696d;font:500 13px/1.8 "Noto Serif SC","Songti SC",Georgia,serif}
+.drawer-backdrop{position:fixed;inset:0;z-index:40;background:rgba(19,39,41,.28)}.drawer{position:fixed;top:0;right:0;z-index:41;width:min(440px,92vw);height:100vh;padding:27px;background:#fff;box-shadow:-18px 0 50px rgba(24,46,47,.18);overflow:auto}.drawer-top{display:flex;justify-content:space-between;gap:20px}.drawer-top h3{margin:7px 0 0;font:750 22px/1.3 "Noto Serif SC","Songti SC",Georgia,serif}.drawer-top button{width:36px;height:36px;border:1px solid var(--line);border-radius:9px;background:#fff}.drawer label{display:block;margin-top:19px;color:#647579;font-size:11px;font-weight:800}.drawer input,.drawer select,.drawer textarea{width:100%;margin-top:7px;padding:10px;border:1px solid var(--line);border-radius:9px;background:#fbfcfc}.drawer textarea{min-height:110px;resize:vertical}.drawer-actions{display:flex;gap:9px;margin-top:20px}.drawer-actions button{flex:1}
+.mobile-overlay{display:none}
+@media(max-width:1050px){.metrics{grid-template-columns:repeat(3,1fr)}.three{grid-template-columns:repeat(2,1fr)}.journey{grid-template-columns:repeat(3,1fr)}.journey-step:nth-child(3){border-right:0}.two{grid-template-columns:1fr}}
+@media(max-width:760px){
+  .shell{display:block}.sidebar{position:fixed;z-index:50;transform:translateX(-105%);transition:transform .2s ease;width:278px}.sidebar.open{transform:translateX(0)}.mobile-overlay.open{display:block;position:fixed;inset:0;z-index:49;background:rgba(12,28,30,.42)}
+  .topbar{padding:11px 14px}.topbar h1{font-size:15px}.mobile-menu{display:inline-grid!important;place-items:center;width:40px;padding:0!important}.topbar .sync{display:none}.top-actions button[data-action="participant"]{font-size:0;width:42px;padding:0}.top-actions button[data-action="participant"]::after{content:"参与端";font-size:10px}
+  .main{padding:22px 14px 38px}.page-head{display:block}.page-head .primary{margin-top:14px}.metrics{grid-template-columns:repeat(2,1fr)}.metric{min-height:112px}.metric strong{font-size:24px}.three{grid-template-columns:1fr}.journey{grid-template-columns:1fr}.journey-step{border-right:0;border-bottom:1px solid var(--line)}.journey-step:last-child{border-bottom:0}.toolbar input{min-width:100%}
+}
+@media(prefers-reduced-motion:reduce){.sidebar{transition:none}}
+</style>
+</head>
+<body>
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<div class="shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><span class="brand-mark">M</span><div><b>MIED 研究运营台</b><span>49 天干预全过程</span></div></div>
+    <div class="study-card"><small>当前项目</small><b>MIED-GRIEF-2026</b><span>第 1 批次 · 研究运行中</span></div>
+    <nav class="nav" id="nav" aria-label="后台功能"></nav>
+    <div class="sidebar-foot"><b>研究管理员</b><span>数据范围：全项目 · 本浏览器演示</span><button type="button" data-action="logout">退出研究后台</button></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar">
+      <div style="display:flex;align-items:center;gap:11px"><button class="mobile-menu" type="button" data-action="menu" aria-label="打开菜单">☰</button><div><small id="pageNo">01 工作台</small><h1 id="topTitle">研究运行与待办闭环</h1></div></div>
+      <div class="top-actions"><span class="sync">● 本浏览器演示数据</span><button type="button" data-action="participant">返回参与者端</button></div>
+    </header>
+    <main class="main" id="main"></main>
+  </div>
+</div>
+<div class="drawer-backdrop hidden" id="drawerBackdrop"></div>
+<aside class="drawer hidden" id="drawer" aria-label="任务详情">
+  <div class="drawer-top"><div><small class="eyebrow">任务闭环</small><h3 id="drawerTitle">任务详情</h3></div><button type="button" data-action="close-drawer" aria-label="关闭">×</button></div>
+  <label>负责人<select id="taskOwner"><option>张睿</option><option>研究助理 A</option><option>临床督导</option></select></label>
+  <label>下一步<input id="taskNext" value="电话核实并记录处置结果"></label>
+  <label>团队备注<textarea id="taskNote">请在今日 17:00 前完成，并保留去标识化记录。</textarea></label>
+  <div class="drawer-actions"><button class="soft" type="button" data-action="close-drawer">取消</button><button class="primary" type="button" data-action="save-task">保存并关闭</button></div>
+</aside>
+<script>
+const pages=[
+  {id:'overview',no:'01',label:'工作台',title:'研究运行与待办闭环'},
+  {id:'participants',no:'02',label:'参与者与账户',title:'参与者全生命周期'},
+  {id:'intervention',no:'03',label:'干预与依从性',title:'干预剂量与依从性'},
+  {id:'engagement',no:'04',label:'每日参与',title:'打卡、心灯与社区'},
+  {id:'measures',no:'05',label:'测量与评价',title:'四阶段测量与质量控制'},
+  {id:'risk',no:'06',label:'风险与安全',title:'风险识别与处置'},
+  {id:'messages',no:'07',label:'消息与协作',title:'消息编排与团队协作'},
+  {id:'governance',no:'08',label:'数据与系统',title:'数据治理与系统状态'}
+];
+const participants=[
+  ['MIED-0017','第 4 周','76%','T0/T1','正常','今日 08:42'],
+  ['MIED-0021','第 5 周','91%','T0/T1','关注','昨日 21:13'],
+  ['MIED-0034','第 2 周','58%','T0','提醒','今日 10:05'],
+  ['MIED-0042','第 6 周','83%','T0/T1','正常','昨日 19:36'],
+  ['MIED-0048','第 1 周','44%','T0','高风险','今日 09:18']
+];
+const tasks=[
+  ['R3 风险事件等待人工复核','MIED-0048 · PHQ-9 风险项触发','high','待处理'],
+  ['补发第 4 周测量提醒','5 位参与者尚未完成 T1','mid','今日'],
+  ['核对低依从参与者','MIED-0034 连续 3 天未练习','mid','跟进中'],
+  ['完成本周样本质检','抽查 10 条去标识化记录','low','待分配']
+];
+let activePage='overview';
+const $=id=>document.getElementById(id);
+const pill=value=>`<span class="pill ${value==='高风险'?'risk':value==='提醒'||value==='关注'?'warn':''}">${value}</span>`;
+function metrics(items){return `<div class="grid metrics">${items.map(x=>`<div class="metric ${x[3]||''}"><small>${x[0]}</small><strong>${x[1]}</strong><span>${x[2]}</span></div>`).join('')}</div>`}
+function pageHead(kicker,title,copy,action=''){return `<div class="page-head"><div><p class="eyebrow">${kicker}</p><h2>${title}</h2><p>${copy}</p></div>${action?`<button class="primary" type="button" data-toast="${action}">${action}</button>`:''}</div>`}
+function overview(){
+  return pageHead('研究运行状态 · 研究概览','研究运行与待办闭环','从研究全局到今日执行：把每个信号转成可分配、可处理、可关闭的团队任务。','开始入组建档')+
+  `<div class="tabs"><button class="active">研究概览</button><button>今日执行</button><button>待办中心</button><button>异常预警</button></div>`+
+  metrics([['当前在组','36','入组 42 · 完成 4'],['今日打卡','29','80.6% · 较昨日 +4'],['练习剂量','412','min · 完成率 74%'],['测量窗口','83%','5 位待补测'],['立即处理','1','R3 · 未关闭','alert']])+
+  `<section class="card"><div class="card-head"><div><small>参与者研究闭环</small><h3>从筛查到随访，每一步都有责任人</h3></div><button class="text-link" data-toast="查看入组队列">查看入组队列</button></div>
+  <div class="journey">${[['✓','筛查','资格判断与版本匹配','done'],['✓','知情同意','分项授权，可撤回','done'],['✓','入组分组','编号与助理分配','done'],['04','49 天执行','课程、打卡与练习','current'],['05','阶段测量','评分、质控与分流',''],['06','结项随访','完成、退出或归档','']].map(x=>`<div class="journey-step ${x[3]}"><span class="step-dot">${x[0]}</span><b>${x[1]}</b><span>${x[2]}</span></div>`).join('')}</div></section>
+  <div class="grid two" style="margin-top:14px"><section class="card"><div class="card-head"><div><small>统一待办中心 · 4 项未关闭</small><h3>每个信号都必须落到行动</h3></div><button class="text-link" data-toast="查看全部待办">查看全部</button></div><div class="task-list">${taskRows()}</div></section>
+  <section class="card"><div class="card-head"><div><small>实际接受剂量</small><h3>本周干预执行</h3></div></div>${progress('课程完成',76)}${progress('平均练习质量',82)}${progress('连续打卡',69)}<div class="quote">“后台不只展示数据，也要帮助团队知道下一步做什么。”</div></section></div>`;
+}
+function taskRows(){return tasks.map((x,i)=>`<div class="task"><i class="severity ${x[2]}"></i><button type="button" data-task="${i}"><b>${x[0]}</b><span>${x[1]}</span></button><span class="pill ${x[2]==='high'?'risk':'warn'}">${x[3]}</span></div>`).join('')}
+function progress(label,value){return `<div class="progress-row"><div class="progress-label"><span>${label}</span><b>${value}%</b></div><div class="bar"><i style="width:${value}%"></i></div></div>`}
+function participantsPage(){
+  return pageHead('参与者与账户','参与者全生命周期','统一查看筛查、入组、阶段、依从性、测量窗口与风险状态；账户字段在当前演示中仅保存在本浏览器。','新增参与者')+
+  metrics([['累计筛查','58','本周 +8'],['正式入组','42','72.4% 转化'],['当前在组','36','85.7%'],['完成研究','4','9.5%'],['退出研究','2','4.8%']])+
+  `<section class="card"><div class="toolbar"><input id="participantSearch" placeholder="搜索研究编号"><select id="participantRisk"><option value="">全部风险</option><option>正常</option><option>关注</option><option>提醒</option><option>高风险</option></select><button class="soft" data-toast="导出当前筛选">导出当前筛选</button></div><div class="table-wrap"><table><thead><tr><th>研究编号</th><th>当前阶段</th><th>依从性</th><th>已完成测量</th><th>状态</th><th>最近活动</th><th>操作</th></tr></thead><tbody id="participantRows"></tbody></table></div></section>`;
+}
+function interventionPage(){
+  return pageHead('干预 · 课程与练习','干预剂量与依从性','用课程完成、练习时长、练习质量与连续性共同描述实际接受剂量。','创建提醒任务')+
+  metrics([['课程完成率','76%','较上周 +5%'],['练习完成率','74%','目标 80%'],['人均时长','96','min / 周'],['中断风险','6','连续 3 天未参与'],['高质量练习','82%','自评 ≥ 4/5']])+
+  `<div class="grid three">${[['第 1–2 周','认识哀伤与稳定','91'],['第 3–4 周','重建意义连接','78'],['第 5–7 周','带着联结继续生活','64']].map(x=>`<section class="card"><div class="card-head"><div><small>${x[0]}</small><h3>${x[1]}</h3></div><b>${x[2]}%</b></div>${progress('课程完成',+x[2])}${progress('配套练习',Math.max(45,+x[2]-8))}<button class="soft" data-toast="查看阶段详情">查看详情</button></section>`).join('')}</div>
+  <section class="card" style="margin-top:14px"><div class="card-head"><div><small>依从性分层</small><h3>需要团队介入的参与者</h3></div></div><div class="alert-list">${[['MIED-0034','连续 3 天未练习 · 第 2 周','提醒'],['MIED-0028','课程完成但练习质量偏低','关注'],['MIED-0012','测量窗口将于 24 小时后关闭','今日']].map(x=>`<div class="alert-row"><i class="severity"></i><div><b>${x[0]}</b><span>${x[1]}</span></div>${pill(x[2])}</div>`).join('')}</div></section>`;
+}
+function engagementPage(){
+  return pageHead('每日参与','打卡、心灯与社区','把每日体验、心灯反馈与社区参与汇总为可解释的参与轨迹，不把沉默简单等同于退出。','查看今日队列')+
+  metrics([['今日打卡','29','在组 36 人'],['心灯点亮','24','83% 正向反馈'],['社区互动','17','去标识化发言'],['连续 7 天','13','36% 在组参与者'],['温和提醒','5','等待发送']])+
+  `<div class="grid two"><section class="card"><div class="card-head"><div><small>近 7 日趋势</small><h3>每日参与完成率</h3></div></div>${[['周一',72],['周二',78],['周三',69],['周四',82],['周五',81],['周六',74],['今日',81]].map(x=>progress(x[0],x[1])).join('')}</section><section class="card"><div class="card-head"><div><small>社区安全</small><h3>内容与支持边界</h3></div></div><div class="module-stat"><small>待人工复核</small><strong>2</strong><p>自动标记只用于排序，最终判断由研究团队完成。</p></div><div class="quote" style="margin-top:12px">参与者可跳过打卡或社区互动，不影响其退出研究的权利。</div></section></div>`;
+}
+function measuresPage(){
+  return pageHead('测量 · 评价','四阶段测量与质量控制','跟踪 T0、T1、T2、T3 窗口完成情况，并将缺失、极速作答和一致性信号转成质检任务。','导出测量清单')+
+  metrics([['T0 基线','42','100%'],['T1 第 4 周','19','83% 到期完成'],['T2 第 8 周','4','4 人进入窗口'],['T3 随访','0','尚未开放'],['待质检','5','3 缺失 · 2 极速']])+
+  `<div class="grid three">${[['T0','基线测量','42/42','100'],['T1','第 4 周测量','19/23','83'],['T2','干预结束测量','4/4','100'],['T3','3 个月随访','0/0','0']].map(x=>`<section class="card"><div class="card-head"><div><small>${x[0]}</small><h3>${x[1]}</h3></div><b>${x[2]}</b></div>${progress('窗口完成率',+x[3])}<button class="soft" data-toast="查看测量窗口">查看窗口</button></section>`).join('')}</div>
+  <section class="card" style="margin-top:14px"><div class="card-head"><div><small>质量控制</small><h3>待核查记录</h3></div></div><div class="table-wrap"><table><thead><tr><th>研究编号</th><th>波次</th><th>信号</th><th>状态</th><th>负责人</th></tr></thead><tbody><tr><td><b>MIED-0021</b></td><td>T1</td><td>完成时间过短</td><td>${pill('关注')}</td><td>张睿</td></tr><tr><td><b>MIED-0034</b></td><td>T1</td><td>窗口内未完成</td><td>${pill('提醒')}</td><td>研究助理 A</td></tr></tbody></table></div></section>`;
+}
+function riskPage(){
+  return pageHead('风险中心','风险识别与处置','风险信号不等于诊断；所有高风险事件都需要人工复核、联系记录、升级路径和关闭依据。','打开处置规程')+
+  metrics([['开放事件','5','R1 2 · R2 2 · R3 1'],['立即处理','1','等待人工复核'],['跟进中','3','均已分配'],['今日关闭','2','含完整记录'],['超时任务','0','SLA 内']])+
+  `<section class="card"><div class="alert-list">${[['R3','MIED-0048','风险题项触发，等待人工复核','高风险'],['R2','MIED-0021','连续低落反馈且活动下降','关注'],['R2','MIED-0034','连续 3 天未参与','提醒'],['R1','MIED-0017','一次性消极反馈','观察']].map(x=>`<div class="alert-row"><span class="pill ${x[0]==='R3'?'risk':'warn'}">${x[0]}</span><div><b>${x[1]}</b><span>${x[2]}</span></div><button class="soft" data-task="0">进入处置</button></div>`).join('')}</div></section>`;
+}
+function messagesPage(){
+  return pageHead('消息与服务','消息编排与团队协作','所有消息都应保持去评判、可跳过、可退出，并由团队明确发送原因与责任人。','新建消息')+
+  metrics([['今日待发','8','5 提醒 · 3 关怀'],['已发送','21','送达率 95%'],['需要回复','4','团队工作时段'],['自动草稿','6','发送前人工确认'],['协作备注','13','本周新增']])+
+  `<div class="grid two"><section class="card"><div class="card-head"><div><small>消息队列</small><h3>今日需要确认</h3></div></div><div class="message-list">${[['第 4 周测量温和提醒','5 位参与者 · 16:00 前确认','待审核'],['连续未参与关怀消息','MIED-0034 · 研究助理 A','待发送'],['风险跟进记录提醒','MIED-0048 · 临床督导','立即处理']].map(x=>`<div class="message"><i class="severity ${x[2]==='立即处理'?'high':''}"></i><div><b>${x[0]}</b><span>${x[1]}</span></div>${pill(x[2])}</div>`).join('')}</div></section><section class="card"><div class="card-head"><div><small>模板原则</small><h3>温和、清晰、有选择</h3></div></div><div class="quote">“如果你愿意，可以在方便的时候回来继续；你也可以选择跳过这一次，我们会尊重你的节奏。”</div><button class="soft" style="margin-top:14px" data-toast="打开模板库">打开模板库</button></section></div>`;
+}
+function governancePage(){
+  return pageHead('数据与系统','数据治理与系统状态','当前静态演示仅使用浏览器本地数据；这里展示导出、审计和安全流程原型，不表示已连接服务器数据库。','导出去标识化数据')+
+  metrics([['浏览器记录','42','演示参与者'],['审计事件','128','本地操作日志'],['待处理导出','2','需要二次确认'],['外部连接','0','未连接后端'],['系统状态','正常','静态托管在线']])+
+  `<div class="grid three"><section class="card"><div class="card-head"><div><small>数据导出</small><h3>去标识化研究数据</h3></div></div><p style="color:#718084;font-size:12px;line-height:1.7">导出前核对字段、用途、审批人与时间范围。完整手机号、姓名和邮箱不应进入当前静态演示。</p><button class="soft" data-toast="生成导出清单">生成清单</button></section><section class="card"><div class="card-head"><div><small>审计</small><h3>操作轨迹</h3></div></div>${progress('日志完整性检查',100)}${progress('抽样复核',80)}<button class="soft" data-toast="查看审计日志">查看日志</button></section><section class="card"><div class="card-head"><div><small>安全边界</small><h3>当前版本说明</h3></div></div><div class="quote">本页面没有网络写入或集中数据同步。正式研究需另行配置后端、鉴权、权限与备份。</div></section></div>`;
+}
+function renderParticipants(){
+  const body=$('participantRows');if(!body)return;
+  const q=($('participantSearch')?.value||'').trim().toLowerCase(),risk=$('participantRisk')?.value||'';
+  body.innerHTML=participants.filter(x=>(!q||x.join(' ').toLowerCase().includes(q))&&(!risk||x[4]===risk)).map(x=>`<tr><td><b>${x[0]}</b><span>浏览器演示账户</span></td><td>${x[1]}</td><td>${x[2]}</td><td>${x[3]}</td><td>${pill(x[4])}</td><td>${x[5]}</td><td><button class="text-link" data-toast="打开参与者详情">查看</button></td></tr>`).join('')||'<tr><td colspan="7">没有符合条件的记录。</td></tr>';
+}
+function render(){
+  const page=pages.find(x=>x.id===activePage)||pages[0];
+  $('pageNo').textContent=`${page.no} ${page.label}`;$('topTitle').textContent=page.title;
+  const views={overview,participants:participantsPage,intervention:interventionPage,engagement:engagementPage,measures:measuresPage,risk:riskPage,messages:messagesPage,governance:governancePage};
+  $('main').innerHTML=views[activePage]();
+  document.querySelectorAll('[data-toast]').forEach(b=>b.addEventListener('click',()=>toast(`${b.dataset.toast}：演示操作已记录在本浏览器。`)));
+  document.querySelectorAll('[data-task]').forEach(b=>b.addEventListener('click',()=>openTask(tasks[+(b.dataset.task||0)]?.[0]||'风险处置任务')));
+  $('participantSearch')?.addEventListener('input',renderParticipants);$('participantRisk')?.addEventListener('change',renderParticipants);renderParticipants();
+}
+function buildNav(){
+  $('nav').innerHTML=pages.map(x=>`<button type="button" data-page="${x.id}" class="${x.id===activePage?'active':''}"><span class="nav-index">${x.no}</span><span>${x.label}</span>${x.id==='risk'?'<span class="risk-dot">1</span>':''}</button>`).join('');
+  $('nav').querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>{activePage=b.dataset.page;buildNav();render();closeMenu()}));
+}
+function openTask(title){$('drawerTitle').textContent=title;$('drawer').classList.remove('hidden');$('drawerBackdrop').classList.remove('hidden')}
+function closeTask(){$('drawer').classList.add('hidden');$('drawerBackdrop').classList.add('hidden')}
+function toast(message){let node=document.querySelector('.rui-toast');if(!node){node=document.createElement('div');node.className='rui-toast';Object.assign(node.style,{position:'fixed',left:'50%',bottom:'24px',zIndex:80,transform:'translateX(-50%)',padding:'11px 15px',borderRadius:'10px',background:'#193f42',color:'#fff',fontSize:'11px',boxShadow:'0 12px 30px rgba(0,0,0,.18)'});document.body.appendChild(node)}node.textContent=message;clearTimeout(toast.timer);toast.timer=setTimeout(()=>node.remove(),2600)}
+function closeMenu(){$('sidebar').classList.remove('open');$('mobileOverlay').classList.remove('open')}
+function messageParent(type){
+  if(window.parent===window)return;
+  try{
+    if(window.parent.location.origin===location.origin){
+      if(type==='mied:return-participant'){
+        const parentDoc=window.parent.document;
+        parentDoc.getElementById('ruiAdminHost')?.classList.add('hidden');
+        parentDoc.getElementById('adminWrap')?.classList.add('hidden');
+        parentDoc.getElementById('adminMobileNav')?.classList.add('hidden');
+        parentDoc.getElementById('appWrap')?.classList.add('hidden');
+        parentDoc.getElementById('mobileNav')?.classList.add('hidden');
+        parentDoc.getElementById('launcher')?.classList.remove('hidden');
+        if(typeof window.parent.updateIdentity==='function'&&window.parent.currentUser)window.parent.updateIdentity(window.parent.currentUser);
+        return;
+      }
+      if(type==='mied:logout'){
+        const parentDoc=window.parent.document;
+        parentDoc.getElementById('ruiAdminHost')?.classList.add('hidden');
+        parentDoc.getElementById('launcher')?.classList.remove('hidden');
+        const logoutButton=parentDoc.getElementById('adminLogout')||parentDoc.getElementById('authLauncherLogout');
+        if(logoutButton){logoutButton.click();return}
+        if(typeof window.parent.logout==='function'){window.parent.logout('已退出研究后台。');return}
+      }
+    }
+  }catch(error){}
+  window.parent.postMessage({type},location.origin);
+}
+document.addEventListener('click',event=>{
+  const action=event.target.closest('[data-action]')?.dataset.action;if(!action)return;
+  if(action==='participant')messageParent('mied:return-participant');
+  if(action==='logout')messageParent('mied:logout');
+  if(action==='menu'){$('sidebar').classList.add('open');$('mobileOverlay').classList.add('open')}
+  if(action==='close-drawer')closeTask();
+  if(action==='save-task'){toast('任务已保存到本浏览器演示状态。');closeTask()}
+});
+$('drawerBackdrop').addEventListener('click',closeTask);$('mobileOverlay').addEventListener('click',closeMenu);
+buildNav();render();
+window.MIEDRuiAdmin={version:'0806-integrated',storage:'browser-demo',openPage:id=>{if(pages.some(x=>x.id===id)){activePage=id;buildNav();render()}}};
+</script>
+</body>
+</html>
