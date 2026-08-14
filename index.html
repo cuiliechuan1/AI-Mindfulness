@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="theme-color" content="#273f4a" />
-<title>MIED-与哀伤同行 · 账户整合版 v18</title>
+<title>MIED-与哀伤同行</title>
 <style>
 :root{
   --ink:#1d3037; --muted:#64767c; --subtle:#87949a; --paper:#f8f5ef; --surface:#fff;
@@ -162,144 +162,9 @@ nav button[data-page="session"],
   .metrics{grid-template-columns:repeat(3,1fr)}
 }
 
-
 </style>
-<style id="miedAuthStyles">
-/* MIED integrated demo v18: participant authentication and account administration. */
-body.auth-locked{overflow:hidden}
-.auth-hidden{display:none!important}
-.auth-shell{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;overflow:auto;padding:26px;background:radial-gradient(circle at 8% 8%,rgba(91,156,142,.28),transparent 33%),radial-gradient(circle at 92% 4%,rgba(226,181,119,.28),transparent 35%),linear-gradient(135deg,#edf6f2,#f8f5ee 52%,#f7eee5)}
-.auth-layout{width:min(1120px,100%);min-height:680px;display:grid;grid-template-columns:minmax(0,.92fr) minmax(430px,1.08fr);overflow:hidden;border:1px solid rgba(211,224,218,.95);border-radius:32px;background:rgba(255,255,255,.94);box-shadow:0 34px 100px rgba(35,58,61,.18);backdrop-filter:blur(18px)}
-.auth-story{position:relative;overflow:hidden;padding:48px;background:radial-gradient(circle at 92% 7%,rgba(255,255,255,.24),transparent 27%),linear-gradient(145deg,#263f4a,#2f6f69 66%,#5d8d7f);color:#fff}
-.auth-story:after{content:"";position:absolute;width:360px;height:360px;border-radius:50%;right:-190px;bottom:-180px;background:rgba(255,255,255,.08)}
-.auth-story>*{position:relative;z-index:1}.auth-brand{display:flex;align-items:center;gap:13px}.auth-brand-mark{display:grid;place-items:center;width:52px;height:52px;border-radius:17px;background:#fff;color:#2c615d;font-size:25px;font-weight:950;box-shadow:0 14px 35px rgba(0,0,0,.14)}
-.auth-brand h1{margin:0;font-size:22px}.auth-brand p{margin:3px 0 0;color:rgba(255,255,255,.72);font-size:13px}.auth-story-copy{margin-top:82px}.auth-story-copy span{display:inline-flex;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.12);font-size:12px;font-weight:850}.auth-story-copy h2{max-width:460px;margin:18px 0 12px;font-size:42px;line-height:1.12;letter-spacing:-.035em}.auth-story-copy>p{max-width:470px;margin:0;color:rgba(255,255,255,.78);font-size:16px;line-height:1.75}
-.auth-feature-list{display:grid;gap:12px;margin-top:34px}.auth-feature{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start}.auth-feature i{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:rgba(255,255,255,.12);font-style:normal;font-weight:900}.auth-feature b{display:block;font-size:14px}.auth-feature small{display:block;margin-top:3px;color:rgba(255,255,255,.68);font-size:12px;line-height:1.5}.auth-story-foot{position:absolute;left:48px;right:48px;bottom:38px;color:rgba(255,255,255,.6);font-size:11px}
-.auth-panel{display:flex;flex-direction:column;padding:42px 46px;background:#fff}.auth-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}.auth-panel-head h2{margin:0;font-size:29px;letter-spacing:-.025em}.auth-panel-head p{margin:7px 0 0;color:#6e7d81;font-size:14px}.auth-demo-badge{padding:7px 10px;border-radius:999px;background:#edf7f3;color:#3b756c;font-size:11px;font-weight:900;white-space:nowrap}
-.auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:29px 0 22px;padding:5px;border-radius:15px;background:#f0f5f2}.auth-tab{padding:11px;border-radius:11px;background:transparent;color:#6b7c7f;font-weight:900}.auth-tab.active{background:#fff;color:#2e6f68;box-shadow:0 5px 16px rgba(40,67,69,.09)}
-.auth-form{display:grid;gap:15px}.auth-form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.auth-field{display:grid;gap:7px}.auth-field>span{font-size:13px;font-weight:850;color:#384d52}.auth-field input{width:100%;padding:13px 14px;border:1px solid #d8e3de;border-radius:13px;background:#fbfdfc;color:#21353a;font:inherit;outline:0;transition:.18s}.auth-field input:focus{border-color:#5b9c8e;box-shadow:0 0 0 4px rgba(91,156,142,.14);background:#fff}.auth-field small{color:#829095;font-size:11px;line-height:1.45}.auth-password-wrap{position:relative}.auth-password-wrap input{padding-right:48px}.auth-reveal{position:absolute;right:8px;top:50%;transform:translateY(-50%);padding:7px;border-radius:9px;background:#eef4f1;color:#52706a;font-size:11px;font-weight:850}
-.auth-check{display:flex;align-items:flex-start;gap:9px;color:#607175;font-size:12px;line-height:1.55}.auth-check input{margin-top:3px;accent-color:#2e746b}.auth-submit{width:100%;padding:13px 16px;border-radius:13px;background:linear-gradient(135deg,#2e746b,#3d897d);color:#fff;font-size:14px;font-weight:950;box-shadow:0 10px 26px rgba(46,116,107,.2)}.auth-submit:disabled{opacity:.58;cursor:wait}.auth-secondary{padding:11px 13px;border-radius:12px;background:#edf4f1;color:#3e6e66;font-weight:850}.auth-status{min-height:20px;margin:4px 0 0;padding:0 2px;color:#a44b45;font-size:12px;line-height:1.5}.auth-status.success{color:#397661}.auth-divider{display:flex;align-items:center;gap:11px;margin:20px 0 14px;color:#9aa5a7;font-size:11px}.auth-divider:before,.auth-divider:after{content:"";height:1px;flex:1;background:#e5ece8}
-.auth-demo-credential{padding:14px;border:1px solid #e1e9e5;border-radius:15px;background:#f8fbf9}.auth-demo-credential-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.auth-demo-credential b{font-size:13px}.auth-demo-credential button{padding:7px 9px;border-radius:9px;background:#e4f0ec;color:#376c64;font-size:11px;font-weight:900}.auth-credential-lines{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.auth-credential-lines div{padding:9px 10px;border-radius:10px;background:#fff;border:1px solid #e6ece9}.auth-credential-lines small{display:block;color:#889598;font-size:10px}.auth-credential-lines code{display:block;margin-top:3px;color:#2b4146;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px;word-break:break-all}.auth-storage-note{margin-top:auto;padding-top:17px;color:#879396;font-size:11px;line-height:1.55}.auth-storage-note button{padding:0;background:none;color:#4b7a72;font-size:11px;font-weight:850;text-decoration:underline}
-.auth-success-card{padding:18px;border-radius:16px;background:#edf8f3;border:1px solid #cfe5dc}.auth-success-card b{display:block;color:#326e63;font-size:16px}.auth-success-card p{margin:7px 0;color:#536b68;font-size:13px;line-height:1.6}.auth-success-card code{display:inline-block;padding:4px 7px;border-radius:7px;background:#fff;color:#294a46;font-weight:850}
-.auth-identity-chip{display:flex;align-items:center;gap:10px;padding:7px 9px;border:1px solid #dbe6e1;border-radius:14px;background:rgba(255,255,255,.88);box-shadow:0 7px 20px rgba(42,65,66,.08)}.auth-identity-avatar{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:#e5f1ed;color:#2f6d65;font-size:12px;font-weight:950}.auth-identity-text{min-width:0}.auth-identity-text b,.auth-identity-text span{display:block;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.auth-identity-text b{font-size:12px}.auth-identity-text span{margin-top:1px;color:#77878b;font-size:10px}.auth-chip-action{padding:7px 8px;border-radius:9px;background:#eef4f2;color:#456e68;font-size:10px;font-weight:900}.auth-chip-action.logout{background:#fff1ef;color:#9b554e}
-.auth-top-account{padding:9px 11px;border-radius:11px;background:#e8f2ee;color:#386e66;font-size:12px;font-weight:900}.auth-required-banner{margin-bottom:13px;padding:11px 12px;border-radius:12px;background:#fff4df;border:1px solid #eed6a9;color:#7e602a;font-size:12px;line-height:1.5}
-.auth-account-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:17px 0}.auth-account-info{padding:12px;border-radius:13px;background:#f6faf8;border:1px solid #e1e9e5}.auth-account-info small{display:block;color:#809094;font-size:10px}.auth-account-info b{display:block;margin-top:3px;font-size:13px;word-break:break-word}.auth-change-panel{margin-top:16px;padding-top:16px;border-top:1px solid #e5ece8}.auth-change-panel form{display:grid;gap:12px}.auth-modal-note{padding:11px 12px;border-radius:12px;background:#f7faf8;color:#6f7f82;font-size:11px;line-height:1.55}
-.auth-account-admin-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}.auth-account-admin-summary>div{padding:13px;border-radius:15px;background:#fff;border:1px solid #dfe8e4}.auth-account-admin-summary small{display:block;color:#76878a;font-size:10px}.auth-account-admin-summary b{display:block;margin-top:5px;font-size:24px}.auth-account-meta span{display:block;color:#77878a;font-size:10px;margin-top:2px}.auth-account-actions{display:flex;gap:6px;flex-wrap:wrap}.auth-account-actions button{padding:7px 8px;border-radius:8px;background:#edf4f1;color:#3e6e66;font-size:10px;font-weight:850}.auth-account-actions button.warn{background:#fff2df;color:#946629}.auth-account-actions button.danger{width:auto;height:auto;background:#fff0ee;color:#9b514a;font-size:10px}.auth-account-actions button:disabled{opacity:.45;cursor:not-allowed}.auth-role-pill,.auth-status-pill{display:inline-flex;padding:5px 7px;border-radius:999px;font-size:10px;font-weight:900}.auth-role-pill.admin{background:#e9eef7;color:#49658d}.auth-role-pill.participant{background:#e8f4ef;color:#397166}.auth-status-pill.active{background:#e7f4ed;color:#35745e}.auth-status-pill.paused{background:#fff2dc;color:#936323}.auth-status-pill.cancelled{background:#f3e9e8;color:#8c5551}.auth-temp-password{padding:14px;border-radius:14px;background:#f6faf8;border:1px solid #dce7e2}.auth-temp-password code{display:block;margin:8px 0;padding:10px;border-radius:10px;background:#fff;border:1px dashed #bfcfc8;font-size:14px;font-weight:900;word-break:break-all}
-@media(max-width:900px){.auth-shell{padding:0;place-items:start}.auth-layout{min-height:100vh;grid-template-columns:1fr;border:0;border-radius:0}.auth-story{padding:25px 22px}.auth-story-copy{margin-top:32px}.auth-story-copy h2{font-size:31px}.auth-feature-list{display:none}.auth-story-foot{position:static;margin-top:26px}.auth-panel{padding:27px 21px;min-height:560px}.auth-account-admin-summary{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.auth-form-row,.auth-credential-lines,.auth-account-grid{grid-template-columns:1fr}.auth-panel-head h2{font-size:25px}.auth-demo-badge{display:none}.auth-identity-text{display:none}.auth-identity-chip{gap:5px}.auth-account-admin-summary{grid-template-columns:1fr 1fr}}
-</style>
-
-<style id="miedInitialStyles">
-.mied-initial{position:fixed;inset:0;z-index:12000;overflow:auto;overflow-x:hidden;background:
-  radial-gradient(circle at 82% 18%,rgba(32,121,115,.11),transparent 31%),
-  radial-gradient(circle at 15% 84%,rgba(194,143,72,.10),transparent 28%),#f6f8f9;color:#1d282f}
-.mied-initial[hidden]{display:none}
-.mied-initial-bar{display:flex;align-items:center;justify-content:space-between;max-width:1180px;margin:0 auto;padding:25px 32px}
-.mied-initial-brand{display:flex;align-items:center;gap:12px;font:800 15px/1.2 "Noto Sans SC","Microsoft YaHei",sans-serif;letter-spacing:.02em}
-.mied-initial-mark{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:#204447;color:#f7fbfa;font:800 18px/1 Georgia,serif;box-shadow:0 8px 24px rgba(32,68,71,.14)}
-.mied-initial-version{color:#708086;font:600 12px/1.2 "Noto Sans SC","Microsoft YaHei",sans-serif}
-.mied-initial-main{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(340px,.72fr);gap:76px;align-items:center;width:100%;max-width:1060px;min-height:calc(100vh - 150px);margin:0 auto;padding:42px 32px 72px}
-.mied-initial-main,.mied-initial-copy,.mied-entry-card{min-width:0}
-.mied-initial-copy{max-width:610px}
-.mied-initial-kicker{margin:0 0 18px;color:#207973;font:800 12px/1.4 "Noto Sans SC","Microsoft YaHei",sans-serif;letter-spacing:.16em;text-transform:uppercase}
-.mied-initial h1{max-width:590px;margin:0;color:#17282d;font:600 clamp(40px,5vw,68px)/1.16 "Noto Serif SC","Songti SC",Georgia,serif;letter-spacing:-.035em;overflow-wrap:anywhere}
-.mied-initial-lead{max-width:570px;margin:25px 0 0;color:#53666c;font:400 17px/1.9 "Noto Sans SC","Microsoft YaHei",sans-serif}
-.mied-initial-notes{display:flex;flex-wrap:wrap;gap:10px;margin-top:31px}
-.mied-initial-note{padding:9px 12px;border:1px solid #d8e1e3;border-radius:999px;background:rgba(252,253,253,.78);color:#52666b;font:700 12px/1.2 "Noto Sans SC","Microsoft YaHei",sans-serif}
-.mied-entry-card{padding:31px;border:1px solid #d9e0e3;border-radius:8px;background:rgba(252,253,253,.96);box-shadow:0 22px 60px rgba(29,40,47,.10)}
-.mied-entry-card small{display:block;color:#207973;font:800 11px/1.4 "Noto Sans SC","Microsoft YaHei",sans-serif;letter-spacing:.13em}
-.mied-entry-card h2{margin:10px 0 9px;color:#1d282f;font:600 28px/1.25 "Noto Serif SC","Songti SC",Georgia,serif}
-.mied-entry-card p{margin:0 0 24px;color:#66777c;font:400 14px/1.75 "Noto Sans SC","Microsoft YaHei",sans-serif}
-.mied-entry-actions{display:grid;gap:11px}
-.mied-entry-button{width:100%;min-height:50px;border:1px solid #207973;border-radius:3px;background:#207973;color:#fff;font:800 14px/1 "Noto Sans SC","Microsoft YaHei",sans-serif;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
-.mied-entry-button:hover{transform:translateY(-1px);background:#196b66;box-shadow:0 10px 24px rgba(32,121,115,.18)}
-.mied-entry-button.secondary{background:transparent;color:#315f5d}
-.mied-entry-button.secondary:hover{background:#edf5f3}
-.mied-entry-privacy{margin-top:18px!important;padding-top:17px;border-top:1px solid #e4e9eb;color:#77858a!important;font-size:11px!important}
-.rui-admin-host{position:fixed;inset:0;z-index:1050;background:#f3f6f5}
-.rui-admin-host.hidden{display:none}
-.rui-admin-frame{display:block;width:100%;height:100%;border:0;background:#f3f6f5}
-@media(max-width:820px){
-  .mied-initial-bar{padding:18px 20px}.mied-initial-version{display:none}
-  .mied-initial-main{grid-template-columns:1fr;gap:38px;min-height:auto;padding:54px 20px 45px}
-  .mied-initial h1{font-size:clamp(36px,11vw,48px)}.mied-initial-lead{font-size:15px;overflow-wrap:anywhere}
-  .mied-entry-card{padding:24px}.mied-initial-notes{margin-top:23px}
-}
-@media(prefers-reduced-motion:reduce){.mied-entry-button{transition:none}}
-</style>
-
 </head>
-<body class="auth-locked mied-entry-open">
-<section class="mied-initial" id="miedInitial" aria-labelledby="miedInitialTitle">
-  <header class="mied-initial-bar">
-    <div class="mied-initial-brand"><span class="mied-initial-mark">M</span><span>MIED · 与哀伤同行</span></div>
-    <span class="mied-initial-version">研究体验版 · v18</span>
-  </header>
-  <main class="mied-initial-main">
-    <div class="mied-initial-copy">
-      <p class="mied-initial-kicker">Meaning-centered grief support</p>
-      <h1 id="miedInitialTitle">在哀伤中，找到可以继续前行的意义。</h1>
-      <p class="mied-initial-lead">MIED 将意义导向的心理教育、日常练习与阶段测评放在同一个温和、清晰的体验中。你可以按自己的节奏参与，也可以随时暂停或退出。</p>
-      <div class="mied-initial-notes" aria-label="体验说明">
-        <span class="mied-initial-note">参与完全自愿</span>
-        <span class="mied-initial-note">可随时退出</span>
-        <span class="mied-initial-note">当前版本仅保存于本浏览器</span>
-      </div>
-    </div>
-    <section class="mied-entry-card" aria-label="进入 MIED">
-      <small>WELCOME TO MIED</small>
-      <h2>准备好后，从这里开始</h2>
-      <p>参与者进入账户登录后可继续测评与练习；研究人员使用团队账户进入 Rui 更新后的研究运营后台。</p>
-      <div class="mied-entry-actions">
-        <button class="mied-entry-button" type="button" data-mied-entry="participant">参与者登录</button>
-        <button class="mied-entry-button secondary" type="button" data-mied-entry="research">研究团队入口</button>
-      </div>
-      <p class="mied-entry-privacy">不连接 MeaningBridge 的通知接口，也不会在此收集邮箱。手机号规则沿用当前版本：仅填写后六位用于匹配追踪。</p>
-    </section>
-  </main>
-</section>
-
-<section class="auth-shell" id="authShell" aria-label="MIED账户入口">
-  <div class="auth-layout">
-    <section class="auth-story">
-      <div class="auth-brand"><div class="auth-brand-mark">M</div><div><h1>MIED-与哀伤同行</h1><p>研究参与者平台 · 整合演示版</p></div></div>
-      <div class="auth-story-copy"><span>账户闭环演示 v18</span><h2>从一个安全、清晰的入口开始。</h2><p>本版本已整合四阶段研究测评与每日打卡交流，并加入参与者注册、登录、修改密码和研究团队账号管理。</p></div>
-      <div class="auth-feature-list">
-        <div class="auth-feature"><i>测</i><div><b>T0–T3 研究测评</b><small>各时间点独立保存，后台依次开放并查看完成状态。</small></div></div>
-        <div class="auth-feature"><i>互</i><div><b>匿名打卡交流</b><small>参与者自行选择公开或仅团队可见，可点赞与评论。</small></div></div>
-        <div class="auth-feature"><i>账</i><div><b>账户与权限演示</b><small>注册、登录、改密、暂停、重置及注销流程均可点击验证。</small></div></div>
-      </div>
-      <div class="auth-story-foot">账户与作答数据仅保存在当前浏览器；除手机号后六位用于追踪匹配外，请勿录入真实姓名、完整电话、邮箱或其他敏感信息。</div>
-    </section>
-    <section class="auth-panel">
-      <div class="auth-panel-head"><div><h2 id="authPanelTitle">欢迎回来</h2><p id="authPanelSubtitle">登录后进入对应的参与者端或研究后台。</p></div><span class="auth-demo-badge">本地演示账户</span></div>
-      <div class="auth-tabs"><button class="auth-tab active" id="authLoginTab" type="button">登录</button><button class="auth-tab" id="authRegisterTab" type="button">注册参与者账号</button></div>
-      <form class="auth-form" id="authLoginForm" novalidate>
-        <label class="auth-field"><span>登录用户名</span><input id="authLoginUsername" autocomplete="username" placeholder="请输入用户名" maxlength="24"></label>
-        <label class="auth-field"><span>密码</span><div class="auth-password-wrap"><input id="authLoginPassword" type="password" autocomplete="current-password" placeholder="请输入密码"><button class="auth-reveal" type="button" data-auth-reveal="authLoginPassword">显示</button></div></label>
-        <button class="auth-submit" id="authLoginSubmit" type="submit">登录系统</button>
-        <p class="auth-status" id="authLoginStatus" role="alert"></p>
-      </form>
-      <form class="auth-form auth-hidden" id="authRegisterForm" novalidate>
-        <div class="auth-form-row"><label class="auth-field"><span>称呼或昵称</span><input id="authRegisterName" autocomplete="nickname" placeholder="例如：小川" maxlength="20"><small>后台会显示该称呼；演示时不要填写真实姓名。</small></label><label class="auth-field"><span>登录用户名</span><input id="authRegisterUsername" autocomplete="username" placeholder="4–24位字母、数字或下划线" maxlength="24"></label></div>
-        <label class="auth-field"><span>设置密码</span><div class="auth-password-wrap"><input id="authRegisterPassword" type="password" autocomplete="new-password" placeholder="至少8位，包含字母和数字"><button class="auth-reveal" type="button" data-auth-reveal="authRegisterPassword">显示</button></div></label>
-        <label class="auth-field"><span>确认密码</span><div class="auth-password-wrap"><input id="authRegisterConfirm" type="password" autocomplete="new-password" placeholder="再次输入密码"><button class="auth-reveal" type="button" data-auth-reveal="authRegisterConfirm">显示</button></div></label>
-        <label class="auth-check"><input id="authRegisterAcknowledge" type="checkbox"><span>我知道数据仅保存在当前浏览器；除手机号后六位用于追踪匹配外，不会录入其他真实个人信息。</span></label>
-        <button class="auth-submit" id="authRegisterSubmit" type="submit">创建参与者账号</button>
-        <p class="auth-status" id="authRegisterStatus" role="alert"></p>
-      </form>
-      <div class="auth-hidden" id="authRegistrationSuccess"></div>
-      <div class="auth-divider">研究团队演示入口</div>
-      <div class="auth-demo-credential"><div class="auth-demo-credential-head"><b>管理员测试账号</b><button id="authFillAdmin" type="button">一键填入</button></div><div class="auth-credential-lines"><div><small>用户名</small><code>research_admin</code></div><div><small>初始密码</small><code>MIED-Admin-2026!</code></div></div></div>
-      <p class="auth-storage-note">账户、密码摘要和操作记录只存于当前浏览器的本地存储。清理浏览器数据或更换设备后不会同步。 <button id="authResetDemo" type="button">重置账户演示数据</button></p>
-    </section>
-  </div>
-</section>
-
-<section class="rui-admin-host hidden" id="ruiAdminHost" aria-label="MIED 研究团队运营台">
-  <iframe class="rui-admin-frame" id="ruiAdminFrame" src="rui-admin.html?v=rui-0806-community-2" title="MIED 研究团队运营台"></iframe>
-</section>
-
+<body>
 <section class="launcher" id="launcher">
   <div class="launch-shell">
     <div class="launch-head"><div class="launch-brand"><div class="mark">M</div><div><h1>MIED-与哀伤同行</h1><p>正念测评 · 正念课程 · 哀伤心理教育</p></div></div><button class="team-entry" id="openAdmin"><span>研</span>研究团队后台</button></div>
@@ -405,7 +270,7 @@ body.auth-locked{overflow:hidden}
     <div class="admin-user"><div>研</div><p><b>研究管理员</b><span>research_admin</span></p><button id="adminLogout" title="返回入口">退出</button></div>
   </aside>
   <div class="admin-main">
-    <header class="admin-top"><div class="admin-top-left"><button class="admin-mobile-menu" id="adminMenuButton">☰</button><div><small>MIED-GRIEF-2026</small><h1 id="adminPageTitle">研究总览</h1></div></div><div class="admin-top-actions"><label class="admin-search">⌕<input id="adminGlobalSearch" placeholder="搜索参与者 ID" /></label><span class="sync-pill">● 本浏览器数据</span><button class="admin-back" id="adminBackHome">返回参与者端</button></div></header>
+    <header class="admin-top"><div class="admin-top-left"><button class="admin-mobile-menu" id="adminMenuButton">☰</button><div><small>MIED-GRIEF-2026</small><h1 id="adminPageTitle">研究总览</h1></div></div><div class="admin-top-actions"><label class="admin-search">⌕<input id="adminGlobalSearch" placeholder="搜索参与者 ID" /></label><span class="sync-pill">● 数据已同步</span><button class="admin-back" id="adminBackHome">返回参与者端</button></div></header>
 
     <section class="admin-page active" id="admin-dashboard">
       <div class="admin-page-head"><div><span>研究运行状态</span><h2>今天的队列与参与情况</h2><p>聚合展示课程依从性、练习与测评状态；演示数据不包含真实身份信息。</p></div><button class="admin-primary" id="adminRefresh">刷新数据</button></div>
@@ -1461,7 +1326,7 @@ function setup(){migrateLegacyAssessment();renderAll();renderEduLesson(activeLes
     const next=nextIncompleteScale(activeWave,activeScale);
     if(next){
       button.textContent='点击填写下一张问卷';
-      button.onclick=()=>{activeScale=next;renderScales();drawRadar(false);document.querySelector('#assessment .assess-layout').scrollIntoView({behavior:'smooth',block:'start'})};
+      button.onclick=()=>{activeScale=next;renderScales();drawRadar(false);window.scrollTo({top:0,left:0,behavior:'auto'})};
     }else{
       button.textContent='查看本时点综合结果';
       button.onclick=()=>{renderWaveTabs();renderWaveSummary(activeWave)};
@@ -2875,8 +2740,8 @@ function setup(){migrateLegacyAssessment();renderAll();renderEduLesson(activeLes
 
   function ensureFirstItemVisible(){
     const list=$('scaleItems');if(list)list.scrollTop=0;
-    const first=document.querySelector('#scaleItems .scale-item');
-    if(first)first.scrollIntoView({behavior:'auto',block:'start'});
+    window.scrollTo({top:0,left:0,behavior:'auto'});
+    if(document.scrollingElement)document.scrollingElement.scrollTop=0;
   }
   function wrapNextButtonForFirstItem(){
     const button=$('nextAssessmentButton');
@@ -3071,474 +2936,831 @@ function setup(){migrateLegacyAssessment();renderAll();renderEduLesson(activeLes
   persist();renderWaveTabs();renderScales();drawRadar(false);
 })();
 </script>
-<style id="miedCommunityStyles">
-/* v17: daily check-in community with participant-controlled visibility */
-#mobileNav{grid-template-columns:repeat(5,1fr)!important}
-.community-hero{position:relative;overflow:hidden;padding:24px;border-radius:24px;background:radial-gradient(circle at 92% 12%,rgba(239,199,127,.34),transparent 28%),linear-gradient(135deg,#eaf6f1,#fffaf1);border:1px solid #dce7e1;box-shadow:var(--soft-shadow);display:flex;justify-content:space-between;gap:22px;align-items:center}
-.community-hero:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-70px;bottom:-110px;background:rgba(255,255,255,.5)}
-.community-hero>div,.community-hero>button{position:relative;z-index:1}
-.community-kicker{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.78);border:1px solid #d9e6df;color:var(--teal);font-size:12px;font-weight:900}
-.community-hero h3{margin:9px 0 6px;font-size:27px;letter-spacing:-.025em}
-.community-hero p{margin:0;max-width:760px;color:#5c6e72;font-size:15px}
-.community-hero .btn{min-width:150px;box-shadow:0 10px 24px rgba(46,116,107,.16)}
-.community-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;margin-top:17px;align-items:start}
-.community-main{min-width:0}
-.community-toolbar{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px;border-radius:17px;background:rgba(255,255,255,.86);border:1px solid var(--line);box-shadow:0 7px 18px rgba(31,47,55,.04);margin-bottom:12px}
-.community-filters{display:flex;gap:7px;flex-wrap:wrap}
-.community-filter{padding:8px 11px;border-radius:11px;background:transparent;color:var(--muted);font-weight:850;font-size:13px}
-.community-filter.active{background:#e5f2ed;color:var(--teal)}
-.community-sort{padding:8px 10px;border-radius:11px;border:1px solid #dce6e1;background:#fff;color:#53666a;font-size:13px;font-weight:800}
-.community-feed{display:grid;gap:12px}
-.community-post{padding:18px;border-radius:20px;background:#fff;border:1px solid var(--line);box-shadow:0 8px 22px rgba(31,47,55,.05)}
-.community-post.mine{border-color:#bcd9cf;box-shadow:0 9px 24px rgba(46,116,107,.08)}
-.community-post-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
-.community-author{display:flex;gap:10px;align-items:center;min-width:0}
-.community-avatar{width:39px;height:39px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#dcece6,#fff3db);color:var(--teal);font-weight:950;flex:0 0 auto}
-.community-author b{display:block;font-size:14px}.community-author span{display:block;color:var(--muted);font-size:11px;margin-top:1px}
-.visibility-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:900;white-space:nowrap}
-.visibility-badge.public{background:#e8f4ee;color:#427761}.visibility-badge.admin{background:#fff2df;color:#93652d}
-.community-body{margin-top:13px;display:grid;gap:9px}
-.community-line{padding:11px 12px;border-radius:14px;background:#f8fbf9;border:1px solid #e4ece8}
-.community-line small{display:block;color:var(--teal);font-weight:900;font-size:11px;margin-bottom:2px}
-.community-line p{margin:0;color:#4f6267;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}
-.community-actions{display:flex;align-items:center;gap:8px;margin-top:12px;padding-top:11px;border-top:1px solid #edf1ef}
-.community-action{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:10px;background:#f4f7f5;color:#5e7075;font-size:12px;font-weight:850}
-.community-action.liked{background:#fff1df;color:#9a6729}
-.community-action:hover{background:#edf5f2;color:var(--teal)}
-.community-comments{display:grid;gap:7px;margin-top:10px}
-.community-comment{padding:9px 11px;border-radius:12px;background:#f7faf8;color:#53666a;font-size:12px;line-height:1.55}
-.community-comment b{color:#315f58;margin-right:5px}.community-comment.admin-comment{background:#fff7eb;border:1px solid #f0dfc4}
-.community-comment-time{display:block;color:#8a9799;font-size:10px;margin-top:2px}
-.community-comment-compose{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;margin-top:9px}
-.community-comment-compose input{width:100%;padding:9px 11px;border-radius:11px;border:1px solid #dce6e1;background:#fff;color:var(--ink);font-size:12px}
-.community-comment-compose button{padding:9px 11px;border-radius:10px;background:#e7f2ee;color:var(--teal);font-size:12px;font-weight:900}
-.community-empty{padding:38px 20px;border-radius:20px;background:#fff;border:1px dashed #cfded7;text-align:center;color:var(--muted)}
-.community-empty b{display:block;color:var(--ink);font-size:16px;margin-bottom:4px}
-.community-side{display:grid;gap:12px;position:sticky;top:90px}
-.community-side-card{padding:17px;border-radius:19px;background:#fff;border:1px solid var(--line);box-shadow:0 8px 20px rgba(31,47,55,.04)}
-.community-side-card h4{margin:0 0 7px;font-size:16px}.community-side-card p{margin:0;color:var(--muted);font-size:13px}
-.my-checkin-status{margin-top:11px;padding:12px;border-radius:14px;background:linear-gradient(145deg,#f3faf7,#fff9ef);border:1px solid #dfe8e0}
-.my-checkin-status b{display:block;font-size:13px}.my-checkin-status span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
-.my-checkin-status .actions{margin-top:10px}
-.community-admin-reply{margin-top:9px;padding:9px 10px;border-radius:11px;background:#fff7e9;border:1px solid #eedfc8;font-size:12px;color:#6d604e}
-.community-guidelines{display:grid;gap:8px;margin-top:10px}
-.community-guideline{display:grid;grid-template-columns:25px minmax(0,1fr);gap:8px;align-items:start;color:#5f7074;font-size:12px}
-.community-guideline i{width:25px;height:25px;border-radius:9px;display:grid;place-items:center;background:#edf5f2;color:var(--teal);font-style:normal;font-size:11px;font-weight:900}
-.checkin-privacy{margin-top:14px;padding:14px;border-radius:17px;background:#f8fbf9;border:1px solid #dfeae5}
-.checkin-privacy-head{display:flex;gap:9px;align-items:flex-start;margin-bottom:10px}
-.checkin-privacy-icon{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;background:#e6f2ed;color:var(--teal);flex:0 0 auto}
-.checkin-privacy-head b{display:block;font-size:14px}.checkin-privacy-head span{display:block;color:var(--muted);font-size:11px;margin-top:2px}
-.checkin-visibility-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.checkin-visibility-option{position:relative;cursor:pointer}
-.checkin-visibility-option input{position:absolute;opacity:0;pointer-events:none}
-.checkin-visibility-option span{display:block;min-height:68px;padding:10px;border-radius:12px;background:#fff;border:1px solid #dce7e1;color:#5f7176;font-size:11px;line-height:1.45}
-.checkin-visibility-option b{display:block;color:#40585d;font-size:13px;margin-bottom:2px}
-.checkin-visibility-option input:checked+span{background:#e8f4ef;border-color:#81b2a5;color:#396e65;box-shadow:0 6px 15px rgba(46,116,107,.09)}
-.visibility-preview{display:grid;gap:9px;margin-top:12px}
-.visibility-preview-line{padding:11px;border-radius:12px;background:#f8fbf9;border:1px solid #e1ebe6}
-.visibility-preview-line small{display:block;color:var(--teal);font-weight:900;font-size:10px}.visibility-preview-line span{display:block;color:#53666a;font-size:12px;margin-top:2px}
-/* Admin community */
-.community-admin-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin-bottom:13px}
-.admin-community-list{display:grid;gap:11px}
-.admin-community-card{padding:16px;border-radius:18px;background:#fff;border:1px solid #e0e7e3;box-shadow:0 7px 20px rgba(34,56,60,.04)}
-.admin-community-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
-.admin-community-head h4{margin:0;font-size:14px}.admin-community-head p{margin:3px 0 0;color:#738488;font-size:11px}
-.admin-community-content{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:11px}
-.admin-community-content>div{padding:10px;border-radius:12px;background:#f7faf8;border:1px solid #e5ece8}
-.admin-community-content small{display:block;color:#4d7b72;font-size:10px;font-weight:900}.admin-community-content span{display:block;margin-top:2px;color:#53666a;font-size:12px;white-space:pre-wrap}
-.admin-community-actions{display:flex;gap:8px;align-items:center;margin-top:11px;padding-top:10px;border-top:1px solid #edf1ef}
-.admin-community-actions button{padding:7px 9px;border-radius:9px;background:#edf5f2;color:#397268;font-size:11px;font-weight:850}
-.admin-community-actions button.liked{background:#fff1d8;color:#9a6729}
-.admin-community-comment-box{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;margin-top:9px}
-.admin-community-comment-box input{padding:9px 10px;border-radius:10px;border:1px solid #dfe7e2;background:#fff;font-size:12px}
-.admin-community-comment-box button{padding:9px 11px;border-radius:10px;background:#2d6f68;color:#fff;font-size:11px;font-weight:900}
-@media(max-width:1050px){.community-layout{grid-template-columns:1fr}.community-side{position:static;grid-template-columns:repeat(2,minmax(0,1fr))}.admin-community-content{grid-template-columns:1fr}}
-@media(max-width:760px){
-  .community-hero{display:block;padding:19px}.community-hero h3{font-size:23px}.community-hero .btn{width:100%;margin-top:14px}
-  .community-toolbar{align-items:stretch;flex-direction:column}.community-filters{overflow-x:auto;flex-wrap:nowrap}.community-filter{white-space:nowrap}.community-sort{width:100%}
-  .community-side{grid-template-columns:1fr}.community-post{padding:15px}.community-comment-compose{grid-template-columns:1fr}.community-comment-compose button{justify-self:end}
-  .checkin-visibility-options{grid-template-columns:1fr}.community-admin-kpis{grid-template-columns:repeat(2,1fr)}
-  .admin-community-content{grid-template-columns:1fr}.admin-community-comment-box{grid-template-columns:1fr}.admin-community-comment-box button{justify-self:end}
-}
+<style>
+/* v19: one submission reminder and scale-specific multidimensional feedback */
+.submission-lock-note{display:none!important}
+.profile-summary b,.pattern-card b{line-height:1.45}
+.feedback.dimension .dimension-body p{line-height:1.72}
 </style>
-
-<script id="miedCommunityScript">
+<script>
 (() => {
-  const V17_PARTICIPANT_ID='MIED-001';
-  const V17_ADMIN_ID='RESEARCH-TEAM';
-  let participantCommunityFilter='all';
-  let participantCommunitySort='latest';
+  const V19_RESET_MARKER='miedAiAssessmentReset20260811V19';
+  const V19_MULTI_SCALES=new Set(['FFMQ','PTGI','CAMSR','SCS','MSPSS']);
+  const V19_POSITIVE_SCS=new Set(['kindness','humanity','mindfulness']);
 
-  adminState.communityPosts=Array.isArray(adminState.communityPosts)?adminState.communityPosts:[];
-
-  function v17Alias(participantId){
-    if(participantId===V17_PARTICIPANT_ID)return'同行者 001';
-    const digits=String(participantId||'').replace(/\D/g,'').slice(-3).padStart(3,'0');
-    return`同行者 ${digits}`;
-  }
-  function v17Now(){return new Date().toISOString()}
-  function v17CommunityPosts(){return adminState.communityPosts}
-  function v17PostById(id){return v17CommunityPosts().find(post=>post.id===id)||null}
-  function v17TodayPost(){return v17CommunityPosts().find(post=>post.participantId===V17_PARTICIPANT_ID&&post.dateKey===todayKey())||null}
-  function v17PostTime(post){
-    const date=new Date(post.createdAt||Date.now()),sameDay=post.dateKey===todayKey();
-    return sameDay?`今天 ${date.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}`:date.toLocaleDateString('zh-CN',{month:'numeric',day:'numeric'});
-  }
-  function v17CountComments(post){return Array.isArray(post.comments)?post.comments.length:0}
-  function v17Save(){saveAdmin();persist();window.dispatchEvent(new CustomEvent('mied:community-updated'))}
-  function v17SeedCommunity(){
-    if(v17CommunityPosts().length)return;
-    const now=Date.now();
-    adminState.communityPosts=[
-      {id:'POST-DEMO-01',participantId:'MIED-006',alias:'同行者 006',dateKey:new Date(now-42*60000).toLocaleDateString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit'}),createdAt:new Date(now-42*60000).toISOString(),visibility:'public',content:{done:'跟着音频做完了十分钟觉察呼吸。',feeling:'想念仍然会突然涌上来，但呼吸结束后，身体没有刚开始那么紧。',tomorrow:'午饭后在楼下走一小圈。'},likes:['MIED-003','MIED-009','RESEARCH-TEAM'],comments:[{id:'C-DEMO-01',authorType:'participant',authorId:'MIED-009',alias:'同行者 009',text:'看到你说身体松了一点，也替你感到安心。',createdAt:new Date(now-28*60000).toISOString()},{id:'C-DEMO-02',authorType:'admin',authorId:V17_ADMIN_ID,alias:'研究团队',text:'你很清楚地留意到了练习前后的变化，明天的小步也很具体。',createdAt:new Date(now-15*60000).toISOString()}]},
-      {id:'POST-DEMO-02',participantId:'MIED-003',alias:'同行者 003',dateKey:new Date(now-3.2*3600000).toLocaleDateString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit'}),createdAt:new Date(now-3.2*3600000).toISOString(),visibility:'public',content:{done:'今天整理了一张旧照片，停留了大约一分钟。',feeling:'一开始很想马上关掉，后来发现自己可以一边难过，一边把照片放回原处。',tomorrow:'给自己泡一杯喜欢的茶。'},likes:['MIED-004','MIED-006'],comments:[{id:'C-DEMO-03',authorType:'participant',authorId:'MIED-004',alias:'同行者 004',text:'“一边难过，一边放回原处”这句话让我很有共鸣。',createdAt:new Date(now-2.6*3600000).toISOString()}]},
-      {id:'POST-DEMO-03',participantId:'MIED-010',alias:'同行者 010',dateKey:new Date(now-25*3600000).toLocaleDateString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit'}),createdAt:new Date(now-25*3600000).toISOString(),visibility:'public',content:{done:'完成了三步呼吸空间，也按时吃了晚饭。',feeling:'今天比较疲惫，没有明显变轻松，但至少没有一直躺着。',tomorrow:'起床后先拉开窗帘。'},likes:['MIED-006','MIED-011','RESEARCH-TEAM'],comments:[]},
-      {id:'POST-DEMO-PRIVATE',participantId:'MIED-005',alias:'同行者 005',dateKey:new Date(now-75*60000).toLocaleDateString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit'}),createdAt:new Date(now-75*60000).toISOString(),visibility:'admin',content:{done:'完成了自我关怀填写。',feeling:'今天不太想让其他人看到，但想把这段状态留给研究团队。',tomorrow:'尝试早点休息。'},likes:['RESEARCH-TEAM'],comments:[{id:'C-DEMO-PRIVATE',authorType:'admin',authorId:V17_ADMIN_ID,alias:'研究团队',text:'已收到你的记录。你选择不公开完全可以，我们会尊重你的可见性设置。',createdAt:new Date(now-50*60000).toISOString()}]}
-    ];
-    saveAdmin();
-  }
-
-  function v17EnsurePostShape(post){
-    post.likes=Array.isArray(post.likes)?post.likes:[];
-    post.comments=Array.isArray(post.comments)?post.comments:[];
-    post.content=post.content||{};
-    post.alias=post.alias||v17Alias(post.participantId);
-    post.visibility=post.visibility==='public'?'public':'admin';
-    return post;
-  }
-  function v17UpsertTodayPost(visibility,checkin){
-    let post=v17TodayPost();
-    if(!post){
-      post={id:'POST-'+Date.now(),participantId:V17_PARTICIPANT_ID,alias:v17Alias(V17_PARTICIPANT_ID),dateKey:todayKey(),createdAt:checkin.completedAt||v17Now(),visibility,content:{},likes:[],comments:[]};
-      adminState.communityPosts.unshift(post);
+  const v19FeedbackCopy={
+    FFMQ:{
+      observe:{
+        low:'最近一个月，你可能较少主动留意身体感觉、声音或周围细节。压力、疲惫或情绪负荷都可能使注意范围暂时收窄。',
+        mid:'最近一个月，你在部分时候能够留意身体与环境中的细节，但这种觉察会随情境和精力而变化。',
+        high:'最近一个月，你较常能够捕捉身体感觉和周围细节。这份感官觉察可以帮助你更早发现状态变化。'
+      },
+      describe:{
+        low:'最近一个月，把内在体验准确说出来可能并不容易；有时只是感到不舒服，却暂时找不到合适的词。',
+        mid:'最近一个月，你有时能够辨认并表达想法、情绪或身体感受，在体验复杂时则可能需要更多时间。',
+        high:'最近一个月，你较常能够为内在体验找到较清楚的语言，这有助于理解需要并向他人表达。'
+      },
+      actaware:{
+        low:'最近一个月，日常活动可能较容易在走神或“自动完成”中进行，这在忙碌、疲惫或心事较多时尤其常见。',
+        mid:'最近一个月，你在部分活动中能够有意识地投入，但在压力较大或任务重复时仍可能回到自动驾驶。',
+        high:'最近一个月，你较常能够把注意放在正在做的事情上，并觉察自己何时偏离当下。'
+      },
+      nonjudge:{
+        low:'最近一个月，出现不舒服的想法或情绪后，你可能较容易进一步评价、责备或否定自己，使原本的体验变得更沉重。',
+        mid:'最近一个月，你有时能允许体验先存在，有时仍会很快判断它是否应该出现。',
+        high:'最近一个月，你较常能够不过早评判自己的想法和情绪，为理解体验保留了一些空间。'
+      },
+      nonreact:{
+        low:'最近一个月，强烈念头或情绪出现时，你可能较容易立即被带入其中，较难先停一下再决定如何回应。',
+        mid:'最近一个月，你有时能够先观察再回应；当触发较强时，这段暂停空间可能会缩短。',
+        high:'最近一个月，你较常能够看见体验而不立刻跟随，为下一步选择留出了一点余地。'
+      }
+    },
+    PTGI:{
+      relationships:{
+        low:'本次作答中，你较少感到亲人离世明显改变了自己与他人的亲近、依靠或接受帮助。这并不表示关系质量较差。',
+        mid:'本次作答中，你感受到一些关系上的变化，例如更愿意表达、靠近他人或接纳支持，但这些变化并非在所有关系中都同样明显。',
+        high:'本次作答中，与他人的关系是较明显的变化方向，包括亲近感、同理心或接受支持方式的改变。'
+      },
+      newPossibilities:{
+        low:'本次作答中，新的兴趣、方向或生活选择尚未明显出现。适应亲人离世并不要求立即找到“新的可能”。',
+        mid:'本次作答中，你已经隐约看到一些新的方向或选择，但它们可能仍在形成，还不需要马上成为明确计划。',
+        high:'本次作答中，新的方向、兴趣或行动可能性是较明显的变化，你可能已经开始重新安排生活的部分路径。'
+      },
+      strength:{
+        low:'本次作答中，你较少感到自己的承受力或应对信心发生明显变化。这可能与当前仍在消耗之中有关，不代表缺乏力量。',
+        mid:'本次作答中，你在一些经历里看见了自己的承受力，但这种信心可能仍会随着情境起伏。',
+        high:'本次作答中，你较明显地感受到自己能够承受困难，并对处理未来挑战多了一些信心。'
+      },
+      spiritualChange:{
+        low:'本次作答中，精神世界、信念或超越性理解方面的变化较少。精神变化并不是每个人都会经历的适应方向。',
+        mid:'本次作答中，你对精神世界或生命信念有过一些新的思考，但这些理解可能仍在变化。',
+        high:'本次作答中，精神世界或生命信念方面出现了较明显的新理解；它是否带来安定，需要结合个人文化与信念背景理解。'
+      },
+      appreciationLife:{
+        low:'本次作答中，对生活价值、优先顺序或日常珍惜感的改变尚不明显。痛苦尚在时，很难立刻感到更珍惜生活。',
+        mid:'本次作答中，你在部分时刻重新看见了生活的重要性或优先顺序，但这种感受可能并不持续。',
+        high:'本次作答中，对生活的欣赏是较明显的变化方向，你可能更清楚什么值得珍惜、如何安排有限的时间。'
+      }
+    },
+    CAMSR:{
+      attention:{
+        low:'最近一个月，注意力可能较容易分散，或较难在一件事上停留较久。这通常也会受到睡眠、压力和情绪负荷影响。',
+        mid:'最近一个月，你在部分情境中能够维持或重新带回注意力，但遇到较强干扰时仍可能需要更多努力。',
+        high:'最近一个月，你较常能够维持注意，并在分心后把它带回正在进行的活动。'
+      },
+      awareness:{
+        low:'最近一个月，想法、情绪或身体变化有时可能已经发生了一段时间，你才逐渐意识到它们。',
+        mid:'最近一个月，你有时能够辨认正在发生的内在变化，但体验复杂时清晰度会下降。',
+        high:'最近一个月，你较常能够辨认并描述想法、情绪与身体体验的变化。'
+      },
+      present:{
+        low:'最近一个月，注意可能较常被过去的担忧或未来的预想占据，回到当前时刻并不容易。',
+        mid:'最近一个月，你在一些时候能够回到当下，在担忧或回忆较强时则更容易被带走。',
+        high:'最近一个月，你较常能够把注意安放在当前时刻，而不是长时间停留在过去或未来。'
+      },
+      acceptance:{
+        low:'最近一个月，面对情感痛楚或暂时无法改变的事情时，允许它们存在可能尤其困难。',
+        mid:'最近一个月，你在部分体验上能够保持接纳，另一些触及重要关系或损失的体验仍较难容纳。',
+        high:'最近一个月，你较常能够容纳情感痛楚，并承认有些事情暂时无法改变。'
+      }
+    },
+    SCS:{
+      kindness:{
+        low:'遇到困难或不满意自己时，你近期较少以理解、耐心的方式回应自己，内在语气可能更偏向要求或责备。',
+        mid:'遇到困难时，你有时能够善待自己，但在压力较大或认为自己“做错了”时，这份友善可能变弱。',
+        high:'遇到困难时，你近期较常能够给予自己理解和照顾，让痛苦不必再叠加一层苛责。'
+      },
+      humanity:{
+        low:'困难出现时，你近期可能较难感到“他人也会经历类似处境”，因而更容易把痛苦理解为只发生在自己身上。',
+        mid:'你有时能够把困难放在人类共同经验中理解，但在孤独或压力较强时仍可能觉得自己与他人不同。',
+        high:'你近期较常能够看见痛苦与不完美是共同的人类经验，从而减少“只有我如此”的感觉。'
+      },
+      mindfulness:{
+        low:'痛苦出现时，你近期可能较难保持平衡觉察，体验有时会被压下去，有时又会占据全部注意。',
+        mid:'你有时能够如实看见痛苦而不过度放大，但在情绪强烈时仍可能被卷入。',
+        high:'你近期较常能够以相对平衡的方式看见痛苦，既不否认它，也不让它定义全部的自己。'
+      },
+      nonjudgeSelf:{
+        low:'本次作答中，自我批判相对较少出现；面对不足时，你较少用强烈否定或责备来对待自己。',
+        mid:'本次作答中，自我批判会在部分情境出现，尤其可能发生在失败、失控或未达到期待时。',
+        high:'本次作答中，自我批判较常出现。内在苛责可能正在增加困难时的心理负荷，但它不是对你价值的客观判断。'
+      },
+      isolation:{
+        low:'本次作答中，困难时与他人分离、觉得只有自己如此的体验相对较少。',
+        mid:'本次作答中，孤立感有时会出现；即使身边有人，你也可能在某些时刻觉得难以被理解。',
+        high:'本次作答中，孤立感较常出现。痛苦可能使你更难感到与他人的共同性和连接。'
+      },
+      overid:{
+        low:'本次作答中，被负面思绪或情绪完全淹没的体验相对较少，你较能保留一些观察距离。',
+        mid:'本次作答中，你有时会被痛苦带走，但在部分时候仍能够重新看见更完整的情境。',
+        high:'本次作答中，自我卷入较常出现，负面思绪或情绪可能暂时占据大部分注意，使其他经验变得不易被看见。'
+      }
+    },
+    MSPSS:{
+      family:{
+        low:'本次作答中，你目前较少感到家人能够提供理解、情感帮助或共同商量。它反映的是当下感受到的可获得性，不等同于家人是否关心你。',
+        mid:'本次作答中，你在部分时候能够从家人处获得支持，但不同成员、议题或时机会影响你是否愿意依靠他们。',
+        high:'本次作答中，家人是你较能感受到的支持来源，包括情感帮助、讨论问题或协助作决定。'
+      },
+      friends:{
+        low:'本次作答中，你目前较少感到朋友可依靠、可分享或能够讨论困难；这也可能与近期联系频率或表达需要的难度有关。',
+        mid:'本次作答中，你在部分需要上能够依靠朋友，但支持的稳定性或深度可能因人而异。',
+        high:'本次作答中，朋友是你较能感受到的支持来源，你较容易在需要时依靠、分享或讨论问题。'
+      },
+      special:{
+        low:'本次作答中，你目前较少感到有一位特别重要的人能稳定陪伴、安慰或关心自己的感受。',
+        mid:'本次作答中，你在部分时候能够从某位重要他人处获得陪伴与安慰，但这种支持可能并非始终可得。',
+        high:'本次作答中，某位重要他人是你较能感受到的支持来源，能够提供陪伴、安慰与情感关注。'
+      }
     }
-    post.visibility=visibility;
-    post.updatedAt=v17Now();
-    post.content={done:checkin.done||'',feeling:checkin.feeling||'',tomorrow:checkin.tomorrow||''};
-    v17EnsurePostShape(post);v17Save();return post;
-  }
-  function v17ToggleLike(postId,actorId){
-    const post=v17PostById(postId);if(!post)return;
-    v17EnsurePostShape(post);const index=post.likes.indexOf(actorId);
-    if(index>=0)post.likes.splice(index,1);else post.likes.push(actorId);
-    v17Save();renderCommunity();renderAdminCommunity();
-  }
-  function v17AddComment(postId,text,authorType,authorId,alias){
-    const post=v17PostById(postId),clean=String(text||'').trim();if(!post||!clean)return false;
-    v17EnsurePostShape(post);post.comments.push({id:'COMMENT-'+Date.now()+'-'+Math.random().toString(36).slice(2,6),authorType,authorId,alias,text:clean.slice(0,240),createdAt:v17Now()});
-    v17Save();renderCommunity();renderAdminCommunity();return true;
-  }
+  };
 
-  function v17InjectParticipantUi(){
-    if(!$('community')){
-      $('journey').insertAdjacentHTML('afterend',`<section class="page" id="community"><div class="community-hero"><div><span class="community-kicker">🕯 匿名同行交流</span><h3>让今天的一小步，被温柔地看见。</h3><p>这里只展示参与者主动选择“匿名公开”的每日打卡。未公开的记录不会进入交流区，仅研究团队可以查看和回应。</p></div><button class="btn" id="communityShareToday">分享今天的打卡</button></div><div class="community-layout"><div class="community-main"><div class="community-toolbar"><div class="community-filters"><button class="community-filter active" data-community-filter="all">全部公开</button><button class="community-filter" data-community-filter="mine">我的公开</button><button class="community-filter" data-community-filter="team">有团队回应</button></div><select class="community-sort" id="communitySort"><option value="latest">最新发布</option><option value="liked">较多点赞</option><option value="commented">较多评论</option></select></div><div class="community-feed" id="communityFeed"></div></div><aside class="community-side"><article class="community-side-card"><h4>我的今日打卡</h4><p>你可以随时确认今天的记录是否进入公开交流区。</p><div id="myCommunityCheckin"></div></article><article class="community-side-card"><h4>交流约定</h4><p>回应可以很短，重点是尊重彼此的节奏。</p><div class="community-guidelines"><div class="community-guideline"><i>1</i><span>不追问逝者身份、联系方式或其他私人信息。</span></div><div class="community-guideline"><i>2</i><span>多表达理解与陪伴，少评价、比较或直接指导。</span></div><div class="community-guideline"><i>3</i><span>公开内容使用匿名编号，研究团队仍可在后台识别研究编号。</span></div></div></article></aside></div></section>`);
-    }
-    pageMeta.community='同行交流';
-    const sideNav=document.querySelector('.nav-block[data-nav="mied"]');
-    if(sideNav&&!sideNav.querySelector('[data-page="community"]'))sideNav.insertAdjacentHTML('beforeend','<button data-page="community"><span class="ico">伴</span>交流</button>');
-    const mobile=$('mobileNav');
-    if(mobile&&!mobile.querySelector('[data-page="community"]'))mobile.insertAdjacentHTML('beforeend','<button data-page="community">交流</button>');
-    document.querySelectorAll('[data-page="community"]').forEach(button=>button.onclick=()=>showPage('community'));
-    $('communityShareToday').onclick=v17OpenShareFlow;
-    document.querySelectorAll('[data-community-filter]').forEach(button=>button.onclick=()=>{participantCommunityFilter=button.dataset.communityFilter;document.querySelectorAll('[data-community-filter]').forEach(item=>item.classList.toggle('active',item===button));renderCommunity()});
-    $('communitySort').onchange=event=>{participantCommunitySort=event.target.value;renderCommunity()};
+  function v19Band(scaleKey,value){
+    const scale=scales[scaleKey],min=Number(scale.min)||0,max=Number(scale.max)||5;
+    const ratio=(Number(value)-min)/Math.max(1,max-min);
+    return ratio<.34?'low':ratio<.67?'mid':'high';
   }
-  function v17InjectCheckinPrivacy(){
-    const card=document.querySelector('#checkinModal .modal-card'),actions=card?.querySelector('.modal-actions');
-    if(card&&actions&&!$('checkinPrivacy'))actions.insertAdjacentHTML('beforebegin',`<div class="checkin-privacy" id="checkinPrivacy"><div class="checkin-privacy-head"><div class="checkin-privacy-icon">◎</div><div><b>谁可以看到这次打卡？</b><span>你可以保持私密，也可以匿名分享给其他参与者。默认不公开。</span></div></div><div class="checkin-visibility-options"><label class="checkin-visibility-option"><input type="radio" name="checkinVisibility" value="admin" checked><span><b>仅研究团队可见</b>不进入同行交流区；研究团队仍可点赞和留言回应。</span></label><label class="checkin-visibility-option"><input type="radio" name="checkinVisibility" value="public"><span><b>匿名公开到同行交流</b>其他参与者只能看到匿名编号和打卡内容，可点赞和评论。</span></label></div></div>`);
-    if(!$('communityVisibilityModal'))document.body.insertAdjacentHTML('beforeend',`<div class="modal" id="communityVisibilityModal"><div class="modal-card"><h3>管理今天的打卡可见性</h3><p>这里仅调整是否进入匿名交流区，不改变你的原始打卡内容。</p><div class="visibility-preview" id="communityVisibilityPreview"></div><div class="checkin-visibility-options" style="margin-top:13px"><label class="checkin-visibility-option"><input type="radio" name="existingCheckinVisibility" value="admin"><span><b>仅研究团队可见</b>从公开交流区隐藏，但研究团队仍可查看和回应。</span></label><label class="checkin-visibility-option"><input type="radio" name="existingCheckinVisibility" value="public"><span><b>匿名公开到同行交流</b>公开后，其他参与者可以点赞和评论。</span></label></div><div class="modal-actions"><button class="close" id="closeCommunityVisibility">取消</button><button class="btn" id="saveCommunityVisibility">保存可见性</button></div></div></div>`);
-    $('closeCommunityVisibility').onclick=()=>hideModal('communityVisibilityModal');
-    $('saveCommunityVisibility').onclick=()=>{
-      const checkin=state.checkins[todayKey()];if(!checkin)return;
-      const visibility=document.querySelector('input[name="existingCheckinVisibility"]:checked')?.value||'admin';
-      v17UpsertTodayPost(visibility,checkin);hideModal('communityVisibilityModal');renderCommunity();toast(visibility==='public'?'今天的打卡已匿名公开。':'今天的打卡已设为仅研究团队可见。');
+  function v19Tied(items,mode='max'){
+    if(!items.length)return[];
+    const target=Math[mode](...items.map(item=>Number(item.score)));
+    return items.filter(item=>Math.abs(Number(item.score)-target)<1e-9);
+  }
+  function v19Names(items){
+    const names=items.map(item=>`“${item.label}”`);
+    if(names.length<2)return names[0]||'';
+    return names.slice(0,-1).join('、')+'和'+names[names.length-1];
+  }
+  function v19Summary(scaleKey,items,scores){
+    const top=v19Tied(items,'max'),bottom=v19Tied(items,'min'),balanced=top.length===items.length;
+    if(scaleKey==='FFMQ')return{
+      overall:'<div class="overall-score"><small>FFMQ-SF 正念画像</small><b>5 个维度</b><span>雷达图呈现近期五类正念经验的相对位置，各维度需要分别理解。</span></div>',
+      profile:`<b>${balanced?'五个维度处于相同位置':'当前较常可用的正念资源'}</b><span>${balanced?`本次五个维度得分一致：${v19Names(top)}。没有任何维度被遗漏，可结合具体生活情境继续阅读。`:`本次得分相对较高的是${v19Names(top)}。如有并列，这里会完整呈现所有并列维度。`}</span>`,
+      pattern:`<b>${balanced?'画像较为均衡':'可从较不稳定的环节开始理解'}</b><span>${balanced?'均衡不表示每天都保持相同状态，仍可观察压力较大时哪一环最先变化。':`本次相对较低的是${v19Names(bottom)}。它们不是能力缺陷，只提示这些环节近期可能更受情境影响。`}</span>`
+    };
+    if(scaleKey==='PTGI')return{
+      overall:'<div class="overall-score"><small>PTGI-SC 变化画像</small><b>5 个变化方向</b><span>分数描述亲人离世后感受到的变化程度，并不要求每个方向都出现成长。</span></div>',
+      profile:`<b>${balanced?'五类变化程度相同':'本次相对明显的变化'}</b><span>${balanced?`本次五个方向得分一致：${v19Names(top)}。`: `本次感受相对明显的是${v19Names(top)}。并列的变化方向已全部列出。`}</span>`,
+      pattern:`<b>如何理解这组变化</b><span>${balanced?'各方向接近，说明当前没有单一变化主导整体画像。':`相对较少出现的是${v19Names(bottom)}；变化较少不代表适应失败，也不需要刻意促成。`}成长体验可以与悲伤、思念和困难同时存在。</span>`
+    };
+    if(scaleKey==='CAMSR')return{
+      overall:'<div class="overall-score"><small>Ch-CAMS-R 正念过程画像</small><b>4 个环节</b><span>四个维度分别对应注意、觉察、当下聚焦与接纳，不用一个总分替代具体过程。</span></div>',
+      profile:`<b>${balanced?'四个正念环节处于相同位置':'当前相对较稳的环节'}</b><span>${balanced?`本次四个维度得分一致：${v19Names(top)}。`:`本次相对较高的是${v19Names(top)}，这些环节可能更容易在近期情境中出现。`}</span>`,
+      pattern:`<b>练习线索</b><span>${balanced?'可根据当下需要任选一个环节观察，不必人为寻找短板。':`本次相对较低的是${v19Names(bottom)}。可以把它理解为正念过程中较容易受压力影响的环节。`}</span>`
+    };
+    if(scaleKey==='SCS'){
+      const positives=items.filter(item=>V19_POSITIVE_SCS.has(item.id));
+      const difficulties=items.filter(item=>!V19_POSITIVE_SCS.has(item.id));
+      const topPositive=v19Tied(positives,'max'),topDifficulty=v19Tied(difficulties,'max');
+      return{
+        overall:`<div class="overall-score"><small>整体自我慈悲水平</small><b>${formatScore(scores._meta?.overall)} / 5</b><span>总分按标准计分反向处理负向题；雷达图仍按六个维度的原始含义呈现。</span></div>`,
+        profile:`<b>当前较常出现的自我支持</b><span>三个正向维度中，本次相对较高的是${v19Names(topPositive)}。所有并列维度均已呈现。</span>`,
+        pattern:`<b>当前较突出的困难体验</b><span>三个负向维度中，本次相对较高的是${v19Names(topDifficulty)}。这里描述的是近期体验，不是对你的评价。</span>`
+      };
+    }
+    return{
+      overall:'<div class="overall-score"><small>MSPSS 支持感画像</small><b>3 类支持来源</b><span>结果呈现目前感受到的支持可获得性，不等同于客观关系数量。</span></div>',
+      profile:`<b>${balanced?'三类支持感处于相同位置':'当前感受较多的支持来源'}</b><span>${balanced?`本次三类支持得分一致：${v19Names(top)}。`:`本次相对较高的是${v19Names(top)}。并列的支持来源已全部列出。`}</span>`,
+      pattern:`<b>支持版图</b><span>${balanced?'不同来源的支持感较为接近，可继续辨认自己在不同需要下更愿意联系谁。':`本次相对较少感受到的是${v19Names(bottom)}。这不等于相应关系不存在，而是当前对支持可获得性的体验有所不同。`}</span>`
     };
   }
-  function v17OpenShareFlow(){
-    const checkin=state.checkins[todayKey()];
-    if(!checkin){openCheckin();return}
-    const post=v17TodayPost(),visibility=post?.visibility||'admin';
-    $('communityVisibilityPreview').innerHTML=`<div class="visibility-preview-line"><small>今天完成了什么</small><span>${esc(checkin.done||'未填写')}</span></div><div class="visibility-preview-line"><small>此刻状态</small><span>${esc(checkin.feeling||'未填写')}</span></div><div class="visibility-preview-line"><small>明天的一小步</small><span>${esc(checkin.tomorrow||'未填写')}</span></div>`;
-    document.querySelectorAll('input[name="existingCheckinVisibility"]').forEach(input=>input.checked=input.value===visibility);
-    showModal('communityVisibilityModal');
+  function v19RenderMulti(scaleKey,scores,facets){
+    const items=facets.filter(facet=>Number.isFinite(Number(scores[facet.id]))).map(facet=>({...facet,score:Number(scores[facet.id])}));
+    const summary=v19Summary(scaleKey,items,scores);
+    $('overallScore').innerHTML=summary.overall;
+    $('profileSummary').innerHTML=summary.profile;
+    $('patternFeedback').innerHTML=summary.pattern;
+    const openIds=new Set(v19Tied(items,'min').slice(0,1).map(item=>item.id));
+    $('feedbackList').innerHTML=items.map(facet=>{
+      const band=v19Band(scaleKey,facet.score),copy=v19FeedbackCopy[scaleKey]?.[facet.id]?.[band]||'';
+      const showHighTag=(scaleKey==='FFMQ'||(scaleKey==='SCS'&&V19_POSITIVE_SCS.has(facet.id)))&&facet.score>=3.5;
+      return`<div class="feedback dimension"><details ${openIds.has(facet.id)?'open':''}><summary><div class="dimension-title"><b>${esc(facet.label)} · ${formatScore(facet.score)} / ${formatScore(scales[scaleKey].max)}</b><small>${esc(facet.academic||'正式量表维度')}</small></div>${showHighTag?'<span class="band high">较常可以做到</span>':''}</summary><div class="dimension-body"><p>${esc(copy)}</p></div></details></div>`;
+    }).join('');
+    const disclaimers={
+      FFMQ:'本反馈描述最近一个月的正念体验模式，不是能力评定，也不用于诊断。',
+      PTGI:'成长与痛苦可以同时存在；变化较少不代表适应失败，变化较多也不表示痛苦已经结束。',
+      CAMSR:'注意、觉察、当下聚焦与接纳会随压力和情境变化，本结果不用于判断正常或异常。',
+      SCS:'正向与负向维度按原始含义分别呈现；本反馈用于理解近期自我回应方式，不用于诊断。',
+      MSPSS:'本结果反映主观感受到的支持，不等同于客观关系质量或支持者数量。'
+    };
+    $('feedbackDisclaimer').textContent=disclaimers[scaleKey];
   }
 
-  function v17ParticipantPostHtml(post){
-    v17EnsurePostShape(post);const mine=post.participantId===V17_PARTICIPANT_ID,liked=post.likes.includes(V17_PARTICIPANT_ID),comments=post.comments;
-    const commentHtml=comments.length?comments.map(comment=>`<div class="community-comment ${comment.authorType==='admin'?'admin-comment':''}"><b>${esc(comment.alias)}</b>${esc(comment.text)}<span class="community-comment-time">${new Date(comment.createdAt).toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}</span></div>`).join(''):'';
-    return`<article class="community-post ${mine?'mine':''}"><div class="community-post-head"><div class="community-author"><div class="community-avatar">${mine?'我':'伴'}</div><div><b>${mine?'我的匿名打卡':esc(post.alias)}</b><span>${v17PostTime(post)}</span></div></div><span class="visibility-badge public">● 匿名公开</span></div><div class="community-body">${post.content.done?`<div class="community-line"><small>今天完成了什么</small><p>${esc(post.content.done)}</p></div>`:''}${post.content.feeling?`<div class="community-line"><small>此刻的状态</small><p>${esc(post.content.feeling)}</p></div>`:''}${post.content.tomorrow?`<div class="community-line"><small>明天愿意尝试的一小步</small><p>${esc(post.content.tomorrow)}</p></div>`:''}</div><div class="community-actions"><button class="community-action ${liked?'liked':''}" data-community-like="${post.id}">${liked?'♥':'♡'} 点赞 <span>${post.likes.length}</span></button><button class="community-action" data-community-focus="${post.id}">💬 评论 <span>${comments.length}</span></button></div>${commentHtml?`<div class="community-comments">${commentHtml}</div>`:''}<div class="community-comment-compose"><input id="participantComment_${post.id}" maxlength="120" placeholder="写一句理解、鼓励或陪伴……"><button data-community-comment="${post.id}">发送</button></div></article>`;
-  }
-  function renderMyCommunityCheckin(){
-    const box=$('myCommunityCheckin');if(!box)return;const checkin=state.checkins[todayKey()],post=v17TodayPost();
-    if(!checkin){box.innerHTML='<div class="my-checkin-status"><b>今天还没有完成打卡</b><span>完成任一推荐练习后，就可以记录今天的状态并选择是否匿名公开。</span><div class="actions"><button class="btn ghost" id="myCheckinStart">查看今日任务</button></div></div>';$('myCheckinStart').onclick=()=>showPage('overview');return}
-    const visibility=post?.visibility||'admin',adminComments=(post?.comments||[]).filter(comment=>comment.authorType==='admin');
-    box.innerHTML=`<div class="my-checkin-status"><b>${visibility==='public'?'已匿名公开':'仅研究团队可见'}</b><span>${visibility==='public'?`收到 ${post.likes.length} 个赞、${post.comments.length} 条评论。`:'不会出现在其他参与者的交流区中。研究团队仍可点赞和留言。'}</span>${adminComments.slice(-1).map(comment=>`<div class="community-admin-reply"><b>研究团队回应：</b>${esc(comment.text)}</div>`).join('')}<div class="actions"><button class="btn ghost" id="manageTodayVisibility">管理可见性</button></div></div>`;
-    $('manageTodayVisibility').onclick=v17OpenShareFlow;
-  }
-  function renderCommunity(){
-    const feed=$('communityFeed');if(!feed)return;
-    let posts=v17CommunityPosts().map(v17EnsurePostShape).filter(post=>post.visibility==='public');
-    if(participantCommunityFilter==='mine')posts=posts.filter(post=>post.participantId===V17_PARTICIPANT_ID);
-    if(participantCommunityFilter==='team')posts=posts.filter(post=>post.comments.some(comment=>comment.authorType==='admin'));
-    posts.sort((a,b)=>participantCommunitySort==='liked'?b.likes.length-a.likes.length:participantCommunitySort==='commented'?b.comments.length-a.comments.length:new Date(b.createdAt)-new Date(a.createdAt));
-    feed.innerHTML=posts.length?posts.map(v17ParticipantPostHtml).join(''):'<div class="community-empty"><b>这里暂时还没有公开打卡</b><span>只有参与者主动选择匿名公开的内容，才会显示在这里。</span></div>';
-    document.querySelectorAll('[data-community-like]').forEach(button=>button.onclick=()=>v17ToggleLike(button.dataset.communityLike,V17_PARTICIPANT_ID));
-    document.querySelectorAll('[data-community-focus]').forEach(button=>button.onclick=()=>document.getElementById(`participantComment_${button.dataset.communityFocus}`)?.focus());
-    document.querySelectorAll('[data-community-comment]').forEach(button=>button.onclick=()=>{const input=document.getElementById(`participantComment_${button.dataset.communityComment}`);if(v17AddComment(button.dataset.communityComment,input?.value,'participant',V17_PARTICIPANT_ID,v17Alias(V17_PARTICIPANT_ID)))toast('评论已发送。');else toast('请先写下一点内容。')});
-    renderMyCommunityCheckin();
-  }
-
-  function v17InjectAdminUi(){
-    const interventionNav=document.querySelector('.admin-nav [data-admin-page="intervention"]');
-    if(interventionNav&&!document.querySelector('.admin-nav [data-admin-page="community"]'))interventionNav.insertAdjacentHTML('afterend','<button data-admin-page="community"><i>互</i>打卡互动</button>');
-    if(!$('admin-community'))$('admin-intervention').insertAdjacentHTML('afterend',`<section class="admin-page" id="admin-community"><div class="admin-page-head"><div><span>每日打卡互动</span><h2>公开交流与私密回应</h2><p>公开打卡会进入参与者端匿名交流区；未公开打卡仅在后台显示。研究团队可以对两类记录点赞和评论。</p></div></div><div class="community-admin-kpis" id="communityAdminKpis"></div><div class="admin-toolbar"><label>⌕<input id="adminCommunitySearch" placeholder="搜索参与者编号或打卡内容"></label><select id="adminCommunityVisibility"><option value="all">全部可见性</option><option value="public">匿名公开</option><option value="admin">仅团队可见</option></select><select id="adminCommunitySort"><option value="latest">最新提交</option><option value="comments">评论较多</option><option value="likes">点赞较多</option></select></div><div class="admin-community-list" id="adminCommunityList"></div></section>`);
-    const more=document.querySelector('#adminMoreSheet .admin-more-grid');
-    if(more&&!more.querySelector('[data-admin-page="community"]'))more.insertAdjacentHTML('afterbegin','<button data-admin-page="community">打卡互动</button>');
-    adminTitles.community='打卡互动';
-    document.querySelectorAll('[data-admin-page="community"]').forEach(button=>button.onclick=()=>showAdminPage('community'));
-    $('adminCommunitySearch').oninput=renderAdminCommunity;$('adminCommunityVisibility').onchange=renderAdminCommunity;$('adminCommunitySort').onchange=renderAdminCommunity;
-  }
-  function v17AdminPostHtml(post){
-    v17EnsurePostShape(post);const adminLiked=post.likes.includes(V17_ADMIN_ID),comments=post.comments;
-    return`<article class="admin-community-card"><div class="admin-community-head"><div><h4>${esc(post.participantId)} · ${esc(post.alias)}</h4><p>${v17PostTime(post)} · ${post.visibility==='public'?'参与者端匿名公开':'不进入参与者交流区'}</p></div><span class="visibility-badge ${post.visibility}">${post.visibility==='public'?'● 匿名公开':'🔒 仅团队可见'}</span></div><div class="admin-community-content"><div><small>今天完成了什么</small><span>${esc(post.content.done||'未填写')}</span></div><div><small>此刻状态</small><span>${esc(post.content.feeling||'未填写')}</span></div><div><small>明天的一小步</small><span>${esc(post.content.tomorrow||'未填写')}</span></div></div>${comments.length?`<div class="community-comments">${comments.map(comment=>`<div class="community-comment ${comment.authorType==='admin'?'admin-comment':''}"><b>${esc(comment.alias)}</b>${esc(comment.text)}<span class="community-comment-time">${new Date(comment.createdAt).toLocaleString('zh-CN')}</span></div>`).join('')}</div>`:''}<div class="admin-community-actions"><button class="${adminLiked?'liked':''}" data-admin-community-like="${post.id}">${adminLiked?'♥ 已点赞':'♡ 点赞'} · ${post.likes.length}</button><span class="panel-tag">${comments.length} 条评论</span></div><div class="admin-community-comment-box"><input id="adminComment_${post.id}" maxlength="240" placeholder="以研究团队身份留言回应……"><button data-admin-community-comment="${post.id}">发送团队评论</button></div></article>`;
-  }
-  function renderAdminCommunity(){
-    const list=$('adminCommunityList');if(!list)return;
-    const posts=v17CommunityPosts().map(v17EnsurePostShape),today=posts.filter(post=>post.dateKey===todayKey()).length,publicCount=posts.filter(post=>post.visibility==='public').length,privateCount=posts.filter(post=>post.visibility==='admin').length,comments=posts.reduce((sum,post)=>sum+post.comments.length,0);
-    $('communityAdminKpis').innerHTML=[[today,'今日打卡','全部可见性'],[publicCount,'匿名公开','参与者可互动'],[privateCount,'仅团队可见','不进入交流区'],[comments,'累计评论','参与者与团队']].map(([value,label,sub])=>`<div class="admin-kpi"><small>${label}</small><b>${value}</b><span>${sub}</span></div>`).join('');
-    const query=($('adminCommunitySearch')?.value||'').trim().toLowerCase(),visibility=$('adminCommunityVisibility')?.value||'all',sort=$('adminCommunitySort')?.value||'latest';
-    let filtered=posts.filter(post=>(visibility==='all'||post.visibility===visibility)&&(!query||`${post.participantId} ${post.content.done||''} ${post.content.feeling||''} ${post.content.tomorrow||''}`.toLowerCase().includes(query)));
-    filtered.sort((a,b)=>sort==='comments'?b.comments.length-a.comments.length:sort==='likes'?b.likes.length-a.likes.length:new Date(b.createdAt)-new Date(a.createdAt));
-    list.innerHTML=filtered.length?filtered.map(v17AdminPostHtml).join(''):'<div class="admin-panel">当前筛选条件下没有打卡记录。</div>';
-    document.querySelectorAll('[data-admin-community-like]').forEach(button=>button.onclick=()=>v17ToggleLike(button.dataset.adminCommunityLike,V17_ADMIN_ID));
-    document.querySelectorAll('[data-admin-community-comment]').forEach(button=>button.onclick=()=>{const input=document.getElementById(`adminComment_${button.dataset.adminCommunityComment}`);if(v17AddComment(button.dataset.adminCommunityComment,input?.value,'admin',V17_ADMIN_ID,'研究团队'))toast('团队评论已发送。');else toast('请先写下评论内容。')});
-  }
-
-  v17SeedCommunity();v17CommunityPosts().forEach(v17EnsurePostShape);
-  v17InjectParticipantUi();v17InjectCheckinPrivacy();v17InjectAdminUi();
-
-  const v17ShowPageBase=showPage;
-  showPage=function(id){v17ShowPageBase(id);if(id==='community')renderCommunity()};
-
-  const v17SaveCheckinBase=saveCheckin;
-  saveCheckin=function(){
-    const wasCompleted=!!todayDaily().v15CheckinCompleted;
-    const visibility=document.querySelector('input[name="checkinVisibility"]:checked')?.value||'admin';
-    v17SaveCheckinBase();
-    const checkin=state.checkins[todayKey()];
-    if(!wasCompleted&&checkin&&todayDaily().v15CheckinCompleted){v17UpsertTodayPost(visibility,checkin);renderCommunity();renderAdminCommunity()}
+  const v19RenderResourceBase=renderResourceFeedback;
+  renderResourceFeedback=function(scores,facets,scaleKey){
+    if(V19_MULTI_SCALES.has(scaleKey)){v19RenderMulti(scaleKey,scores,facets);return}
+    v19RenderResourceBase(scores,facets,scaleKey);
   };
-  $('saveCheckin').onclick=saveCheckin;
-
-  const v17OpenCheckinBase=openCheckin;
-  openCheckin=function(){
-    document.querySelectorAll('input[name="checkinVisibility"]').forEach(input=>input.checked=input.value==='admin');
-    v17OpenCheckinBase();
+  const v19RenderFfmqBase=renderFfmqFeedback;
+  renderFfmqFeedback=function(scores){
+    if(scales.FFMQ){v19RenderMulti('FFMQ',scores,facetsFor('FFMQ'));return}
+    v19RenderFfmqBase(scores);
   };
 
-  const v17RenderAdminPageBase=renderAdminPage;
-  renderAdminPage=function(id){if(id==='community'){renderAdminCommunity();return}v17RenderAdminPageBase(id)};
-  const v17RenderAdminAllBase=renderAdminAll;
-  renderAdminAll=function(){v17RenderAdminAllBase();renderAdminCommunity()};
-
-  const v17RenderAdminDataBase=renderAdminData;
-  renderAdminData=function(){
-    v17RenderAdminDataBase();
-    if($('dataDictionary')&&!Array.from($('dataDictionary').children).some(row=>row.textContent.includes('checkin_visibility')))$('dataDictionary').insertAdjacentHTML('beforeend','<div><b>checkin_visibility</b><span>每日打卡可见性：public 或 admin_only</span></div><div><b>checkin_interactions</b><span>匿名公开点赞、评论及研究团队回应记录</span></div>');
+  function v19RemoveInlineReminder(){
+    const note=$('submissionLockNote');if(note)note.remove();
+    const next=$('nextLockCopy');if(next)next.remove();
+  }
+  function v19BindSingleConfirmation(){
+    const button=$('makeFeedback');if(!button)return;
+    button.onclick=()=>{
+      if(!scaleIsComplete())return;
+      if(confirm('一旦确认提交，本问卷答案将无法更改。是否继续？'))drawRadar(true);
+    };
+  }
+  const v19RenderScalesBase=renderScales;
+  renderScales=function(){v19RenderScalesBase();v19RemoveInlineReminder();v19BindSingleConfirmation()};
+  const v19UpdateProgressBase=updateAssessmentProgress;
+  updateAssessmentProgress=function(){v19UpdateProgressBase();v19RemoveInlineReminder();v19BindSingleConfirmation()};
+  const v19DrawRadarBase=drawRadar;
+  drawRadar=function(showFeedback=true){
+    v19DrawRadarBase(showFeedback);
+    v19RemoveInlineReminder();
+    v19BindSingleConfirmation();
   };
 
-  const v17ExportResearchJsonBase=exportResearchJson;
-  exportResearchJson=function(){
-    const participantState=JSON.parse(JSON.stringify(state));delete participantState.riskEvents;delete participantState.sessions;delete participantState.sessionSummaries;delete participantState.journeySummary;
-    const adminExport={notes:adminState.notes,contentStatus:adminState.contentStatus,activities:adminState.activities,settings:adminState.settings,waveAccess:adminState.waveAccess,courseAttendance:adminState.courseAttendance,weekPpts:adminState.weekPpts,userAccounts:adminState.userAccounts,communityPosts:adminState.communityPosts};
-    downloadFile('mied_research_demo_v18_community.json',JSON.stringify({generated_at:new Date().toISOString(),participants:allParticipants(),participant_state:participantState,assessment_records:state.assessmentRecords,admin:adminExport},null,2),'application/json');addAdminActivity('导出研究 JSON 包 v18 + 树洞');
-  };
-  if($('exportJson'))$('exportJson').onclick=exportResearchJson;if($('exportAll'))$('exportAll').onclick=exportResearchJson;
+  if(localStorage.getItem(V19_RESET_MARKER)!=='done'){
+    state.assessment={};
+    state.assessmentFeedbackGenerated={};
+    state.ffmqFeedbackGenerated=false;
+    state.assessmentByWave=emptyAssessmentWaves();
+    state.assessmentRecords=[];
+    state.activeAssessmentWave='T0';
+    activeWave='T0';
+    activeScale=availableScaleKeys('T0')[0];
+    persist();
+    localStorage.setItem(V19_RESET_MARKER,'done');
+  }
 
-  window.MIEDCommunityBridge={
-    version:'liechuan-v17-rui',
-    storage:'browser-local',
-    listPosts:()=>JSON.parse(JSON.stringify(v17CommunityPosts().map(v17EnsurePostShape))),
-    toggleTeamLike:postId=>{if(!v17PostById(postId))return false;v17ToggleLike(postId,V17_ADMIN_ID);return true},
-    addTeamComment:(postId,text)=>v17AddComment(postId,text,'admin',V17_ADMIN_ID,'研究团队')
-  };
-  document.documentElement.dataset.responsiveVersion='v18-community';
-  renderCommunity();renderAdminCommunity();renderAdminData();saveAdmin();persist();
+  document.documentElement.dataset.assessmentVersion='v19';
+  v19RemoveInlineReminder();
+  renderScales();
+  drawRadar(false);
 })();
 </script>
 
-<div class="modal" id="authAccountModal"><div class="modal-card"><div class="auth-modal-note">账户设置仅用于验证本次演示流程。正式系统应由服务器统一完成认证、会话管理和密码重置。</div><h3 style="margin-top:16px">我的账户</h3><div class="auth-account-grid" id="authAccountInfo"></div><div class="auth-required-banner auth-hidden" id="authMustChangeBanner">该账号使用临时密码登录。请先设置新密码。</div><div class="auth-change-panel"><h4 style="margin:0 0 12px">修改密码</h4><form id="authChangePasswordForm"><label class="auth-field"><span>当前密码</span><input id="authCurrentPassword" type="password" autocomplete="current-password"></label><div class="auth-form-row"><label class="auth-field"><span>新密码</span><input id="authNewPassword" type="password" autocomplete="new-password" placeholder="至少8位，包含字母和数字"></label><label class="auth-field"><span>确认新密码</span><input id="authConfirmPassword" type="password" autocomplete="new-password"></label></div><p class="auth-status" id="authChangeStatus"></p><div class="modal-actions"><button class="close" id="authCloseAccount" type="button">关闭</button><button class="auth-submit" style="width:auto" id="authChangeSubmit" type="submit">保存新密码</button></div></form></div></div></div>
-<div class="modal" id="authAdminCreateModal"><div class="modal-card"><h3>由管理员创建参与者账号</h3><p>系统将生成参与者编号和一次性临时密码。参与者首次登录后应修改密码。</p><form class="auth-form" id="authAdminCreateForm"><div class="auth-form-row"><label class="auth-field"><span>称呼或昵称</span><input id="authAdminCreateName" maxlength="20" placeholder="不要录入真实姓名"></label><label class="auth-field"><span>登录用户名</span><input id="authAdminCreateUsername" maxlength="24" placeholder="4–24位字母、数字或下划线"></label></div><p class="auth-status" id="authAdminCreateStatus"></p><div class="modal-actions"><button class="close" id="authAdminCreateClose" type="button">取消</button><button class="admin-primary" type="submit">创建账号</button></div></form></div></div>
-<div class="modal" id="authTempPasswordModal"><div class="modal-card"><h3 id="authTempPasswordTitle">临时密码已生成</h3><div class="auth-temp-password"><span id="authTempPasswordMessage">请仅通过合适渠道发送给对应参与者。</span><code id="authTempPasswordValue"></code><button class="auth-secondary" id="authCopyTempPassword" type="button">复制临时密码</button></div><div class="modal-actions"><button class="admin-primary" id="authCloseTempPassword" type="button">我已记录</button></div></div></div>
-
-<script id="miedAuthScript">
+<style>
+/* v20: integrated dimension explanations and concise summary cards */
+#dimensionGuide{display:none!important}
+#resultContent.demographic-record #feedbackDisclaimer{display:none!important}
+#patternFeedback:empty{display:none!important}
+.feedback.dimension .dimension-meaning{margin:0 0 7px;color:#536965}
+.feedback.dimension .dimension-meaning b,
+.feedback.dimension .dimension-interpretation b{color:#3f5853}
+.feedback.dimension .dimension-interpretation{margin-top:0}
+</style>
+<script>
 (() => {
-'use strict';
-const AUTH_KEY='miedAuthDemoV18',SESSION_KEY='miedAuthSessionV18';
-const ADMIN_USERNAME='research_admin',ADMIN_PASSWORD='MIED-Admin-2026!';
-const SESSION_MS=86400000,PBKDF2_ITERATIONS=120000;
-const el=id=>document.getElementById(id);
-let authDb={version:1,sequence:0,users:[],audit:[]},currentUser=null,lastTempPassword='';
-const nowIso=()=>new Date().toISOString();
-const escapeHtml=value=>String(value??'').replace(/[&<>'"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
-const formatDate=value=>value?new Date(value).toLocaleString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}):'尚无记录';
-const randomBytes=length=>{const out=new Uint8Array(length);if(window.crypto?.getRandomValues)crypto.getRandomValues(out);else for(let i=0;i<length;i++)out[i]=Math.floor(Math.random()*256);return out};
-const bytesToBase64=bytes=>{let binary='';bytes.forEach(byte=>binary+=String.fromCharCode(byte));return btoa(binary)};
-const base64ToBytes=value=>{const binary=atob(value);return Uint8Array.from(binary,ch=>ch.charCodeAt(0))};
-const textBytes=value=>new TextEncoder().encode(value);
-function fallbackDemoKdf(password,saltBytes,rounds=16000){
-  const salt=Array.from(saltBytes),input=Array.from(textBytes(password));let a=0x811c9dc5,b=0x9e3779b9,c=0x85ebca6b,d=0xc2b2ae35;
-  for(let r=0;r<rounds;r++){const stream=input.concat(salt,[r&255,(r>>>8)&255,(r>>>16)&255]);for(const x of stream){a=Math.imul(a^x,0x01000193)>>>0;b=Math.imul((b+x+a)>>>0,0x85ebca6b)>>>0;c=Math.imul((c^b^x)>>>0,0xc2b2ae35)>>>0;d=Math.imul((d+a+c+x)>>>0,0x27d4eb2d)>>>0}a=(a^(d>>>13))>>>0;b=(b^(a>>>11))>>>0;c=(c^(b>>>17))>>>0;d=(d^(c>>>15))>>>0}
-  const words=[a,b,c,d,a^c,b^d,Math.imul(a^d,0x9e3779b1)>>>0,Math.imul(b^c,0x85ebca77)>>>0],out=new Uint8Array(32);words.forEach((word,index)=>{out[index*4]=word>>>24;out[index*4+1]=word>>>16;out[index*4+2]=word>>>8;out[index*4+3]=word});return out;
-}
-async function derivePassword(password,saltBytes,algorithm,iterations){
-  if(algorithm==='pbkdf2-sha256'&&window.crypto?.subtle){const key=await crypto.subtle.importKey('raw',textBytes(password),'PBKDF2',false,['deriveBits']);const bits=await crypto.subtle.deriveBits({name:'PBKDF2',salt:saltBytes,iterations:iterations||PBKDF2_ITERATIONS,hash:'SHA-256'},key,256);return new Uint8Array(bits)}
-  return fallbackDemoKdf(password,saltBytes,iterations||16000);
-}
-async function createCredential(password){const salt=randomBytes(16),algorithm=window.crypto?.subtle?'pbkdf2-sha256':'demo-kdf-fallback',hash=await derivePassword(password,salt,algorithm,algorithm==='pbkdf2-sha256'?PBKDF2_ITERATIONS:16000);return{algorithm,iterations:algorithm==='pbkdf2-sha256'?PBKDF2_ITERATIONS:16000,salt:bytesToBase64(salt),hash:bytesToBase64(hash)}}
-async function verifyPassword(user,password){const credential=user.credential;if(!credential)return false;const actual=await derivePassword(password,base64ToBytes(credential.salt),credential.algorithm,credential.iterations),expected=base64ToBytes(credential.hash);if(actual.length!==expected.length)return false;let diff=0;for(let i=0;i<actual.length;i++)diff|=actual[i]^expected[i];return diff===0}
-function loadDb(){try{const parsed=JSON.parse(localStorage.getItem(AUTH_KEY)||'null');if(parsed&&Array.isArray(parsed.users))authDb={version:1,sequence:0,audit:[],...parsed}}catch(error){console.warn('Auth demo database could not be read.',error)}authDb.users=Array.isArray(authDb.users)?authDb.users:[];authDb.audit=Array.isArray(authDb.audit)?authDb.audit:[];authDb.sequence=Number(authDb.sequence)||0}
-function safeUser(user){return{id:user.id,accountId:user.accountId,role:user.role,participantId:user.participantId||'',username:user.username,displayName:user.displayName,status:user.status,createdAt:user.createdAt,lastLoginAt:user.lastLoginAt||null,passwordChangedAt:user.passwordChangedAt||null,mustChangePassword:!!user.mustChangePassword,loginCount:Number(user.loginCount)||0,source:user.source||'self_registration'}}
-function syncAdminSafeAccounts(){try{if(typeof adminState!=='undefined'){adminState.authUsers=authDb.users.map(safeUser);saveAdmin()}}catch(error){console.warn('Could not mirror safe account metadata.',error)}}
-function saveDb(){localStorage.setItem(AUTH_KEY,JSON.stringify(authDb));syncAdminSafeAccounts()}
-function audit(action,targetUser,details=''){authDb.audit.unshift({id:'AUD-'+Date.now()+'-'+Math.random().toString(36).slice(2,7),at:nowIso(),actorId:currentUser?.id||'SYSTEM',action,targetUserId:targetUser?.id||'',details});authDb.audit=authDb.audit.slice(0,200);saveDb();try{if(typeof addAdminActivity==='function')addAdminActivity(details||action)}catch(error){}}
-async function ensureDb(){loadDb();let admin=authDb.users.find(user=>user.role==='admin'&&user.username.toLowerCase()===ADMIN_USERNAME);if(!admin){admin={id:'USR-ADMIN-001',accountId:'ACC-ADMIN-001',role:'admin',participantId:'',username:ADMIN_USERNAME,displayName:'研究管理员',status:'active',credential:await createCredential(ADMIN_PASSWORD),createdAt:nowIso(),lastLoginAt:null,passwordChangedAt:null,mustChangePassword:false,loginCount:0,source:'seeded_demo'};authDb.users.unshift(admin);authDb.sequence=Math.max(authDb.sequence,1);authDb.audit.unshift({id:'AUD-SEED',at:nowIso(),actorId:'SYSTEM',action:'seed_admin',targetUserId:admin.id,details:'已建立演示管理员账号'})}saveDb()}
-const normalizeUsername=value=>String(value||'').trim().toLowerCase();
-function usernameProblem(username){if(!/^[a-zA-Z0-9_-]{4,24}$/.test(username))return'用户名需为4–24位字母、数字、下划线或短横线。';if(authDb.users.some(user=>user.username.toLowerCase()===username.toLowerCase()))return'该用户名已被使用。';return''}
-function passwordProblem(password){if(password.length<8)return'密码至少需要8位。';if(!/[A-Za-z]/.test(password)||!/[0-9]/.test(password))return'密码需要同时包含字母和数字。';return''}
-function nextParticipantId(){const nums=authDb.users.filter(user=>user.role==='participant').map(user=>Number(String(user.participantId||'').match(/(\d+)$/)?.[1]||0));return'MIED-'+String(Math.max(0,...nums)+1).padStart(3,'0')}
-function nextAccountId(){authDb.sequence=(Number(authDb.sequence)||0)+1;return'ACC-'+String(authDb.sequence).padStart(4,'0')}
-function setStatus(id,text,type='error'){const node=el(id);if(!node)return;node.textContent=text||'';node.classList.toggle('success',type==='success')}
-function setBusy(button,busy,label){if(!button)return;button.disabled=busy;if(label)button.textContent=busy?'处理中…':label}
-function switchAuthTab(mode){const login=mode==='login';el('authLoginTab').classList.toggle('active',login);el('authRegisterTab').classList.toggle('active',!login);el('authLoginForm').classList.toggle('auth-hidden',!login);el('authRegisterForm').classList.toggle('auth-hidden',login);el('authRegistrationSuccess').classList.add('auth-hidden');el('authPanelTitle').textContent=login?'欢迎回来':'创建参与者账号';el('authPanelSubtitle').textContent=login?'登录后进入对应的参与者端或研究后台。':'完成注册后，再使用新账号登录参与者端。';setStatus('authLoginStatus','');setStatus('authRegisterStatus','')}
-function hideProductViews(){['launcher','appWrap','adminWrap','mobileNav','adminMobileNav','ruiAdminHost'].forEach(id=>el(id)?.classList.add('hidden'))}
-function showAuth(message='',tab='login'){currentUser=null;hideProductViews();el('authShell').classList.remove('auth-hidden');document.body.classList.add('auth-locked');switchAuthTab(tab);if(message)setStatus(tab==='register'?'authRegisterStatus':'authLoginStatus',message,message.includes('成功')?'success':'error');setTimeout(()=>el(tab==='register'?'authRegisterName':'authLoginUsername')?.focus(),30)}
-function hideAuth(){el('authShell').classList.add('auth-hidden');document.body.classList.remove('auth-locked')}
-function writeSession(user){localStorage.setItem(SESSION_KEY,JSON.stringify({userId:user.id,createdAt:Date.now(),expiresAt:Date.now()+SESSION_MS}))}
-function clearSession(){localStorage.removeItem(SESSION_KEY)}
-function sessionUser(){try{const session=JSON.parse(localStorage.getItem(SESSION_KEY)||'null');if(!session||Date.now()>session.expiresAt){clearSession();return null}const user=authDb.users.find(item=>item.id===session.userId);return user?.status==='active'?user:null}catch(error){clearSession();return null}}
-function compatibilityStatus(user){try{if(user?.role!=='participant'||typeof adminState==='undefined')return;const account=Object.values(adminState.userAccounts||{}).find(item=>item.participantId===user.participantId);if(account){account.status=user.status;account.username=user.username;account.lastLogin=user.lastLoginAt?formatDate(user.lastLoginAt):'尚未登录';saveAdmin()}}catch(error){}}
-function ensureIdentityControls(){
-  const launchHead=document.querySelector('.launch-head');
-  if(launchHead&&!el('authLauncherIdentity')){const chip=document.createElement('div');chip.className='auth-identity-chip';chip.id='authLauncherIdentity';chip.innerHTML='<div class="auth-identity-avatar" id="authLauncherAvatar">我</div><div class="auth-identity-text"><b id="authLauncherName">参与者</b><span id="authLauncherId"></span></div><button class="auth-chip-action" id="authLauncherAccount" type="button">账户设置</button><button class="auth-chip-action logout" id="authLauncherLogout" type="button">退出</button>';launchHead.insertBefore(chip,el('openAdmin'))}
-  const topActions=document.querySelector('#appWrap .top-actions');if(topActions&&!el('authTopAccount')){const button=document.createElement('button');button.id='authTopAccount';button.className='auth-top-account';button.type='button';button.textContent='账户';topActions.insertBefore(button,topActions.firstChild)}
-  el('authLauncherAccount')?.addEventListener('click',openAccountModal);el('authTopAccount')?.addEventListener('click',openAccountModal);el('authLauncherLogout')?.addEventListener('click',()=>logout('已退出参与者账号。'));
-}
-function updateIdentity(user){ensureIdentityControls();const initial=(user.displayName||user.username||'我').trim().slice(0,1);if(el('authLauncherAvatar'))el('authLauncherAvatar').textContent=initial;if(el('authLauncherName'))el('authLauncherName').textContent=user.displayName||user.username;if(el('authLauncherId'))el('authLauncherId').textContent=user.participantId||user.username;const adminName=document.querySelector('.admin-user p b'),adminUsername=document.querySelector('.admin-user p span');if(user.role==='admin'){if(adminName)adminName.textContent=user.displayName||'研究管理员';if(adminUsername)adminUsername.textContent=user.username}}
-function enterForUser(user){
-  currentUser=user;writeSession(user);hideAuth();updateIdentity(user);compatibilityStatus(user);
-  if(user.role==='admin'){
-    el('launcher')?.classList.add('hidden');el('appWrap')?.classList.add('hidden');
-    el('adminWrap')?.classList.add('hidden');el('adminMobileNav')?.classList.add('hidden');
-    el('ruiAdminHost')?.classList.remove('hidden');
-    const ruiFrame=el('ruiAdminFrame');if(ruiFrame?.contentWindow?.MIEDRuiAdmin?.refresh)ruiFrame.contentWindow.MIEDRuiAdmin.refresh();
-    renderAdminAuthAccounts();
-  }else{
-    el('ruiAdminHost')?.classList.add('hidden');
-    el('adminWrap')?.classList.add('hidden');el('adminMobileNav')?.classList.add('hidden');
-    el('appWrap')?.classList.add('hidden');el('mobileNav')?.classList.add('hidden');
-    el('launcher')?.classList.remove('hidden');
-    if(user.mustChangePassword)setTimeout(()=>openAccountModal(true),160);
+  const V20_RESET_MARKER='miedAiAssessmentReset20260811V20';
+  const V20_MULTI_SCALES=new Set(['FFMQ','PTGI','CAMSR','SCS','MSPSS']);
+  const V20_SCS_REVERSED=new Set(['nonjudgeSelf','isolation','overid']);
+
+  function tiedDimensions(items,mode){
+    if(!items.length)return[];
+    const target=Math[mode](...items.map(item=>item.score));
+    return items.filter(item=>Math.abs(item.score-target)<1e-9);
   }
-}
-function enterParticipantPreview(){
-  if(!currentUser||currentUser.role!=='admin')return;
-  el('ruiAdminHost')?.classList.add('hidden');
-  el('adminWrap')?.classList.add('hidden');el('adminMobileNav')?.classList.add('hidden');
-  el('appWrap')?.classList.add('hidden');el('mobileNav')?.classList.add('hidden');
-  el('launcher')?.classList.remove('hidden');updateIdentity(currentUser);
-  toast('已进入参与者端，可通过“研究团队后台”返回后台。');
-}
-function logout(message='已安全退出。'){clearSession();currentUser=null;showAuth(message,'login')}
-async function handleLogin(event){
-  event.preventDefault();const button=el('authLoginSubmit'),username=normalizeUsername(el('authLoginUsername').value),password=el('authLoginPassword').value;setStatus('authLoginStatus','');
-  if(!username||!password){setStatus('authLoginStatus','请输入用户名和密码。');return}const user=authDb.users.find(item=>item.username.toLowerCase()===username);if(!user){setStatus('authLoginStatus','用户名或密码不正确。');return}if(user.status==='paused'){setStatus('authLoginStatus','该账号已被研究团队暂停使用。');return}if(user.status==='cancelled'){setStatus('authLoginStatus','该账号已注销，无法登录。');return}
-  setBusy(button,true,'登录系统');let ok=false;try{ok=await verifyPassword(user,password)}catch(error){console.error(error)}setBusy(button,false,'登录系统');if(!ok){setStatus('authLoginStatus','用户名或密码不正确。');audit('login_failed',user,`${user.username} 登录失败`);return}
-  user.lastLoginAt=nowIso();user.loginCount=(Number(user.loginCount)||0)+1;currentUser=user;audit('login_success',user,`${user.username} 已登录`);enterForUser(user);el('authLoginPassword').value='';
-}
-async function handleRegistration(event){
-  event.preventDefault();const button=el('authRegisterSubmit'),displayName=String(el('authRegisterName').value||'').trim(),username=normalizeUsername(el('authRegisterUsername').value),password=el('authRegisterPassword').value,confirmPassword=el('authRegisterConfirm').value;setStatus('authRegisterStatus','');
-  if(!displayName){setStatus('authRegisterStatus','请填写一个称呼或昵称。');return}const userIssue=usernameProblem(username);if(userIssue){setStatus('authRegisterStatus',userIssue);return}const passIssue=passwordProblem(password);if(passIssue){setStatus('authRegisterStatus',passIssue);return}if(password!==confirmPassword){setStatus('authRegisterStatus','两次输入的密码不一致。');return}if(!el('authRegisterAcknowledge').checked){setStatus('authRegisterStatus','请先确认不会录入真实敏感信息。');return}
-  setBusy(button,true,'创建参与者账号');const user={id:'USR-'+Date.now()+'-'+Math.random().toString(36).slice(2,7),accountId:nextAccountId(),role:'participant',participantId:nextParticipantId(),username,displayName,status:'active',credential:await createCredential(password),createdAt:nowIso(),lastLoginAt:null,passwordChangedAt:null,mustChangePassword:false,loginCount:0,source:'self_registration'};authDb.users.push(user);audit('participant_registered',user,`${user.participantId} 已自主注册账号`);setBusy(button,false,'创建参与者账号');
-  el('authRegisterForm').classList.add('auth-hidden');const success=el('authRegistrationSuccess');success.classList.remove('auth-hidden');success.innerHTML=`<div class="auth-success-card"><b>账号创建成功</b><p>系统分配的参与者编号为 <code>${escapeHtml(user.participantId)}</code>。请使用用户名 <code>${escapeHtml(user.username)}</code> 和刚才设置的密码登录。</p><button class="auth-submit" id="authSuccessLogin" type="button">返回登录</button></div>`;el('authSuccessLogin').onclick=()=>{switchAuthTab('login');el('authLoginUsername').value=user.username;el('authLoginPassword').focus()};el('authRegisterPassword').value='';el('authRegisterConfirm').value='';renderAdminAuthAccounts();
-}
-function openAccountModal(forceChange=false){if(!currentUser||currentUser.role!=='participant')return;const user=currentUser;el('authAccountInfo').innerHTML=`<div class="auth-account-info"><small>参与者编号</small><b>${escapeHtml(user.participantId)}</b></div><div class="auth-account-info"><small>登录用户名</small><b>${escapeHtml(user.username)}</b></div><div class="auth-account-info"><small>称呼或昵称</small><b>${escapeHtml(user.displayName)}</b></div><div class="auth-account-info"><small>最近登录</small><b>${escapeHtml(formatDate(user.lastLoginAt))}</b></div>`;el('authMustChangeBanner').classList.toggle('auth-hidden',!user.mustChangePassword);el('authCloseAccount').disabled=forceChange&&user.mustChangePassword;setStatus('authChangeStatus','');['authCurrentPassword','authNewPassword','authConfirmPassword'].forEach(id=>el(id).value='');showModal('authAccountModal');setTimeout(()=>el('authCurrentPassword').focus(),80)}
-async function handlePasswordChange(event){
-  event.preventDefault();if(!currentUser)return;const button=el('authChangeSubmit'),current=el('authCurrentPassword').value,next=el('authNewPassword').value,confirm=el('authConfirmPassword').value;setStatus('authChangeStatus','');if(!await verifyPassword(currentUser,current)){setStatus('authChangeStatus','当前密码不正确。');return}const issue=passwordProblem(next);if(issue){setStatus('authChangeStatus',issue);return}if(next!==confirm){setStatus('authChangeStatus','两次输入的新密码不一致。');return}if(current===next){setStatus('authChangeStatus','新密码不能与当前密码相同。');return}setBusy(button,true,'保存新密码');currentUser.credential=await createCredential(next);currentUser.passwordChangedAt=nowIso();currentUser.mustChangePassword=false;audit('password_changed',currentUser,`${currentUser.participantId||currentUser.username} 已修改密码`);setBusy(button,false,'保存新密码');el('authMustChangeBanner').classList.add('auth-hidden');el('authCloseAccount').disabled=false;setStatus('authChangeStatus','密码已更新。退出后只能使用新密码登录。','success');['authCurrentPassword','authNewPassword','authConfirmPassword'].forEach(id=>el(id).value='');renderAdminAuthAccounts();
-}
-function configureAdminAccountPage(){
-  const page=el('admin-accounts');if(!page)return;const head=page.querySelector('.admin-page-head');if(head){head.querySelector('span').textContent='账户与登录';head.querySelector('h2').textContent='参与者账号管理';head.querySelector('p').textContent='查看自主注册账号，管理登录状态、临时密码及最近登录记录；后台不显示任何原始密码。'}
-  if(el('createUserAccount'))el('createUserAccount').textContent='新建参与者账号';const toolbar=page.querySelector('.admin-toolbar');if(toolbar&&!el('authExportAccounts'))toolbar.insertAdjacentHTML('beforeend','<button class="admin-light" id="authExportAccounts" type="button">导出账户清单</button>');if(toolbar&&!el('authAccountAdminSummary'))toolbar.insertAdjacentHTML('beforebegin','<div class="auth-account-admin-summary" id="authAccountAdminSummary"></div>');const row=page.querySelector('thead tr');if(row)row.innerHTML='<th>账号</th><th>参与者编号</th><th>用户名与称呼</th><th>创建时间</th><th>最近登录</th><th>密码更新</th><th>状态</th><th>操作</th>';
-  if(el('accountSearch')){el('accountSearch').placeholder='搜索账号、用户名、称呼或参与者编号';el('accountSearch').oninput=renderAdminAuthAccounts}if(el('accountStatusFilter'))el('accountStatusFilter').onchange=renderAdminAuthAccounts;if(el('createUserAccount'))el('createUserAccount').onclick=()=>{setStatus('authAdminCreateStatus','');el('authAdminCreateForm').reset();showModal('authAdminCreateModal')};if(el('authExportAccounts'))el('authExportAccounts').onclick=exportAccountsCsv;adminTitles.accounts='账户与登录';
-}
-function renderAdminAuthAccounts(){
-  const body=el('accountTableBody');if(!body)return;configureAdminAccountPage();const query=normalizeUsername(el('accountSearch')?.value||''),status=el('accountStatusFilter')?.value||'all';const list=authDb.users.filter(user=>(status==='all'||user.status===status)&&(!query||`${user.accountId} ${user.participantId||''} ${user.username} ${user.displayName} ${user.role}`.toLowerCase().includes(query))).sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
-  const participants=authDb.users.filter(user=>user.role==='participant'),active=participants.filter(user=>user.status==='active').length,paused=participants.filter(user=>user.status==='paused').length,recent=participants.filter(user=>user.lastLoginAt&&Date.now()-new Date(user.lastLoginAt).getTime()<604800000).length;if(el('authAccountAdminSummary'))el('authAccountAdminSummary').innerHTML=[[participants.length,'参与者账号'],[active,'正常使用'],[paused,'暂停使用'],[recent,'近7日登录']].map(([value,label])=>`<div><small>${label}</small><b>${value}</b></div>`).join('');
-  body.innerHTML=list.map(user=>`<tr><td data-label="账号"><b>${escapeHtml(user.accountId)}</b><span class="auth-role-pill ${user.role}">${user.role==='admin'?'研究管理员':'参与者'}</span></td><td data-label="参与者编号">${escapeHtml(user.participantId||'—')}</td><td data-label="用户名与称呼"><b>${escapeHtml(user.username)}</b><span>${escapeHtml(user.displayName)}</span></td><td data-label="创建时间"><span class="auth-account-meta">${escapeHtml(formatDate(user.createdAt))}</span></td><td data-label="最近登录"><span class="auth-account-meta">${escapeHtml(formatDate(user.lastLoginAt))}<span>登录 ${Number(user.loginCount)||0} 次</span></span></td><td data-label="密码更新">${user.passwordChangedAt?escapeHtml(formatDate(user.passwordChangedAt)):(user.mustChangePassword?'首次登录待修改':'尚未修改')}</td><td data-label="状态"><span class="auth-status-pill ${user.status}">${user.status==='active'?'正常使用':user.status==='paused'?'已暂停':'已注销'}</span></td><td data-label="操作"><div class="auth-account-actions"><button data-auth-admin-action="reset" data-user-id="${user.id}" ${user.role==='admin'?'disabled':''}>重置密码</button><button class="warn" data-auth-admin-action="toggle" data-user-id="${user.id}" ${user.role==='admin'?'disabled':''}>${user.status==='paused'?'恢复':'暂停'}</button><button class="danger" data-auth-admin-action="cancel" data-user-id="${user.id}" ${user.role==='admin'||user.status==='cancelled'?'disabled':''}>注销</button></div></td></tr>`).join('')||'<tr><td colspan="8">没有符合条件的账号。</td></tr>';body.querySelectorAll('[data-auth-admin-action]').forEach(button=>button.onclick=()=>handleAdminAccountAction(button.dataset.authAdminAction,button.dataset.userId));
-}
-async function handleAdminAccountAction(action,userId){
-  const user=authDb.users.find(item=>item.id===userId);if(!user||user.role==='admin')return;
-  if(action==='toggle'){if(user.status==='cancelled'){toast('已注销账号不能恢复。');return}user.status=user.status==='paused'?'active':'paused';compatibilityStatus(user);audit('account_status_changed',user,`${user.participantId} 已${user.status==='paused'?'暂停':'恢复'}使用`);renderAdminAuthAccounts();toast(`账号已${user.status==='paused'?'暂停':'恢复'}。`);return}
-  if(action==='cancel'){if(confirm(`确认注销 ${user.participantId}（${user.username}）？研究记录会保留，但该账号不能再登录。`)){user.status='cancelled';compatibilityStatus(user);audit('account_cancelled',user,`${user.participantId} 账号已注销`);renderAdminAuthAccounts();toast('账号已注销。')}return}
-  if(action==='reset'){if(!confirm(`为 ${user.participantId} 生成新的临时密码？原密码将立即失效。`))return;const temp='MIED-Reset-'+String(Math.floor(1000+Math.random()*9000))+'!';user.credential=await createCredential(temp);user.passwordChangedAt=nowIso();user.mustChangePassword=true;audit('password_reset',user,`${user.participantId} 密码已由管理员重置`);showTemporaryPassword(user,temp,'密码已重置');renderAdminAuthAccounts()}
-}
-async function handleAdminCreate(event){event.preventDefault();const displayName=String(el('authAdminCreateName').value||'').trim(),username=normalizeUsername(el('authAdminCreateUsername').value);setStatus('authAdminCreateStatus','');if(!displayName){setStatus('authAdminCreateStatus','请填写称呼或昵称。');return}const issue=usernameProblem(username);if(issue){setStatus('authAdminCreateStatus',issue);return}const temp='MIED-Start-'+String(Math.floor(1000+Math.random()*9000))+'!';const user={id:'USR-'+Date.now()+'-'+Math.random().toString(36).slice(2,7),accountId:nextAccountId(),role:'participant',participantId:nextParticipantId(),username,displayName,status:'active',credential:await createCredential(temp),createdAt:nowIso(),lastLoginAt:null,passwordChangedAt:null,mustChangePassword:true,loginCount:0,source:'admin_created'};authDb.users.push(user);audit('admin_created_participant',user,`${user.participantId} 由管理员创建`);hideModal('authAdminCreateModal');showTemporaryPassword(user,temp,'参与者账号已创建');renderAdminAuthAccounts()}
-function showTemporaryPassword(user,password,title){lastTempPassword=password;el('authTempPasswordTitle').textContent=title;el('authTempPasswordMessage').textContent=`${user.participantId} · ${user.username} 的一次性临时密码如下。后台关闭后不再显示。`;el('authTempPasswordValue').textContent=password;showModal('authTempPasswordModal')}
-async function copyText(text){try{await navigator.clipboard.writeText(text);return true}catch(error){const area=document.createElement('textarea');area.value=text;document.body.appendChild(area);area.select();const ok=document.execCommand('copy');area.remove();return ok}}
-function exportAccountsCsv(){const rows=[['account_id','role','participant_id','username','display_name','status','created_at','last_login_at','password_changed_at','must_change_password','login_count'],...authDb.users.map(user=>[user.accountId,user.role,user.participantId||'',user.username,user.displayName,user.status,user.createdAt,user.lastLoginAt||'',user.passwordChangedAt||'',String(!!user.mustChangePassword),String(Number(user.loginCount)||0)])];const csv=rows.map(row=>row.map(value=>`"${String(value).replace(/"/g,'""')}"`).join(',')).join('\n');downloadFile('mied_demo_accounts.csv','\ufeff'+csv,'text/csv;charset=utf-8');audit('accounts_exported',currentUser,'已导出演示账户清单');toast('账户清单已导出。')}
-function bindAuthUi(){
-  el('authLoginTab').onclick=()=>switchAuthTab('login');el('authRegisterTab').onclick=()=>switchAuthTab('register');el('authLoginForm').onsubmit=handleLogin;el('authRegisterForm').onsubmit=handleRegistration;el('authFillAdmin').onclick=()=>{switchAuthTab('login');el('authLoginUsername').value=ADMIN_USERNAME;el('authLoginPassword').value=ADMIN_PASSWORD;el('authLoginPassword').focus()};
-  document.querySelectorAll('[data-auth-reveal]').forEach(button=>button.onclick=()=>{const input=el(button.dataset.authReveal),show=input.type==='password';input.type=show?'text':'password';button.textContent=show?'隐藏':'显示'});
-  el('authResetDemo').onclick=()=>{if(confirm('确认清空本浏览器中的注册账号、登录记录和账户管理操作？研究功能的其他演示数据不会被删除。')){localStorage.removeItem(AUTH_KEY);localStorage.removeItem(SESSION_KEY);location.reload()}};
-  el('authChangePasswordForm').onsubmit=handlePasswordChange;el('authCloseAccount').onclick=()=>hideModal('authAccountModal');el('authAdminCreateForm').onsubmit=handleAdminCreate;el('authAdminCreateClose').onclick=()=>hideModal('authAdminCreateModal');el('authCloseTempPassword').onclick=()=>{lastTempPassword='';hideModal('authTempPasswordModal')};el('authCopyTempPassword').onclick=async()=>{if(await copyText(lastTempPassword))toast('临时密码已复制。')};
-  if(el('adminLogout'))el('adminLogout').onclick=()=>logout('已退出研究后台。');if(el('adminBackHome'))el('adminBackHome').onclick=enterParticipantPreview;if(el('openAdmin'))el('openAdmin').onclick=()=>{if(currentUser?.role==='admin')enterForUser(currentUser);else logout('请使用研究团队账号登录后台。')};
-}
-function patchAdminRenderers(){configureAdminAccountPage();const basePage=renderAdminPage;renderAdminPage=function(id){basePage(id);if(id==='accounts')renderAdminAuthAccounts()};const baseAll=renderAdminAll;renderAdminAll=function(){baseAll();renderAdminAuthAccounts()}}
-async function init(){hideProductViews();document.body.classList.add('auth-locked');await ensureDb();ensureIdentityControls();configureAdminAccountPage();patchAdminRenderers();bindAuthUi();renderAdminAuthAccounts();const restored=sessionUser();if(restored){currentUser=restored;enterForUser(restored)}else showAuth('','login')}
-window.MIEDAuthDemo={openEntry:kind=>{
-  const message=kind==='research'?'请使用研究团队账户登录。':'请登录或注册参与者账户。';
-  if(!currentUser){showAuth(message,'login');return}
-  if(kind==='research'&&currentUser.role!=='admin'){showAuth('当前账户不是研究团队账户。','login');return}
-  if(kind==='participant'&&currentUser.role==='admin'){enterParticipantPreview();return}
-  enterForUser(currentUser)
-},getCurrentUser:()=>currentUser?safeUser(currentUser):null,getUsers:()=>authDb.users.map(safeUser),getAudit:()=>authDb.audit.slice(),logout,showLogin:message=>showAuth(message||'','login'),openAccount:openAccountModal,version:'18.0-demo'};
-init().catch(error=>{console.error('MIED account demo failed to initialize.',error);showAuth('账户模块初始化失败，请刷新页面重试。','login')});
+  function dimensionNames(items){
+    const names=items.map(item=>`“${item.label}”`);
+    if(names.length<2)return names[0]||'';
+    return names.slice(0,-1).join('、')+'和'+names[names.length-1];
+  }
+  function prepareScsRadarLabels(){
+    facetsFor('SCS').forEach(facet=>{
+      if(V20_SCS_REVERSED.has(facet.id))facet.labelLines=[facet.label,'（总分反向）'];
+    });
+  }
+  function mergePtgiSummary(scores,facets){
+    const items=facets.filter(facet=>Number.isFinite(Number(scores[facet.id]))).map(facet=>({...facet,score:Number(scores[facet.id])}));
+    if(!items.length)return;
+    const top=tiedDimensions(items,'max'),bottom=tiedDimensions(items,'min'),balanced=top.length===items.length;
+    const copy=balanced
+      ? `五个方向得分一致：${dimensionNames(top)}。当前没有单一方向主导变化画像；成长体验仍可与悲伤、思念和困难同时存在。`
+      : `本次感受相对明显的是${dimensionNames(top)}；相对较少出现的是${dimensionNames(bottom)}。变化较少不代表适应失败，也不需要刻意促成；成长体验仍可与悲伤、思念和困难同时存在。`;
+    $('profileSummary').innerHTML=`<b>本次变化画像</b><span>${copy}</span>`;
+    $('patternFeedback').innerHTML='';
+  }
+  function integrateDimensionMeanings(scaleKey,scores){
+    if(!V20_MULTI_SCALES.has(scaleKey))return;
+    const facets=facetsFor(scaleKey).filter(facet=>Number.isFinite(Number(scores[facet.id])));
+    const cards=[...document.querySelectorAll('#feedbackList .feedback.dimension')];
+    cards.forEach((card,index)=>{
+      const facet=facets[index],body=card.querySelector('.dimension-body'),interpretation=body?.querySelector('p');
+      if(!facet||!body||!interpretation)return;
+      const heading=card.querySelector('.dimension-title b');
+      if(scaleKey==='SCS'&&V20_SCS_REVERSED.has(facet.id)&&heading&&!heading.textContent.includes('总分反向')){
+        heading.textContent=heading.textContent.replace(facet.label,`${facet.label}（总分反向）`);
+      }
+      interpretation.classList.add('dimension-interpretation');
+      interpretation.insertAdjacentHTML('afterbegin','<b>本次结果：</b>');
+      const meaning=document.createElement('p');
+      meaning.className='dimension-meaning';
+      meaning.innerHTML=`<b>维度含义：</b>${esc(facet.meaning||'用于描述该维度近期出现的程度。')}`;
+      body.insertBefore(meaning,interpretation);
+    });
+  }
+  function finalizeAssessmentResult(){
+    const result=$('resultContent'),guide=$('dimensionGuide');
+    if(guide){guide.innerHTML='';guide.classList.add('hidden')}
+    result?.classList.toggle('demographic-record',activeScale==='DEMO');
+    if(activeScale==='DEMO'){
+      if($('feedbackDisclaimer'))$('feedbackDisclaimer').textContent='';
+      return;
+    }
+    const scores=makeScores(activeScale);
+    if(!scores)return;
+    const facets=facetsFor(activeScale);
+    integrateDimensionMeanings(activeScale,scores);
+    if(activeScale==='PTGI')mergePtgiSummary(scores,facets);
+    if(activeScale==='SCS'){
+      const note=$('overallScore')?.querySelector('.overall-score span');
+      if(note)note.textContent='总分按标准计分，将自我批判、孤立感和自我卷入的题目反向处理。雷达图保留三个负向维度的原始方向，因此分数越高表示相应困难体验越明显。';
+    }
+  }
+
+  prepareScsRadarLabels();
+  const drawRadarBeforeV20=drawRadar;
+  drawRadar=function(showFeedback=true){
+    prepareScsRadarLabels();
+    drawRadarBeforeV20(showFeedback);
+    finalizeAssessmentResult();
+  };
+
+  if(localStorage.getItem(V20_RESET_MARKER)!=='done'){
+    state.assessment={};
+    state.assessmentFeedbackGenerated={};
+    state.ffmqFeedbackGenerated=false;
+    state.assessmentByWave=emptyAssessmentWaves();
+    state.assessmentRecords=[];
+    state.activeAssessmentWave='T0';
+    activeWave='T0';
+    activeScale=availableScaleKeys('T0')[0];
+    persist();
+    localStorage.setItem(V20_RESET_MARKER,'done');
+  }
+
+  document.documentElement.dataset.assessmentVersion='v20';
+  renderWaveTabs();
+  renderScales();
+  drawRadar(false);
 })();
 </script>
 
-<script id="miedInitialScript">
-function openMiedEntry(kind){
-  const initial=document.getElementById('miedInitial');
-  if(initial)initial.hidden=true;
-  document.body.classList.remove('mied-entry-open');
-  const message=kind==='research'?'请使用研究团队账户登录。':'请登录或注册参与者账户。';
-  if(window.MIEDAuthDemo?.openEntry){
-    window.MIEDAuthDemo.openEntry(kind);
-    return;
-  }
-  if(typeof currentUser!=='undefined'&&currentUser){
-    if(kind==='research'&&currentUser.role!=='admin'){
-      if(typeof showAuth==='function')showAuth('当前账户不是研究团队账户。','login');
-      return;
-    }
-    if(kind==='participant'&&currentUser.role==='admin'&&typeof enterParticipantPreview==='function'){
-      enterParticipantPreview();
-      return;
-    }
-    if(typeof enterForUser==='function')enterForUser(currentUser);
-  }else if(typeof showAuth==='function'){
-    showAuth(message,'login');
-  }
-}
-document.querySelectorAll('[data-mied-entry]').forEach(button=>button.addEventListener('click',()=>openMiedEntry(button.dataset.miedEntry)));
-window.addEventListener('message',event=>{
-  const frame=document.getElementById('ruiAdminFrame');
-  if(event.origin!==location.origin||!frame)return;
-  if(event.data?.type==='mied:return-participant')window.MIEDAuthDemo?.openEntry('participant');
-  if(event.data?.type==='mied:logout')window.MIEDAuthDemo?.logout('已退出研究后台。');
-});
-window.MIEDRuiBridge={openEntry:openMiedEntry,version:'rui-0806'};
-</script>
+<style>
+/* v21: one gentle, integrated summary for every multidimensional scale */
+#resultContent.v21-integrated-summary #patternFeedback{display:none!important}
+#resultContent.v21-integrated-summary #profileSummary{background:#f8fbf9;border-color:#dbe7e1}
+</style>
+<script>
+(() => {
+  const V21_RESET_MARKER='miedAiAssessmentReset20260812V22';
+  const V21_MULTI_SCALES=new Set(['FFMQ','PTGI','CAMSR','SCS','MSPSS']);
+  const V21_POSITIVE_SCS=new Set(['kindness','humanity','mindfulness']);
 
+  function v21Tied(items,mode){
+    if(!items.length)return[];
+    const target=Math[mode](...items.map(item=>item.score));
+    return items.filter(item=>Math.abs(item.score-target)<1e-9);
+  }
+  function v21Names(items){
+    const names=items.map(item=>`“${item.label}”`);
+    if(names.length<2)return names[0]||'';
+    return names.slice(0,-1).join('、')+'和'+names[names.length-1];
+  }
+  function v21IntegratedSummary(scaleKey,scores){
+    const items=facetsFor(scaleKey)
+      .filter(facet=>Number.isFinite(Number(scores[facet.id])))
+      .map(facet=>({...facet,score:Number(scores[facet.id])}));
+    if(!items.length)return null;
+    const top=v21Tied(items,'max'),bottom=v21Tied(items,'min'),balanced=top.length===items.length;
+
+    if(scaleKey==='FFMQ'){
+      return{
+        title:'如何理解本次正念画像',
+        text:balanced
+          ? `五个维度得分一致：${v21Names(top)}。这表示本次作答中没有特别突出的单一环节；不同情境下的实际感受仍可能有所变化，可以按当下需要选择最容易开始的一小步。`
+          : `本次较常出现的是${v21Names(top)}，${v21Names(bottom)}则可能在近期某些情境中不那么容易出现。可以把这种差异看作理解当下状态的线索，而不是能力高低；若想练习，可以从一个最贴近目前需要的环节轻轻开始。`
+      };
+    }
+    if(scaleKey==='PTGI'){
+      return{
+        title:'如何理解本次变化画像',
+        text:balanced
+          ? `五个变化方向得分一致：${v21Names(top)}，本次没有单一方向特别突出。成长体验可以与悲伤、思念和困难同时存在，也不需要要求自己在每个方向都发生变化。`
+          : `本次感受相对明显的是${v21Names(top)}，相对较少出现的是${v21Names(bottom)}。这些差异只是呈现亲人离世后不同方面的变化程度；变化较少不代表适应得不好，也不需要刻意促成，成长与痛苦仍可以同时存在。`
+      };
+    }
+    if(scaleKey==='CAMSR'){
+      return{
+        title:'如何理解本次正念过程',
+        text:balanced
+          ? `四个环节得分一致：${v21Names(top)}。本次没有特别突出或需要优先调整的单一环节，可以依照当下需要任选一个方向继续观察。`
+          : `本次较容易出现的是${v21Names(top)}，${v21Names(bottom)}在近期压力或情绪较强时可能需要更多支持。它们并不是“短板”；如果愿意练习，可以从其中一个环节开始，给自己多一点觉察和停顿的空间。`
+      };
+    }
+    if(scaleKey==='SCS'){
+      const positives=items.filter(item=>V21_POSITIVE_SCS.has(item.id));
+      const difficulties=items.filter(item=>!V21_POSITIVE_SCS.has(item.id));
+      const topPositive=v21Tied(positives,'max'),topDifficulty=v21Tied(difficulties,'max');
+      return{
+        title:'如何理解本次自我回应画像',
+        text:`三个正向维度中，本次相对较常出现的是${v21Names(topPositive)}；三个负向维度中，${v21Names(topDifficulty)}的相关感受可能相对多一些。这里呈现的是近期面对困难时的回应方式，不是对你的评价。若这些感受让你辛苦，可以先温和地留意它们通常何时出现，再尝试给自己一句更理解、更少责备的回应。`
+      };
+    }
+    return{
+      title:'如何理解本次支持感画像',
+      text:balanced
+        ? `家人、朋友和特别之人的支持感得分一致：${v21Names(top)}。这表示本次感受到的三类支持较为接近；在不同需要下，你仍可以慢慢辨认自己更愿意联系谁。`
+        : `本次相对较容易感受到的支持来自${v21Names(top)}，来自${v21Names(bottom)}的支持感则相对少一些。这反映的是当前对支持可获得性的感受，不等同于关系好坏。若有需要，可以从一位相对安心的人和一个小而具体的请求开始，也不必勉强自己向暂时不容易靠近的关系求助。`
+    };
+  }
+  function v21ApplyIntegratedSummary(){
+    const result=$('resultContent');
+    result?.classList.toggle('v21-integrated-summary',V21_MULTI_SCALES.has(activeScale));
+    if(!V21_MULTI_SCALES.has(activeScale))return;
+    const scores=makeScores(activeScale),summary=scores&&v21IntegratedSummary(activeScale,scores);
+    if(!summary)return;
+    $('profileSummary').innerHTML=`<b>${esc(summary.title)}</b><span>${esc(summary.text)}</span>`;
+    $('patternFeedback').innerHTML='';
+  }
+
+  function v21FirstQuestion(){
+    const list=$('scaleItems');
+    if(list)list.scrollTop=0;
+    window.scrollTo({top:0,left:0,behavior:'auto'});
+    if(document.scrollingElement)document.scrollingElement.scrollTop=0;
+  }
+  function v21ScheduleFirstQuestion(){
+    requestAnimationFrame(()=>requestAnimationFrame(()=>requestAnimationFrame(v21FirstQuestion)));
+  }
+
+  const drawRadarBeforeV21=drawRadar;
+  drawRadar=function(showFeedback=true){
+    drawRadarBeforeV21(showFeedback);
+    v21ApplyIntegratedSummary();
+  };
+
+  let v21PreviousScale=activeScale;
+  const renderScalesBeforeV21=renderScales;
+  renderScales=function(){
+    const scaleBeforeRender=v21PreviousScale;
+    renderScalesBeforeV21();
+    const scaleChanged=activeScale!==scaleBeforeRender;
+    v21PreviousScale=activeScale;
+    if(scaleChanged)v21ScheduleFirstQuestion();
+  };
+
+  if(localStorage.getItem(V21_RESET_MARKER)!=='done'){
+    state.assessment={};
+    state.assessmentFeedbackGenerated={};
+    state.ffmqFeedbackGenerated=false;
+    state.assessmentByWave=emptyAssessmentWaves();
+    state.assessmentRecords=[];
+    state.activeAssessmentWave='T0';
+    activeWave='T0';
+    activeScale=availableScaleKeys('T0')[0];
+    v21PreviousScale=activeScale;
+    persist();
+    localStorage.setItem(V21_RESET_MARKER,'done');
+  }
+
+  document.documentElement.dataset.assessmentVersion='v22';
+  renderWaveTabs();
+  renderScales();
+  drawRadar(false);
+})();
+</script>
+<style>
+/* v23: questionnaire feedback is shown only after the whole measurement wave is complete */
+#assessment:not(.v23-wave-complete) .assess-layout{grid-template-columns:minmax(0,1fr)}
+#assessment:not(.v23-wave-complete) .assess-layout>.assess-card:nth-child(2){display:none!important}
+#assessment:not(.v23-wave-complete) .assess-layout>.assess-card:first-child{max-width:980px;width:100%;margin:0 auto}
+#assessment .wave-summary.v23-wave-summary{gap:16px}
+.v23-wave-summary .wave-summary-hero{padding:24px}
+.v23-completion-note{margin-top:12px;padding:11px 13px;border-radius:13px;background:rgba(255,255,255,.72);border:1px solid rgba(205,224,215,.92);color:#586c67;font-size:13px;line-height:1.6}
+.v23-feedback-grid{display:grid;gap:15px}
+.v23-feedback-card{padding:19px;border-radius:20px;background:#fff;border:1px solid var(--line);box-shadow:0 8px 22px rgba(31,47,55,.05)}
+.v23-feedback-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding-bottom:12px;margin-bottom:13px;border-bottom:1px solid #e4ece8}
+.v23-feedback-head h4{margin:0;font-size:19px}
+.v23-feedback-head span{color:var(--muted);font-size:12px;white-space:nowrap}
+.v23-radar-snapshot{display:grid;place-items:center;margin-bottom:13px;padding:12px;border-radius:17px;background:#fbfdfb;border:1px solid var(--line)}
+.v23-radar-snapshot img{display:block;width:min(100%,640px);height:auto}
+.v23-feedback-card .overall-score,.v23-feedback-card .record-status{margin-bottom:11px}
+.v23-feedback-card .profile-summary,.v23-feedback-card .pattern-card{margin-top:10px}
+.v23-feedback-card .feedback-list{margin-top:11px}
+.v23-feedback-card .feedback-disclaimer{margin-top:12px}
+.v23-feedback-card .feedback-disclaimer:empty{display:none}
+.v23-demographics-record{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 15px;border-radius:16px;background:#f8fbf9;border:1px solid #dfe9e4;color:#50655f}
+.v23-demographics-record b{display:block;font-size:15px}
+.v23-demographics-record span{display:block;margin-top:2px;color:var(--muted);font-size:13px}
+.v23-demographics-record em{font-style:normal;color:var(--teal);font-weight:850;white-space:nowrap}
+@media(max-width:760px){
+  .v23-feedback-head,.v23-demographics-record{display:block}
+  .v23-feedback-head span,.v23-demographics-record em{display:block;margin-top:5px;white-space:normal}
+}
+</style>
+<script>
+(() => {
+  const V23_RESET_MARKER='miedAiAssessmentReset20260814V23';
+  const V23_RADAR_SCALES=new Set(['FFMQ','PTGI','CAMSR','SCS','MSPSS']);
+  const V23_DISCLAIMER='本测量工具仅供您参考，用于理解自身近期体验，并非用于诊断；如需诊断或紧急帮助，请联系当地医院咨询';
+  const drawRadarBeforeV23=drawRadar;
+  const renderScalesBeforeV23=renderScales;
+  const renderWaveTabsBeforeV23=renderWaveTabs;
+  const updateAssessmentProgressBeforeV23=updateAssessmentProgress;
+  let v23Capturing=false;
+
+  function v23WaveKeys(wave){return availableScaleKeys(wave)}
+  function v23WaveComplete(wave){
+    const keys=v23WaveKeys(wave);
+    return keys.length>0&&keys.every(key=>!!getScaleEntry(key,wave).completedAt);
+  }
+  function v23FirstIncomplete(wave){return v23WaveKeys(wave).find(key=>!getScaleEntry(key,wave).completedAt)||null}
+  function v23Record(scaleKey,wave){
+    return state.assessmentRecords.find(record=>record.participantId==='MIED-001'&&record.wave===wave&&record.scaleKey===scaleKey)||null;
+  }
+  function v23Top(){
+    const reset=()=>{
+      const list=$('scaleItems');if(list)list.scrollTop=0;
+      window.scrollTo({top:0,left:0,behavior:'auto'});
+      if(document.scrollingElement)document.scrollingElement.scrollTop=0;
+    };
+    reset();requestAnimationFrame(()=>requestAnimationFrame(()=>requestAnimationFrame(reset)));
+  }
+  function v23ApplyQuestionnaireLayout(){
+    const page=$('assessment');
+    if(!page)return;
+    const complete=v23WaveComplete(activeWave);
+    page.classList.toggle('v23-wave-complete',complete);
+    if(complete)return;
+    const layout=document.querySelector('#assessment .assess-layout');
+    if(layout)layout.classList.remove('hidden');
+    const panel=$('waveSummaryPanel');if(panel)panel.classList.add('hidden');
+    const button=$('makeFeedback');
+    if(button)button.textContent=activeScale==='DEMO'?'确认提交并保存资料':'确认提交本问卷';
+    const intro=$('assessmentIntro');
+    if(intro)intro.innerHTML='<b>这是一张能力地图，不是一张成绩单。</b>请依次完成本测量时点的全部问卷。作答过程中不显示单份量表反馈；全部完成后，系统会在总结页集中呈现结果。<div class="research-privacy-note"><i>🔒</i><span><b>研究数据与隐私说明</b>所有作答数据仅供研究使用，并按研究编号进行保存。研究团队将依据研究伦理与数据管理规范保护资料，不会向研究团队以外的个人或机构披露可识别个人身份的信息。</span></div>';
+  }
+  function v23BindSubmit(){
+    const button=$('makeFeedback');if(!button||getScaleEntry().completedAt)return;
+    button.textContent=activeScale==='DEMO'?'确认提交并保存资料':'确认提交本问卷';
+    button.onclick=()=>{
+      if(!scaleIsComplete())return;
+      if(confirm('一旦确认提交，本问卷答案将无法更改。是否继续？'))drawRadar(true);
+    };
+  }
+  function v23CaptureFeedback(scaleKey,wave){
+    const entry=getScaleEntry(scaleKey,wave),scale=scales[scaleKey];
+    if(!entry.completedAt||scale.feedback===false)return null;
+    activeWave=wave;activeScale=scaleKey;
+    v23Capturing=true;
+    drawRadarBeforeV23(false);
+    v23Capturing=false;
+    let radar='';
+    if(V23_RADAR_SCALES.has(scaleKey)&&scale.visual==='radar'){
+      const canvas=$('radar');
+      try{if(canvas)radar=`<div class="v23-radar-snapshot"><img src="${canvas.toDataURL('image/png')}" alt="${esc(scale.short)} 维度雷达图"></div>`}catch(error){radar=''}
+    }
+    const overall=$('overallScore')?.innerHTML||'';
+    const profile=$('profileSummary')?.innerHTML||'';
+    const pattern=$('patternFeedback')?.innerHTML||'';
+    const feedback=$('feedbackList')?.innerHTML||'';
+    const disclaimer=$('feedbackDisclaimer')?.textContent?.trim()||'';
+    const record=v23Record(scaleKey,wave);
+    const completedAt=record?.completedAt||entry.completedAt;
+    return `<article class="v23-feedback-card"><div class="v23-feedback-head"><h4>${esc(scale.name)}</h4><span>完成于 ${new Date(completedAt).toLocaleString('zh-CN')}</span></div>${radar}${overall}${profile?`<div class="profile-summary">${profile}</div>`:''}${pattern?`<div class="pattern-card">${pattern}</div>`:''}${feedback?`<div class="feedback-list">${feedback}</div>`:''}${disclaimer?`<div class="feedback-disclaimer">${esc(disclaimer)}</div>`:''}</article>`;
+  }
+  function v23RenderWaveSummary(wave){
+    if(typeof window.__MIED_V24_RENDER_COMPACT__==='function')return window.__MIED_V24_RENDER_COMPACT__(wave);
+    const keys=v23WaveKeys(wave),previousScale=activeScale,previousWave=activeWave;
+    activeWave=wave;state.activeAssessmentWave=wave;persist();
+    const demographicKey=keys.find(key=>scales[key].feedback===false);
+    const cards=[];
+    keys.forEach(key=>{const card=v23CaptureFeedback(key,wave);if(card)cards.push(card)});
+    activeWave=wave;activeScale=previousWave===wave&&keys.includes(previousScale)?previousScale:keys[0];
+    const panel=$('waveSummaryPanel');if(!panel)return;
+    const demographic=demographicKey?`<div class="v23-demographics-record"><div><b>人口统计学资料已记录</b><span>该部分仅供研究匹配与统计使用，不生成个人反馈。</span></div><em>已完成</em></div>`:'';
+    panel.className='wave-summary v23-wave-summary';
+    panel.innerHTML=`<div class="wave-summary-hero"><small>${wave} · ${waveConfig[wave].name}</small><h3>本测量时点总结与反馈</h3><p>本时点的全部问卷均已完成。以下反馈集中呈现本次作答所反映的近期体验与各量表结果。</p><div class="v23-completion-note">所有问卷均已锁定，不能返回修改或重复提交。反馈用于帮助理解本次状态，不代表固定不变的能力或结论。</div></div>${demographic}<div class="v23-feedback-grid">${cards.join('')}</div><div class="wave-summary-disclaimer">${V23_DISCLAIMER}</div>`;
+    document.querySelector('#assessment .assess-layout')?.classList.add('hidden');
+    $('assessment')?.classList.add('v23-wave-complete');
+    $('waveRecordStatus').textContent=`${wave} · ${waveConfig[wave].name} · 已完成`;
+    v23Top();
+  }
+  function v23BindWaveTabs(){
+    document.querySelectorAll('[data-wave-v14]').forEach(button=>{
+      button.onclick=()=>{
+        const wave=button.dataset.waveV14;
+        if(button.disabled){toast('该测量时点尚未开放。');return}
+        activeWave=wave;state.activeAssessmentWave=wave;persist();
+        if(v23WaveComplete(wave)){renderWaveTabs();v23RenderWaveSummary(wave);return}
+        activeScale=v23FirstIncomplete(wave)||v23WaveKeys(wave)[0];
+        renderScales();drawRadar(false);v23Top();
+      };
+    });
+  }
+
+  renderWaveTabs=function(){renderWaveTabsBeforeV23();v23BindWaveTabs()};
+  updateAssessmentProgress=function(){updateAssessmentProgressBeforeV23();v23ApplyQuestionnaireLayout();v23BindSubmit()};
+  renderScales=function(){
+    renderScalesBeforeV23();
+    if(v23WaveComplete(activeWave)){v23RenderWaveSummary(activeWave);return}
+    v23ApplyQuestionnaireLayout();v23BindSubmit();
+  };
+  drawRadar=function(showFeedback=true){
+    drawRadarBeforeV23(showFeedback);
+    if(v23Capturing||!showFeedback)return;
+    if(!getScaleEntry().completedAt)return;
+    if(v23WaveComplete(activeWave)){
+      renderWaveTabs();v23RenderWaveSummary(activeWave);return;
+    }
+    const next=v23FirstIncomplete(activeWave);
+    if(next){activeScale=next;renderScales();drawRadar(false);v23Top()}
+  };
+
+  if(localStorage.getItem(V23_RESET_MARKER)!=='done'){
+    state.assessment={};
+    state.assessmentFeedbackGenerated={};
+    state.ffmqFeedbackGenerated=false;
+    state.assessmentByWave=emptyAssessmentWaves();
+    state.assessmentRecords=[];
+    state.activeAssessmentWave='T0';
+    activeWave='T0';
+    activeScale=availableScaleKeys('T0')[0];
+    persist();
+    localStorage.setItem(V23_RESET_MARKER,'done');
+  }
+
+  document.documentElement.dataset.assessmentVersion='v23';
+  renderWaveTabs();renderScales();drawRadar(false);v23Top();
+})();
+</script>
+<style>
+/* v24: compact wave overview with user-triggered scale details */
+.v24-card-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:13px;padding-top:11px;border-top:1px solid #e5ece8}
+.v24-card-actions small{color:var(--muted);font-size:11px}
+.v24-detail-button{padding:8px 11px;border-radius:11px;background:#e8f3ef;color:var(--teal);border:1px solid #cfe2db;font-weight:850;font-size:12px;white-space:nowrap}
+.v24-detail-button:hover{background:#dcece7}
+.v24-demographics-card{background:#f8fbf9}
+.v24-demographics-card .v24-card-actions{justify-content:flex-end}
+.v24-recorded-pill{padding:7px 10px;border-radius:999px;background:#edf4f1;color:#5c746d;font-size:11px;font-weight:850}
+#assessment.v24-detail-view .wave-summary{display:none!important}
+#assessment.v24-detail-view .assess-layout{display:grid!important;grid-template-columns:minmax(0,1fr)!important}
+#assessment.v24-detail-view .assess-layout>.assess-card:first-child{display:none!important}
+#assessment.v24-detail-view .assess-layout>.assess-card:nth-child(2){display:block!important;width:100%;max-width:980px;margin:0 auto}
+#assessment.v24-detail-view #nextAssessmentRow{display:none!important}
+.v24-detail-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;padding:12px 14px;border-radius:15px;background:#f4f8f6;border:1px solid #dce8e2}
+.v24-detail-toolbar span{color:var(--muted);font-size:13px}
+.v24-back-summary{padding:9px 12px;border-radius:11px;background:#fff;color:var(--teal);border:1px solid #cfe0da;font-weight:850}
+@media(max-width:760px){
+  .v24-card-actions,.v24-detail-toolbar{align-items:stretch;flex-direction:column}
+  .v24-detail-button,.v24-back-summary{width:100%}
+}
+</style>
+<script>
+(() => {
+  const V24_RESET_MARKER='miedAiAssessmentReset20260814V24';
+  const V24_DISCLAIMER='本测量工具仅供您参考，用于理解自身近期体验，并非用于诊断；如需诊断或紧急帮助，请联系当地医院咨询';
+  const renderWaveTabsBeforeV24=renderWaveTabs;
+  const renderScalesBeforeV24=renderScales;
+  const drawRadarBeforeV24=drawRadar;
+
+  function v24WaveKeys(wave){return availableScaleKeys(wave)}
+  function v24WaveComplete(wave){
+    const keys=v24WaveKeys(wave);
+    return keys.length>0&&keys.every(key=>!!getScaleEntry(key,wave).completedAt);
+  }
+  function v24Record(scaleKey,wave){
+    return state.assessmentRecords.find(record=>record.participantId==='MIED-001'&&record.wave===wave&&record.scaleKey===scaleKey)||null;
+  }
+  function v24Top(){
+    const reset=()=>{
+      const list=$('scaleItems');if(list)list.scrollTop=0;
+      window.scrollTo({top:0,left:0,behavior:'auto'});
+      if(document.scrollingElement)document.scrollingElement.scrollTop=0;
+    };
+    reset();requestAnimationFrame(()=>requestAnimationFrame(()=>requestAnimationFrame(reset)));
+  }
+  function v24ScoreLabel(scaleKey,scores){
+    const meta=scores?._meta||{};
+    if(scaleKey==='DEMO')return'资料已记录';
+    if(scaleKey==='NEGATIVE'&&!meta.present)return'本次未报告';
+    if(scaleKey==='WHO5')return`${formatScore(meta.standardized,0)} / 100`;
+    if(Number.isFinite(meta.rawTotal)&&Number.isFinite(meta.rawMax))return`${formatScore(meta.rawTotal)} / ${formatScore(meta.rawMax)}`;
+    if(Number.isFinite(meta.overall)&&Number.isFinite(meta.max))return`${formatScore(meta.overall)} / ${formatScore(meta.max)}`;
+    if(Number.isFinite(meta.overall))return formatScore(meta.overall);
+    return'已完成';
+  }
+  function v24RenderCard(scaleKey,wave){
+    const scale=scales[scaleKey],entry=getScaleEntry(scaleKey,wave),record=v24Record(scaleKey,wave),scores=record?.scores||entry.scores||{},meta=scores._meta||{};
+    const facets=facetsFor(scaleKey).filter(facet=>Number.isFinite(Number(scores[facet.id])));
+    const dimensions=facets.length?`<div class="wave-dimensions">${facets.map(facet=>`<div class="wave-dimension"><span>${esc(facet.label)}</span><b>${formatScore(scores[facet.id])}</b></div>`).join('')}</div>`:'';
+    const pct=Math.max(0,Math.min(100,Number(meta.normalized)||0));
+    const bar=scaleKey==='DEMO'?'':`<div class="wave-score-track"><i style="width:${pct}%"></i></div>`;
+    const completedAt=record?.completedAt||entry.completedAt;
+    const action=scale.feedback===false
+      ? '<span class="v24-recorded-pill">仅记录资料，不生成反馈</span>'
+      : `<button class="v24-detail-button" data-v24-detail="${esc(scaleKey)}">查看详细反馈</button>`;
+    return `<article class="wave-result-card ${scale.feedback===false?'v24-demographics-card':''}"><div class="wave-result-head"><h4>${esc(scale.name)}</h4><span>${esc(v24ScoreLabel(scaleKey,scores))}</span></div><p>${esc(scale.feedback===false?'人口统计学资料仅供研究匹配与统计使用。':scale.subtitle||scale.instruction||'本结果用于理解本次作答。')}</p>${bar}${dimensions}<div class="v24-card-actions"><small>完成于 ${new Date(completedAt).toLocaleString('zh-CN')}</small>${action}</div></article>`;
+  }
+  function v24RenderCompactSummary(wave){
+    activeWave=wave;state.activeAssessmentWave=wave;persist();
+    const panel=$('waveSummaryPanel');if(!panel)return;
+    $('assessment')?.classList.remove('v24-detail-view');
+    $('assessment')?.classList.add('v23-wave-complete');
+    panel.className='wave-summary';
+    panel.innerHTML=`<div class="wave-summary-hero"><small>${wave} · ${waveConfig[wave].name}</small><h3>本测量时点综合反馈</h3><p>以下汇总本时点已经完成的全部问卷结果。记录已锁定，只能查看，不能修改或再次提交；您可以根据需要选择某一量表查看详细反馈。</p></div><div class="wave-summary-grid">${v24WaveKeys(wave).map(key=>v24RenderCard(key,wave)).join('')}</div><div class="wave-summary-disclaimer">${V24_DISCLAIMER}</div>`;
+    document.querySelector('#assessment .assess-layout')?.classList.add('hidden');
+    $('waveRecordStatus').textContent=`${wave} · ${waveConfig[wave].name} · 已完成`;
+    panel.querySelectorAll('[data-v24-detail]').forEach(button=>button.onclick=()=>v24OpenDetail(button.dataset.v24Detail,wave));
+    v24Top();
+  }
+  function v24EnsureDetailToolbar(wave){
+    const card=document.querySelector('#assessment .assess-layout>.assess-card:nth-child(2)');if(!card)return;
+    let toolbar=$('v24DetailToolbar');
+    if(!toolbar){
+      toolbar=document.createElement('div');toolbar.id='v24DetailToolbar';toolbar.className='v24-detail-toolbar';
+      card.insertBefore(toolbar,card.firstChild);
+    }
+    toolbar.innerHTML=`<button class="v24-back-summary" id="v24BackSummary">← 返回本时点总结</button><span>${wave} · ${esc(waveConfig[wave].name)} · ${esc(scales[activeScale].short)}</span>`;
+    $('v24BackSummary').onclick=()=>v24RenderCompactSummary(wave);
+  }
+  function v24OpenDetail(scaleKey,wave){
+    activeWave=wave;activeScale=scaleKey;state.activeAssessmentWave=wave;persist();
+    renderScalesBeforeV24();
+    drawRadarBeforeV24(false);
+    v24EnsureDetailToolbar(wave);
+    const page=$('assessment'),layout=document.querySelector('#assessment .assess-layout'),panel=$('waveSummaryPanel');
+    page?.classList.add('v23-wave-complete','v24-detail-view');
+    layout?.classList.remove('hidden');panel?.classList.add('hidden');
+    v24Top();
+  }
+  function v24BindWaveTabs(){
+    document.querySelectorAll('[data-wave-v14]').forEach(button=>{
+      const inherited=button.onclick,wave=button.dataset.waveV14;
+      button.onclick=()=>{
+        $('assessment')?.classList.remove('v24-detail-view');
+        if(button.disabled){toast('该测量时点尚未开放。');return}
+        if(v24WaveComplete(wave)){
+          activeWave=wave;state.activeAssessmentWave=wave;persist();
+          renderWaveTabs();v24RenderCompactSummary(wave);return;
+        }
+        if(typeof inherited==='function')inherited.call(button);
+      };
+    });
+  }
+
+  window.__MIED_V24_RENDER_COMPACT__=v24RenderCompactSummary;
+  renderWaveTabs=function(){renderWaveTabsBeforeV24();v24BindWaveTabs()};
+  renderScales=function(){
+    $('assessment')?.classList.remove('v24-detail-view');
+    renderScalesBeforeV24();
+    if(v24WaveComplete(activeWave))v24RenderCompactSummary(activeWave);
+  };
+  drawRadar=function(showFeedback=true){
+    drawRadarBeforeV24(showFeedback);
+    if(showFeedback&&v24WaveComplete(activeWave))v24RenderCompactSummary(activeWave);
+  };
+
+  if(localStorage.getItem(V24_RESET_MARKER)!=='done'){
+    state.assessment={};
+    state.assessmentFeedbackGenerated={};
+    state.ffmqFeedbackGenerated=false;
+    state.assessmentByWave=emptyAssessmentWaves();
+    state.assessmentRecords=[];
+    state.activeAssessmentWave='T0';
+    activeWave='T0';
+    activeScale=availableScaleKeys('T0')[0];
+    persist();
+    localStorage.setItem(V24_RESET_MARKER,'done');
+  }
+
+  document.documentElement.dataset.assessmentVersion='v24';
+  renderWaveTabs();renderScales();drawRadar(false);v24Top();
+})();
+</script>
+<link rel="stylesheet" href="MIED_registration.css">
+<script src="MIED_registration.js"></script>
+<link rel="stylesheet" href="MIED_research_team.css">
+<script src="MIED_research_team.js"></script>
+<link rel="stylesheet" href="MIED_participant_practice.css">
+<script src="MIED_participant_practice.js"></script>
+<link rel="stylesheet" href="MIED_intervention_groups.css">
+<script src="MIED_intervention_groups.js"></script>
+<link rel="stylesheet" href="MIED_data_export.css">
+<script src="MIED_data_export.js"></script>
+<link rel="stylesheet" href="MIED_data_export_split.css">
+<script src="MIED_data_export_split.js"></script>
+<link rel="stylesheet" href="MIED_data_export_multi.css">
+<script src="MIED_data_export_multi.js"></script>
+<link rel="stylesheet" href="MIED_data_grid.css">
+<link rel="stylesheet" href="MIED_daily_tasks.css">
+<script src="MIED_daily_tasks.js"></script>
+<link rel="stylesheet" href="MIED_participant_dashboard.css">
+<script src="MIED_participant_dashboard.js"></script>
+<link rel="stylesheet" href="MIED_participant_compact.css">
+<script src="MIED_participant_compact.js"></script>
+<link rel="stylesheet" href="MIED_research_modules.css">
+<script src="MIED_research_modules.js"></script>
 </body>
 </html>
